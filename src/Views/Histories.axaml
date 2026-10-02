@@ -257,7 +257,7 @@
               <TextBlock>
                 <Run Text="{DynamicResource Text.Repository.Search.ToolTip}" Foreground="{DynamicResource Brush.FG1}"/>
                 <Run Text=" "/>
-                <Run Text="{OnPlatform Ctrl+Shift+F, macOS=⌘+⇧+F}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+                <Run Text="{Binding Source={x:Static m:Shortcuts.ToggleSearchCommits}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
               </TextBlock>
             </ToolTip.Tip>
             <Path Width="14" Height="14" Data="{StaticResource Icons.Search}"/>
@@ -414,12 +414,12 @@
                 Padding="0"
                 IsVisible="{Binding IsOpenAsStandaloneVisible, Mode=OneWay}"
                 Click="OnOpenDetailsAsStandalone"
-                HotKey="{OnPlatform Ctrl+N, macOS=⌘+N}">
+                HotKey="{Binding Source={x:Static m:Shortcuts.OpenCommitDetailStandalone}, Path=Gesture}">
           <ToolTip.Tip>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
               <TextBlock Text="{DynamicResource Text.HistoriesDetailsStandalone}" VerticalAlignment="Center"/>
               <TextBlock Margin="16,0,0,0"
-                         Text="{OnPlatform Ctrl+N, macOS=⌘+N}"
+                         Text="{Binding Source={x:Static m:Shortcuts.OpenCommitDetailStandalone}, Path=DisplayText}"
                          Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                          FontSize="11"
                          VerticalAlignment="Center"/>
@@ -431,14 +431,14 @@
         <ToggleButton Classes="line_path"
                       Width="28" Height="28"
                       Padding="0"
-                      HotKey="{OnPlatform Ctrl+J, macOS=⌘+J}"
+                      HotKey="{Binding Source={x:Static m:Shortcuts.ToggleCommitDetailPanel}, Path=Gesture}"
                       IsChecked="{Binding IsCollapseDetails, Mode=TwoWay}"
                       IsVisible="{Binding Source={x:Static vm:Preferences.Instance}, Path=UseTwoColumnsLayoutInHistories, Mode=OneWay, Converter={x:Static BoolConverters.Not}}">
           <ToolTip.Tip>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
               <TextBlock Text="{DynamicResource Text.CommitDetail.CollapseToBottom}" VerticalAlignment="Center"/>
               <TextBlock Margin="16,0,0,0"
-                         Text="{OnPlatform Ctrl+J, macOS=⌘+J}"
+                         Text="{Binding Source={x:Static m:Shortcuts.ToggleCommitDetailPanel}, Path=DisplayText}"
                          Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                          FontSize="11"
                          VerticalAlignment="Center"/>

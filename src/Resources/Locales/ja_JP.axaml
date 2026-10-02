@@ -543,7 +543,6 @@
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">設定ダイアログを開く</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">ワークスペースのドロップダウンメニューを表示</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">アクティブなタブを切り替え</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">拡大/縮小</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">リポジトリ</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">ステージに上げた変更をコミット</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">ステージに上げた変更をコミットしてプッシュ</x:String>

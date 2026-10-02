@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="using:SourceGit.Models"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SourceGit.ViewModels"
@@ -393,18 +394,18 @@
                 Margin="8,0,0,0"
                 Padding="8,0"
                 Click="OnCommit"
-                HotKey="{OnPlatform Ctrl+Enter, macOS=⌘+Enter}"
+                HotKey="{Binding Source={x:Static m:Shortcuts.Commit}, Path=Gesture}"
                 IsVisible="{Binding InProgressContext, Converter={x:Static ObjectConverters.IsNull}}"
                 ToolTip.Placement="Top"
                 ToolTip.VerticalOffset="0">
           <ToolTip.Tip>
             <StackPanel Orientation="Vertical">
               <TextBlock TextAlignment="Left" TextWrapping="Wrap">
-                <Run Text="{OnPlatform Ctrl+Enter, macOS=⌘+Enter}"/>
+                <Run Text="{Binding Source={x:Static m:Shortcuts.Commit}, Path=DisplayText}"/>
                 <Run Foreground="{DynamicResource Brush.FG2}" Text="{DynamicResource Text.WorkingCopy.CommitTip}"/>
               </TextBlock>
               <TextBlock TextAlignment="Left" TextWrapping="Wrap" Margin="0,4,0,0">
-                <Run Text="{OnPlatform Ctrl+Shift+Enter, macOS=⌘+⇧+Enter}"/>
+                <Run Text="{Binding Source={x:Static m:Shortcuts.CommitWithAutoStage}, Path=DisplayText}"/>
                 <Run Foreground="{DynamicResource Brush.FG2}" Text="{DynamicResource Text.WorkingCopy.CommitWithAutoStage}"/>
               </TextBlock>
             </StackPanel>
@@ -423,7 +424,7 @@
                 Width="0" Height="0"
                 Background="Transparent"
                 Click="OnCommitWithAutoStage"
-                HotKey="{OnPlatform Ctrl+Shift+Enter, macOS=⌘+Shift+Enter}">
+                HotKey="{Binding Source={x:Static m:Shortcuts.CommitWithAutoStage}, Path=Gesture}">
           <Button.IsEnabled>
             <MultiBinding Converter="{x:Static BoolConverters.And}">
               <Binding Path="IsCommitting" Converter="{x:Static BoolConverters.Not}"/>
@@ -439,8 +440,8 @@
                 Margin="8,0,0,0"
                 Padding="8,0"
                 Click="OnCommitWithPush"
-                HotKey="{OnPlatform Ctrl+Alt+Enter, macOS=⌘+Alt+Enter}"
-                ToolTip.Tip="{OnPlatform Ctrl+Alt+Enter, macOS=⌘+⌥+Enter}"
+                HotKey="{Binding Source={x:Static m:Shortcuts.CommitAndPush}, Path=Gesture}"
+                ToolTip.Tip="{Binding Source={x:Static m:Shortcuts.CommitAndPush}, Path=DisplayText}"
                 ToolTip.Placement="Top"
                 ToolTip.VerticalOffset="0">
           <Button.IsEnabled>

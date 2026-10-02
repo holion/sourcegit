@@ -124,7 +124,7 @@ namespace SourceGit.Views
 
         protected override async void OnKeyDown(KeyEventArgs e)
         {
-            if (e.Key == Key.F && e.KeyModifiers == (OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control))
+            if (Models.Shortcuts.Search.Matches(e))
             {
                 var panel = this.FindAncestorOfType<RevisionFileTreeView>();
                 panel?.RaiseEvent(new RoutedEventArgs(RevisionFileTreeView.SearchRequestedEvent));

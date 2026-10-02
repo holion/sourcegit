@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="using:SourceGit.Models"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SourceGit.ViewModels"
@@ -122,7 +123,7 @@
           <Run Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                FontWeight="Normal"
                FontSize="11"
-               Text="{OnPlatform Ctrl+S, macOS=⌘+S}"/>
+               Text="{Binding Source={x:Static m:Shortcuts.StageChunk}, Path=DisplayText}"/>
         </TextBlock>
       </Button>
 
@@ -133,7 +134,7 @@
           <Run Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                FontWeight="Normal"
                FontSize="11"
-               Text="{OnPlatform Ctrl+U, macOS=⌘+U}"/>
+               Text="{Binding Source={x:Static m:Shortcuts.UnstageChunk}, Path=DisplayText}"/>
         </TextBlock>
       </Button>
 
@@ -144,7 +145,7 @@
           <Run Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                FontWeight="Normal"
                FontSize="11"
-               Text="{OnPlatform Ctrl+D, macOS=⌘+D}"/>
+               Text="{Binding Source={x:Static m:Shortcuts.DiscardChunk}, Path=DisplayText}"/>
         </TextBlock>
       </Button>
     </StackPanel>

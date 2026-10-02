@@ -105,25 +105,22 @@ namespace SourceGit.Views
                 return;
             }
 
-            if (e.KeyModifiers == (OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control))
+            if (Models.Shortcuts.ZoomIn.Matches(e))
             {
-                if (e.Key == Key.OemPlus)
-                {
-                    var zoom = Math.Min(ViewModels.Preferences.Instance.Zoom + 0.05, 2.5);
-                    ViewModels.Preferences.Instance.Zoom = zoom;
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.OemMinus)
-                {
-                    var zoom = Math.Max(ViewModels.Preferences.Instance.Zoom - 0.05, 1);
-                    ViewModels.Preferences.Instance.Zoom = zoom;
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.W)
-                {
-                    Close();
-                    e.Handled = true;
-                }
+                var zoom = Math.Min(ViewModels.Preferences.Instance.Zoom + 0.05, 2.5);
+                ViewModels.Preferences.Instance.Zoom = zoom;
+                e.Handled = true;
+            }
+            else if (Models.Shortcuts.ZoomOut.Matches(e))
+            {
+                var zoom = Math.Max(ViewModels.Preferences.Instance.Zoom - 0.05, 1);
+                ViewModels.Preferences.Instance.Zoom = zoom;
+                e.Handled = true;
+            }
+            else if (Models.Shortcuts.CloseTab.Matches(e))
+            {
+                Close();
+                e.Handled = true;
             }
         }
 

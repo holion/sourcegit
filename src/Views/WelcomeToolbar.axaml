@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="using:SourceGit.Models"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:SourceGit.ViewModels"
@@ -13,7 +14,7 @@
           <TextBlock>
             <Run Text="{DynamicResource Text.Welcome.Clone}"/>
             <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+R, macOS=⌘+R}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="{Binding Source={x:Static m:Shortcuts.Clone}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
           </TextBlock>
         </ToolTip.Tip>
         <Path Width="16" Height="16" Data="{StaticResource Icons.Clone}" Margin="0,4,0,0"/>
@@ -24,7 +25,7 @@
           <TextBlock>
             <Run Text="{DynamicResource Text.Welcome.OpenOrInit}"/>
             <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+L, macOS=⌘+L}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="{Binding Source={x:Static m:Shortcuts.OpenLocalRepository}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
           </TextBlock>
         </ToolTip.Tip>
         <Path Width="14" Height="14" Data="{StaticResource Icons.Folder.Open}" Margin="0,2,0,0"/>
@@ -35,7 +36,7 @@
           <TextBlock>
             <Run Text="{DynamicResource Text.Welcome.OpenTerminal}"/>
             <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+`, macOS=Λ+`}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="{Binding Source={x:Static m:Shortcuts.OpenTerminal}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
           </TextBlock>
         </ToolTip.Tip>
         <Path Width="13" Height="13" Data="{StaticResource Icons.Terminal}"/>

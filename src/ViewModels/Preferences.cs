@@ -26,6 +26,7 @@ namespace SourceGit.ViewModels
                 _instance.PrepareShellOrTerminal();
                 _instance.PrepareExternalDiffMergeTool();
                 _instance.PrepareWorkspaces();
+                Models.Shortcuts.Load(_instance.CustomShortcuts);
 
                 return _instance;
             }
@@ -449,6 +450,12 @@ namespace SourceGit.ViewModels
             get;
             set;
         } = [];
+
+        public Dictionary<string, string> CustomShortcuts
+        {
+            get;
+            set;
+        } = new();
 
         public AvaloniaList<Models.CustomAction> CustomActions
         {

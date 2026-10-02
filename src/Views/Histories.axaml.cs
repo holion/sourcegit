@@ -212,20 +212,17 @@ namespace SourceGit.Views
 
         protected override async void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyModifiers == KeyModifiers.Alt)
+            if (Models.Shortcuts.GoToChild.Matches(e))
             {
-                if (e.Key == Key.Up)
-                {
-                    e.Handled = true;
-                    if (this.FindAncestorOfType<Histories>() is { } histories)
-                        await histories.GotoChild();
-                }
-                else if (e.Key == Key.Down)
-                {
-                    e.Handled = true;
-                    if (this.FindAncestorOfType<Histories>() is { } histories)
-                        await histories.GotoParent();
-                }
+                e.Handled = true;
+                if (this.FindAncestorOfType<Histories>() is { } histories)
+                    await histories.GotoChild();
+            }
+            else if (Models.Shortcuts.GoToParent.Matches(e))
+            {
+                e.Handled = true;
+                if (this.FindAncestorOfType<Histories>() is { } histories)
+                    await histories.GotoParent();
             }
             else if (e.KeyModifiers.HasFlag(OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control) &&
                 SelectedItems is { Count: > 0 } selected &&

@@ -534,7 +534,6 @@
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">Buka dialog Preferensi</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">Tampilkan menu tarik-turun workspace</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">Ganti tab aktif</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">Perbesar/perkecil</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">REPOSITORI</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit perubahan yang di-stage</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit dan push perubahan yang di-stage</x:String>

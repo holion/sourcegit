@@ -143,12 +143,12 @@
                       Background="Transparent"
                       Click="OnOpenFileWithDefaultEditor"
                       IsVisible="{Binding CanOpenRevisionFileWithDefaultEditor, Mode=OneWay}"
-                      HotKey="{OnPlatform Ctrl+O, macOS=⌘+O}">
+                      HotKey="{Binding Source={x:Static m:Shortcuts.OpenFileWithDefaultEditor}, Path=Gesture}">
                 <ToolTip.Tip>
                   <TextBlock>
                     <Run Text="{DynamicResource Text.Open}"/>
                     <Run Text=" "/>
-                    <Run Text="{OnPlatform Ctrl+O, macOS=⌘+O}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+                    <Run Text="{Binding Source={x:Static m:Shortcuts.OpenFileWithDefaultEditor}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
                   </TextBlock>
                 </ToolTip.Tip>
                 <Path Width="12" Height="12" Data="{StaticResource Icons.OpenWith}"/>

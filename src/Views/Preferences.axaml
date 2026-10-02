@@ -816,6 +816,119 @@
 
         <TabItem>
           <TabItem.Header>
+            <TextBlock Classes="tab_header" Text="{DynamicResource Text.Preferences.Shortcuts}"/>
+          </TabItem.Header>
+
+          <Grid Margin="8" RowDefinitions="Auto,Auto,*,Auto">
+            <TextBlock Grid.Row="0"
+                       Margin="0,0,0,8"
+                       Text="{DynamicResource Text.Preferences.Shortcuts.Tip}"
+                       Foreground="{DynamicResource Brush.FG2}"
+                       TextWrapping="Wrap"/>
+
+            <TextBox Grid.Row="1"
+                     Height="28"
+                     Margin="0,0,12,8"
+                     Padding="4,0"
+                     CornerRadius="3"
+                     Watermark="{DynamicResource Text.Preferences.Shortcuts.Search}"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding #ThisControl.ShortcutFilter, Mode=TwoWay}">
+              <TextBox.InnerLeftContent>
+                <Path Width="14" Height="14" Margin="6,0,0,0" Data="{StaticResource Icons.Search}" Fill="{DynamicResource Brush.FG2}"/>
+              </TextBox.InnerLeftContent>
+
+              <TextBox.InnerRightContent>
+                <Button Classes="icon_button"
+                        Width="16"
+                        Margin="0,0,4,0"
+                        Click="OnClearShortcutFilter"
+                        IsVisible="{Binding #ThisControl.ShortcutFilter, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                  <Path Width="14" Height="14" Data="{StaticResource Icons.Clear}" Fill="{DynamicResource Brush.FG1}"/>
+                </Button>
+              </TextBox.InnerRightContent>
+            </TextBox>
+
+            <ScrollViewer Grid.Row="2" Height="440" HorizontalScrollBarVisibility="Disabled">
+              <ItemsControl ItemsSource="{Binding #ThisControl.ShortcutGroups}" Margin="0,0,12,0">
+                <ItemsControl.Styles>
+                  <Style Selector="v|ShortcutRecorder">
+                    <Setter Property="Height" Value="24"/>
+                    <Setter Property="CornerRadius" Value="3"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border1}"/>
+                    <Setter Property="Background" Value="{DynamicResource Brush.Contents}"/>
+                  </Style>
+                  <Style Selector="v|ShortcutRecorder:pointerover">
+                    <Setter Property="BorderBrush" Value="{DynamicResource Brush.Accent}"/>
+                  </Style>
+                  <Style Selector="v|ShortcutRecorder:focus">
+                    <Setter Property="BorderBrush" Value="{DynamicResource Brush.Accent}"/>
+                  </Style>
+                  <Style Selector="v|ShortcutRecorder.conflict">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                  </Style>
+                </ItemsControl.Styles>
+
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate DataType="m:ShortcutGroup">
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,12">
+                      <TextBlock Text="{Binding Header}"
+                                 Foreground="{DynamicResource Brush.FG2}"
+                                 FontWeight="Bold"
+                                 Margin="0,0,0,4"/>
+
+                      <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                          <DataTemplate DataType="m:Shortcut">
+                            <Grid Height="28" ColumnDefinitions="*,Auto,180,Auto">
+                              <TextBlock Grid.Column="0"
+                                         Text="{Binding Description}"
+                                         VerticalAlignment="Center"
+                                         TextTrimming="CharacterEllipsis"/>
+
+                              <Path Grid.Column="1"
+                                    Width="14" Height="14"
+                                    Margin="8,0,0,0"
+                                    Fill="Red"
+                                    Data="{StaticResource Icons.Error}"
+                                    IsVisible="{Binding HasConflict}"
+                                    ToolTip.Tip="{DynamicResource Text.Preferences.Shortcuts.Conflict}"/>
+
+                              <v:ShortcutRecorder Grid.Column="2"
+                                                  Margin="8,0,0,0"
+                                                  Shortcut="{Binding}"
+                                                  ShortcutChanged="OnShortcutChanged"/>
+
+                              <Button Grid.Column="3"
+                                      Classes="icon_button"
+                                      Margin="4,0,0,0"
+                                      Click="OnResetShortcut"
+                                      IsEnabled="{Binding IsCustomized}"
+                                      ToolTip.Tip="{Binding DefaultDisplayText}">
+                                <Path Width="12" Height="12" Data="{StaticResource Icons.Undo}"/>
+                              </Button>
+                            </Grid>
+                          </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                      </ItemsControl>
+                    </StackPanel>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </ScrollViewer>
+
+            <Button Grid.Row="3"
+                    Classes="flat"
+                    Margin="0,8,0,0"
+                    HorizontalAlignment="Right"
+                    Content="{DynamicResource Text.Preferences.Shortcuts.ResetAll}"
+                    Click="OnResetAllShortcuts"/>
+          </Grid>
+        </TabItem>
+
+        <TabItem>
+          <TabItem.Header>
             <TextBlock Classes="tab_header" Text="{DynamicResource Text.Preferences.AI}"/>
           </TabItem.Header>
 

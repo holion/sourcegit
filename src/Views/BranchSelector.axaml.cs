@@ -271,7 +271,7 @@ namespace SourceGit.Views
                 IsDropDownOpened = false;
                 e.Handled = true;
             }
-            else if (e.Key == Key.F && e.KeyModifiers == (OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control))
+            else if (Models.Shortcuts.Search.Matches(e))
             {
                 var searchBox = _popup?.Child?.FindDescendantOfType<TextBox>();
                 if (searchBox != null)

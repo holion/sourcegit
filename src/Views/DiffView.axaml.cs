@@ -1,8 +1,6 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 
@@ -17,14 +15,15 @@ namespace SourceGit.Views
 
         public void ToggleHotkeyBindings(bool enabled)
         {
-            var isMacOS = OperatingSystem.IsMacOS();
+            _hotkeysEnabled = enabled;
+
             if (enabled)
             {
-                BtnGotoFirstChange.HotKey = KeyGesture.Parse(isMacOS ? "Cmd+Alt+Home" : "Ctrl+Alt+Home");
-                BtnGotoPrevChange.HotKey = KeyGesture.Parse(isMacOS ? "Cmd+Alt+Up" : "Ctrl+Alt+Up");
-                BtnGotoNextChange.HotKey = KeyGesture.Parse(isMacOS ? "Cmd+Alt+Down" : "Ctrl+Alt+Down");
-                BtnGotoLastChange.HotKey = KeyGesture.Parse(isMacOS ? "Cmd+Alt+End" : "Ctrl+Alt+End");
-                BtnOpenExternalMergeTool.HotKey = KeyGesture.Parse(isMacOS ? "Cmd+Shift+D" : "Ctrl+Shift+D");
+                BtnGotoFirstChange.HotKey = Models.Shortcuts.GotoFirstChange.Gesture;
+                BtnGotoPrevChange.HotKey = Models.Shortcuts.GotoPrevChange.Gesture;
+                BtnGotoNextChange.HotKey = Models.Shortcuts.GotoNextChange.Gesture;
+                BtnGotoLastChange.HotKey = Models.Shortcuts.GotoLastChange.Gesture;
+                BtnOpenExternalMergeTool.HotKey = Models.Shortcuts.OpenExternalMergeTool.Gesture;
             }
             else
             {
@@ -44,12 +43,20 @@ namespace SourceGit.Views
                 vm.CheckSettings();
 
             ToggleHotkeyBindings(IsEffectivelyVisible);
+            Models.Shortcuts.Changed += OnShortcutsChanged;
         }
 
         protected override void OnUnloaded(RoutedEventArgs e)
         {
             base.OnUnloaded(e);
+            Models.Shortcuts.Changed -= OnShortcutsChanged;
             ToggleHotkeyBindings(false);
+        }
+
+        private void OnShortcutsChanged()
+        {
+            if (_hotkeysEnabled)
+                ToggleHotkeyBindings(true);
         }
 
         private void OnGotoFirstChange(object _, RoutedEventArgs e)
@@ -99,5 +106,7 @@ namespace SourceGit.Views
                 e.Handled = true;
             }
         }
+
+        private bool _hotkeysEnabled = false;
     }
 }

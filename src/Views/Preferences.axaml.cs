@@ -105,6 +105,33 @@ namespace SourceGit.Views
             set;
         } = false;
 
+        public static readonly DirectProperty<Preferences, List<Models.ShortcutGroup>> ShortcutGroupsProperty =
+            AvaloniaProperty.RegisterDirect<Preferences, List<Models.ShortcutGroup>>(
+                nameof(ShortcutGroups),
+                static o => o.ShortcutGroups);
+
+        public List<Models.ShortcutGroup> ShortcutGroups
+        {
+            get => _shortcutGroups;
+            private set => SetAndRaise(ShortcutGroupsProperty, ref _shortcutGroups, value);
+        }
+
+        public static readonly DirectProperty<Preferences, string> ShortcutFilterProperty =
+            AvaloniaProperty.RegisterDirect<Preferences, string>(
+                nameof(ShortcutFilter),
+                static o => o.ShortcutFilter,
+                static (o, v) => o.ShortcutFilter = v);
+
+        public string ShortcutFilter
+        {
+            get => _shortcutFilter;
+            set
+            {
+                if (SetAndRaise(ShortcutFilterProperty, ref _shortcutFilter, value))
+                    UpdateShortcutGroups();
+            }
+        }
+
         public static readonly DirectProperty<Preferences, AI.Service> SelectedOpenAIServiceProperty =
             AvaloniaProperty.RegisterDirect<Preferences, AI.Service>(
                 nameof(SelectedOpenAIService),
@@ -168,6 +195,7 @@ namespace SourceGit.Views
             }
 
             UpdateGitVersion();
+            _shortcutGroups = _allShortcutGroups;
             InitializeComponent();
         }
 
@@ -224,6 +252,65 @@ namespace SourceGit.Views
             var preferences = ViewModels.Preferences.Instance;
             preferences.UpdateAvailableAIModels();
             preferences.Save();
+        }
+
+        private void OnClearShortcutFilter(object sender, RoutedEventArgs e)
+        {
+            ShortcutFilter = string.Empty;
+            e.Handled = true;
+        }
+
+        private void UpdateShortcutGroups()
+        {
+            if (string.IsNullOrWhiteSpace(_shortcutFilter))
+            {
+                ShortcutGroups = _allShortcutGroups;
+                return;
+            }
+
+            var filter = _shortcutFilter.Trim();
+            var groups = new List<Models.ShortcutGroup>();
+            foreach (var group in _allShortcutGroups)
+            {
+                var items = group.Items.FindAll(x =>
+                    x.Description.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    x.DisplayText.Contains(filter, StringComparison.OrdinalIgnoreCase));
+
+                if (items.Count > 0)
+                    groups.Add(new Models.ShortcutGroup(group.Header, items));
+            }
+
+            ShortcutGroups = groups;
+        }
+
+        private void OnShortcutChanged(object sender, RoutedEventArgs e)
+        {
+            ApplyShortcutChanges();
+            e.Handled = true;
+        }
+
+        private void OnResetShortcut(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button { DataContext: Models.Shortcut shortcut })
+            {
+                shortcut.Reset();
+                ApplyShortcutChanges();
+            }
+
+            e.Handled = true;
+        }
+
+        private void OnResetAllShortcuts(object sender, RoutedEventArgs e)
+        {
+            Models.Shortcuts.ResetAll();
+            ApplyShortcutChanges();
+            e.Handled = true;
+        }
+
+        private void ApplyShortcutChanges()
+        {
+            Models.Shortcuts.NotifyChanged();
+            ViewModels.Preferences.Instance.CustomShortcuts = Models.Shortcuts.Export();
         }
 
         private async void SelectThemeOverrideFile(object _, RoutedEventArgs e)
@@ -527,6 +614,9 @@ namespace SourceGit.Views
         private Models.GPGFormat _gpgFormat = Models.GPGFormat.Supported[0];
         private string _gpgExecutableFile = string.Empty;
         private AI.Service _selectedOpenAIService = null;
+        private readonly List<Models.ShortcutGroup> _allShortcutGroups = Models.Shortcuts.GetGroups();
+        private List<Models.ShortcutGroup> _shortcutGroups = null;
+        private string _shortcutFilter = string.Empty;
         private Models.CustomAction _selectedCustomAction = null;
     }
 }

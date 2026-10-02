@@ -130,7 +130,7 @@
                       <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="{DynamicResource Text.PageTabBar.Tab.Close}" VerticalAlignment="Center"/>
                         <TextBlock Margin="16,0,0,0"
-                                   Text="{OnPlatform Ctrl+W, macOS=⌘+W}"
+                                   Text="{Binding Source={x:Static m:Shortcuts.CloseTab}, Path=DisplayText}"
                                    FontSize="11"
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
@@ -153,7 +153,7 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
               <TextBlock Text="{DynamicResource Text.PageTabBar.New}" VerticalAlignment="Center"/>
               <TextBlock Margin="16,0,0,0"
-                         Text="{OnPlatform Ctrl+T, macOS=⌘+T}"
+                         Text="{Binding Source={x:Static m:Shortcuts.NewTab}, Path=DisplayText}"
                          FontSize="11"
                          VerticalAlignment="Center"
                          Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
@@ -175,7 +175,7 @@
           <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Text="{DynamicResource Text.PageTabBar.New}" VerticalAlignment="Center"/>
             <TextBlock Margin="16,0,0,0"
-                       Text="{OnPlatform Ctrl+T, macOS=⌘+T}"
+                       Text="{Binding Source={x:Static m:Shortcuts.NewTab}, Path=DisplayText}"
                        FontSize="11"
                        VerticalAlignment="Center"
                        Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>

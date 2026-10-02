@@ -534,7 +534,6 @@
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">Άνοιγμα διαλόγου Προτιμήσεων</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">Εμφάνιση αναπτυσσόμενου μενού χώρων εργασίας</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">Εναλλαγή ενεργής καρτέλας</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">Μεγέθυνση/σμίκρυνση</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">ΑΠΟΘΕΤΗΡΙΟ</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit των αλλαγών στο ευρετήριο</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit και push των αλλαγών στο ευρετήριο</x:String>

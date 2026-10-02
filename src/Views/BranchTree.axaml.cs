@@ -578,7 +578,7 @@ namespace SourceGit.Views
 
         private void OnTreeKeyDown(object _, KeyEventArgs e)
         {
-            if (e.Key == Key.F && e.KeyModifiers == (OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control))
+            if (Models.Shortcuts.Search.Matches(e))
             {
                 RaiseEvent(new RoutedEventArgs(SearchRequestedEvent));
                 e.Handled = true;

@@ -34,19 +34,19 @@ namespace SourceGit.Views
                 return;
             }
 
-            if (e.Key == Key.P)
+            if (Models.Shortcuts.RebasePick.Matches(e))
             {
                 vm.ChangeAction(items, Models.InteractiveRebaseAction.Pick);
                 MoveSelection(NavigationDirection.Next);
                 e.Handled = true;
             }
-            else if (e.Key == Key.E)
+            else if (Models.Shortcuts.RebaseEdit.Matches(e))
             {
                 vm.ChangeAction(items, Models.InteractiveRebaseAction.Edit);
                 MoveSelection(NavigationDirection.Next);
                 e.Handled = true;
             }
-            else if (e.Key == Key.R)
+            else if (Models.Shortcuts.RebaseReword.Matches(e))
             {
                 vm.ChangeAction(items, Models.InteractiveRebaseAction.Reword);
                 if (items.Count == 1)
@@ -56,28 +56,27 @@ namespace SourceGit.Views
 
                 e.Handled = true;
             }
-            else if (e.Key == Key.S)
+            else if (Models.Shortcuts.RebaseSquash.Matches(e))
             {
                 vm.ChangeAction(items, Models.InteractiveRebaseAction.Squash);
                 MoveSelection(NavigationDirection.Next);
                 e.Handled = true;
             }
-            else if (e.Key == Key.F)
+            else if (Models.Shortcuts.RebaseFixup.Matches(e))
             {
                 vm.ChangeAction(items, Models.InteractiveRebaseAction.Fixup);
                 MoveSelection(NavigationDirection.Next);
                 e.Handled = true;
             }
-            else if (e.Key == Key.D)
+            else if (Models.Shortcuts.RebaseDrop.Matches(e))
             {
                 vm.ChangeAction(items, Models.InteractiveRebaseAction.Drop);
                 MoveSelection(NavigationDirection.Next);
                 e.Handled = true;
             }
-            else if (e.KeyModifiers.HasFlag(KeyModifiers.Control))
+            else if (Models.Shortcuts.RebaseMoveUp.Matches(e) || Models.Shortcuts.RebaseMoveDown.Matches(e))
             {
-                if (e.Key == Key.Up || e.Key == Key.Down)
-                    return;
+                return;
             }
 
             if (!e.Handled)
@@ -399,17 +398,17 @@ namespace SourceGit.Views
             flyout.Placement = PlacementMode.BottomEdgeAlignedLeft;
             flyout.VerticalOffset = -4;
 
-            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Pick, Brushes.Green, "Use this commit", "P");
-            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Edit, Brushes.Orange, "Stop for amending", "E");
-            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Reword, Brushes.Orange, "Edit the commit message", "R");
+            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Pick, Brushes.Green, "Use this commit", Models.Shortcuts.RebasePick.DisplayText);
+            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Edit, Brushes.Orange, "Stop for amending", Models.Shortcuts.RebaseEdit.DisplayText);
+            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Reword, Brushes.Orange, "Edit the commit message", Models.Shortcuts.RebaseReword.DisplayText);
 
             if (item.CanSquashOrFixup)
             {
-                CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Squash, Brushes.LightGray, "Meld into previous commit", "S");
-                CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Fixup, Brushes.LightGray, "Like 'Squash' but discard message", "F");
+                CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Squash, Brushes.LightGray, "Meld into previous commit", Models.Shortcuts.RebaseSquash.DisplayText);
+                CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Fixup, Brushes.LightGray, "Like 'Squash' but discard message", Models.Shortcuts.RebaseFixup.DisplayText);
             }
 
-            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Drop, Brushes.Red, "Remove commit", "D");
+            CreateActionMenuItem(flyout, item, Models.InteractiveRebaseAction.Drop, Brushes.Red, "Remove commit", Models.Shortcuts.RebaseDrop.DisplayText);
 
             flyout.ShowAt(button);
             e.Handled = true;

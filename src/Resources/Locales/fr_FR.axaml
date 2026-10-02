@@ -507,7 +507,6 @@
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">Ouvrir le dialogue des préférences</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">Afficher le menu des espaces de travail</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">Changer d'onglet actif</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">Zoom avant/arrière</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">DÉPÔT</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit les changements de l'index</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit et pousser les changements de l'index</x:String>

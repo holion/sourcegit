@@ -530,6 +530,8 @@
   <x:String x:Key="Text.HistoriesDetailsStandalone.CommitDetail" xml:space="preserve">Commit Detail</x:String>
   <x:String x:Key="Text.HistoriesDetailsStandalone.RevisionCompare" xml:space="preserve">Revision Compare</x:String>
   <x:String x:Key="Text.Hotkeys" xml:space="preserve">Keyboard Shortcuts Reference</x:String>
+  <x:String x:Key="Text.Hotkeys.CustomizeTip" xml:space="preserve">Shortcuts can be changed in Preferences › Shortcuts</x:String>
+  <x:String x:Key="Text.Hotkeys.Diff" xml:space="preserve">DIFF</x:String>
   <x:String x:Key="Text.Hotkeys.Global" xml:space="preserve">GLOBAL</x:String>
   <x:String x:Key="Text.Hotkeys.Global.Clone" xml:space="preserve">Clone remote repository</x:String>
   <x:String x:Key="Text.Hotkeys.Global.CloseTab" xml:space="preserve">Close current tab</x:String>
@@ -538,17 +540,32 @@
   <x:String x:Key="Text.Hotkeys.Global.NewTab" xml:space="preserve">Create new tab</x:String>
   <x:String x:Key="Text.Hotkeys.Global.OpenLocalRepository" xml:space="preserve">Open local repository</x:String>
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">Open Preferences dialog</x:String>
+  <x:String x:Key="Text.Hotkeys.Global.Search" xml:space="preserve">Search/filter in current panel</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">Show workspace dropdown menu</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">Switch active tab</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">Zoom in/out</x:String>
+  <x:String x:Key="Text.Hotkeys.Global.ZoomIn" xml:space="preserve">Zoom in</x:String>
+  <x:String x:Key="Text.Hotkeys.Global.ZoomOut" xml:space="preserve">Zoom out</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase" xml:space="preserve">INTERACTIVE REBASE</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.Drop" xml:space="preserve">Set action of selected commits to 'Drop'</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.Edit" xml:space="preserve">Set action of selected commits to 'Edit'</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.Fixup" xml:space="preserve">Set action of selected commits to 'Fixup'</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.MoveDown" xml:space="preserve">Move selected commits down</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.MoveUp" xml:space="preserve">Move selected commits up</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.Pick" xml:space="preserve">Set action of selected commits to 'Pick'</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.Reword" xml:space="preserve">Set action of selected commits to 'Reword'</x:String>
+  <x:String x:Key="Text.Hotkeys.InteractiveRebase.Squash" xml:space="preserve">Set action of selected commits to 'Squash'</x:String>
+  <x:String x:Key="Text.Hotkeys.MergeConflict" xml:space="preserve">MERGE CONFLICT EDITOR</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">REPOSITORY</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit staged changes</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit and push staged changes</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitWithAutoStage" xml:space="preserve">Stage all changes and commit</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CreateBranch" xml:space="preserve">Create new branch</x:String>
+  <x:String x:Key="Text.Hotkeys.Repo.CreateBranchFromCommit" xml:space="preserve">Create new branch from selected commit</x:String>
+  <x:String x:Key="Text.Hotkeys.Repo.CreateTagFromCommit" xml:space="preserve">Create new tag on selected commit</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Fetch" xml:space="preserve">Fetch, starts directly</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.GoToChild" xml:space="preserve">Goto child of selected commit</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.GoToParent" xml:space="preserve">Goto parent of selected commit</x:String>
+  <x:String x:Key="Text.Hotkeys.Repo.OpenFileWithDefaultEditor" xml:space="preserve">Open selected file with default editor</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.OpenCommandPalette" xml:space="preserve">Open command palette</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Pull" xml:space="preserve">Pull, starts directly</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Push" xml:space="preserve">Push, starts directly</x:String>
@@ -731,6 +748,13 @@
   <x:String x:Key="Text.Preferences.GPG.UserKey" xml:space="preserve">User Signing Key</x:String>
   <x:String x:Key="Text.Preferences.GPG.UserKey.Placeholder" xml:space="preserve">User's gpg signing key</x:String>
   <x:String x:Key="Text.Preferences.Integration" xml:space="preserve">INTEGRATION</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts" xml:space="preserve">SHORTCUTS</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts.Conflict" xml:space="preserve">This shortcut is also used by another action</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts.Recording" xml:space="preserve">Press new shortcut...</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts.Reset" xml:space="preserve">Reset to default</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts.ResetAll" xml:space="preserve">Reset All</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts.Search" xml:space="preserve">Search by action or key combination...</x:String>
+  <x:String x:Key="Text.Preferences.Shortcuts.Tip" xml:space="preserve">Click a shortcut and press the new key combination. Backspace removes the shortcut, Esc cancels.</x:String>
   <x:String x:Key="Text.Preferences.Shell" xml:space="preserve">SHELL/TERMINAL</x:String>
   <x:String x:Key="Text.Preferences.Shell.Args" xml:space="preserve">Arguments</x:String>
   <x:String x:Key="Text.Preferences.Shell.Args.Tip" xml:space="preserve">Please use '.' to indicate working directory</x:String>

@@ -507,7 +507,6 @@
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">פתח חלון ההעדפות</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">הצג תפריט נפתח של סביבת העבודה</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">החלף לשונית פעילה</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">הגדל/הקטן</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">מאגר</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit לשינויים ב־staged</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit ו־push לשינויים ב־staged</x:String>

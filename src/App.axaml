@@ -1,6 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:s="using:SourceGit"
+             xmlns:m="using:SourceGit.Models"
              x:Class="SourceGit.App"
              Name="SourceGit"
              RequestedThemeVariant="Dark">
@@ -41,10 +42,10 @@
   <NativeMenu.Menu>
     <NativeMenu>
       <NativeMenuItem Header="{DynamicResource Text.About.Menu}" Command="{x:Static s:App.OpenAboutCommand}"/>
-      <NativeMenuItem Header="{DynamicResource Text.Hotkeys}" Command="{x:Static s:App.OpenHotkeysCommand}" Gesture="F1"/>
+      <NativeMenuItem Header="{DynamicResource Text.Hotkeys}" Command="{x:Static s:App.OpenHotkeysCommand}" Gesture="{Binding Source={x:Static m:Shortcuts.OpenHotkeys}, Path=Gesture}"/>
       <NativeMenuItem Header="{DynamicResource Text.SelfUpdate}" Command="{x:Static s:App.CheckForUpdateCommand}" IsVisible="{x:Static s:App.IsCheckForUpdateCommandVisible}"/>
       <NativeMenuItemSeparator/>
-      <NativeMenuItem Header="{DynamicResource Text.Preferences}" Command="{x:Static s:App.OpenPreferencesCommand}" Gesture="⌘+,"/>
+      <NativeMenuItem Header="{DynamicResource Text.Preferences}" Command="{x:Static s:App.OpenPreferencesCommand}" Gesture="{Binding Source={x:Static m:Shortcuts.OpenPreferences}, Path=Gesture}"/>
       <NativeMenuItem Header="{DynamicResource Text.SSHKeyHelper}" Command="{x:Static s:App.OpenSSHKeyHelperCommand}"/>
       <NativeMenuItem Header="{DynamicResource Text.OpenAppDataDir}" Command="{x:Static s:App.OpenAppDataDirCommand}"/>
       <NativeMenuItemSeparator/>
@@ -52,7 +53,7 @@
       <NativeMenuItem Header="{DynamicResource Text.App.HideOthers}" Command="{x:Static s:App.HideOtherApplicationsCommand}" Gesture="⌘+Alt+H"/>
       <NativeMenuItem Header="{DynamicResource Text.App.ShowAll}" Command="{x:Static s:App.ShowAllApplicationsCommand}"/>
       <NativeMenuItemSeparator/>
-      <NativeMenuItem Header="{DynamicResource Text.Quit}" Command="{x:Static s:App.QuitCommand}" Gesture="⌘+Q"/>
+      <NativeMenuItem Header="{DynamicResource Text.Quit}" Command="{x:Static s:App.QuitCommand}" Gesture="{Binding Source={x:Static m:Shortcuts.Quit}, Path=Gesture}"/>
     </NativeMenu>
   </NativeMenu.Menu>
 </Application>

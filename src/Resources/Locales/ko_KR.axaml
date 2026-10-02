@@ -506,7 +506,6 @@
   <x:String x:Key="Text.Hotkeys.Global.OpenPreferences" xml:space="preserve">환경설정 대화상자 열기</x:String>
   <x:String x:Key="Text.Hotkeys.Global.ShowWorkspaceDropdownMenu" xml:space="preserve">작업 공간 드롭다운 메뉴 열기</x:String>
   <x:String x:Key="Text.Hotkeys.Global.SwitchTab" xml:space="preserve">활성 탭 전환</x:String>
-  <x:String x:Key="Text.Hotkeys.Global.Zoom" xml:space="preserve">확대 / 축소</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">저장소</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">스테이징된 변경 사항 커밋</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">스테이징된 변경 사항 커밋 및 푸시</x:String>

@@ -1,5 +1,6 @@
 <v:ChromelessWindow xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:m="using:SourceGit.Models"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:s="using:SourceGit"
@@ -37,12 +38,12 @@
       <Button Grid.Column="0" Classes="icon_button" VerticalAlignment="Bottom" Margin="6,0,0,3" IsVisible="{OnPlatform True, macOS=False}">
         <Button.Flyout>
           <MenuFlyout Placement="BottomEdgeAlignedLeft" VerticalOffset="-6">
-            <MenuItem Header="{DynamicResource Text.Preferences}" Command="{x:Static s:App.OpenPreferencesCommand}" InputGesture="Ctrl+,">
+            <MenuItem Header="{DynamicResource Text.Preferences}" Command="{x:Static s:App.OpenPreferencesCommand}" InputGesture="{Binding Source={x:Static m:Shortcuts.OpenPreferences}, Path=Gesture}">
               <MenuItem.Icon>
                 <Path Width="14" Height="14" Data="{StaticResource Icons.Settings}"/>
               </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{DynamicResource Text.Hotkeys}" Command="{x:Static s:App.OpenHotkeysCommand}" InputGesture="F1">
+            <MenuItem Header="{DynamicResource Text.Hotkeys}" Command="{x:Static s:App.OpenHotkeysCommand}" InputGesture="{Binding Source={x:Static m:Shortcuts.OpenHotkeys}, Path=Gesture}">
               <MenuItem.Icon>
                 <Path Width="14" Height="14" Data="{StaticResource Icons.Hotkeys}"/>
               </MenuItem.Icon>
@@ -77,7 +78,7 @@
                 <Path Width="14" Height="14" Data="{StaticResource Icons.Info}"/>
               </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{DynamicResource Text.Quit}" Command="{x:Static s:App.QuitCommand}" InputGesture="Ctrl+Q">
+            <MenuItem Header="{DynamicResource Text.Quit}" Command="{x:Static s:App.QuitCommand}" InputGesture="{Binding Source={x:Static m:Shortcuts.Quit}, Path=Gesture}">
               <MenuItem.Icon>
                 <Path Width="14" Height="14" Data="{StaticResource Icons.Quit}"/>
               </MenuItem.Icon>
@@ -88,13 +89,13 @@
       </Button>
 
       <!-- Workspace Dropdown Menu -->
-      <Button Grid.Column="1" Classes="icon_button" VerticalAlignment="Bottom" Margin="0,0,0,1" Click="OnOpenWorkspaceMenu" HotKey="{OnPlatform Ctrl+Alt+P, macOS=⌘+Alt+P}">
+      <Button Grid.Column="1" Classes="icon_button" VerticalAlignment="Bottom" Margin="0,0,0,1" Click="OnOpenWorkspaceMenu" HotKey="{Binding Source={x:Static m:Shortcuts.ShowWorkspaceMenu}, Path=Gesture}">
         <ToolTip.Tip>
           <StackPanel Orientation="Horizontal">
             <TextBlock Text="{DynamicResource Text.Workspace}" FontWeight="Bold" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
             <TextBlock Text="{Binding ActiveWorkspace.Name}"/>
             <TextBlock Margin="16,0,0,0"
-                       Text="{OnPlatform Ctrl+Alt+P, macOS=⌘+Alt+P}"
+                       Text="{Binding Source={x:Static m:Shortcuts.ShowWorkspaceMenu}, Path=DisplayText}"
                        FontSize="11"
                        Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                        VerticalAlignment="Center"/>
@@ -106,13 +107,13 @@
       </Button>
 
       <!-- Pages Switcher Toggle Button -->
-      <Button Grid.Column="2" Classes="icon_button" VerticalAlignment="Bottom" Margin="0,0,0,1" Click="OnOpenPagesCommandPalette" HotKey="{OnPlatform Ctrl+P, macOS=⌘+P}">
+      <Button Grid.Column="2" Classes="icon_button" VerticalAlignment="Bottom" Margin="0,0,0,1" Click="OnOpenPagesCommandPalette" HotKey="{Binding Source={x:Static m:Shortcuts.SwitchTab}, Path=Gesture}">
         <ToolTip.Tip>
           <StackPanel Orientation="Horizontal">
             <TextBlock Text="{DynamicResource Text.Launcher.Pages}"
                        VerticalAlignment="Center"/>
             <TextBlock Margin="8,0,0,0"
-                       Text="{OnPlatform Ctrl+P, macOS=⌘+P}"
+                       Text="{Binding Source={x:Static m:Shortcuts.SwitchTab}, Path=DisplayText}"
                        FontSize="11"
                        Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"
                        VerticalAlignment="Center"/>

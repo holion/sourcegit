@@ -59,15 +59,17 @@
           <TextBlock>
             <Run Text="{DynamicResource Text.InteractiveRebase.ReorderTip}"/>
             <Run Text=" "/>
-            <Run Text="{OnPlatform 'Ctrl+Up/Ctrl+Down', macOS='⌘+Up/⌘+Down'}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="{Binding Source={x:Static m:Shortcuts.RebaseMoveUp}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="/" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="{Binding Source={x:Static m:Shortcuts.RebaseMoveDown}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
           </TextBlock>
         </ToolTip.Tip>
 
         <Path Width="14" Height="14" Data="{StaticResource Icons.Info}"/>
       </Border>
 
-      <Button Grid.Column="2" Width="0" Height="0" Click="OnMoveSelectedUp" HotKey="{OnPlatform Ctrl+Up, macOS=⌘+Up}"/>
-      <Button Grid.Column="3" Width="0" Height="0" Click="OnMoveSelectedDown" HotKey="{OnPlatform Ctrl+Down, macOS=⌘+Down}"/>
+      <Button Grid.Column="2" Width="0" Height="0" Click="OnMoveSelectedUp" HotKey="{Binding Source={x:Static m:Shortcuts.RebaseMoveUp}, Path=Gesture}"/>
+      <Button Grid.Column="3" Width="0" Height="0" Click="OnMoveSelectedDown" HotKey="{Binding Source={x:Static m:Shortcuts.RebaseMoveDown}, Path=Gesture}"/>
     </Grid>
 
     <!-- Body -->

@@ -143,33 +143,30 @@ namespace SourceGit.Views
             }
 
             // Register hotkeys for Windows/Linux (macOS has registered these keys in system menu bar)
-            var isMacOS = OperatingSystem.IsMacOS();
-            var cmdKey = isMacOS ? KeyModifiers.Meta : KeyModifiers.Control;
-            if (!isMacOS)
+            if (!OperatingSystem.IsMacOS())
             {
-                if (e is { KeyModifiers: KeyModifiers.Control, Key: Key.OemComma })
+                if (Models.Shortcuts.OpenPreferences.Matches(e))
                 {
                     await this.ShowDialogAsync(new Preferences());
                     e.Handled = true;
                     return;
                 }
 
-                if (e is { KeyModifiers: KeyModifiers.None, Key: Key.F1 })
+                if (Models.Shortcuts.OpenHotkeys.Matches(e))
                 {
                     await this.ShowDialogAsync(new Hotkeys());
                     e.Handled = true;
                     return;
                 }
 
-                if (e is { KeyModifiers: KeyModifiers.Control, Key: Key.Q })
+                if (Models.Shortcuts.Quit.Matches(e))
                 {
                     App.Quit(0);
                     return;
                 }
             }
 
-            // Ctrl+` to open terminal. On macOS, Cmd+` is used to switch between windows
-            if (e is { Key: Key.OemTilde, KeyModifiers: KeyModifiers.Control })
+            if (Models.Shortcuts.OpenTerminal.Matches(e))
             {
                 if (vm.ActivePage.Data is ViewModels.Repository repo)
                     Native.OS.OpenTerminal(repo.FullPath);
@@ -189,8 +186,7 @@ namespace SourceGit.Views
                 }
                 else if (vm.ActivePage.Data is ViewModels.Repository repo
                     && vm.CommandPalette is ViewModels.LauncherPagesCommandPalette
-                    && e.Key == Key.P
-                    && e.KeyModifiers == (cmdKey | KeyModifiers.Shift))
+                    && Models.Shortcuts.OpenCommandPalette.Matches(e))
                 {
                     vm.CommandPalette = new ViewModels.RepositoryCommandPalette(repo);
                     e.Handled = true;
@@ -199,107 +195,124 @@ namespace SourceGit.Views
                 return;
             }
 
-            if (e.KeyModifiers.HasFlag(cmdKey))
+            if (Models.Shortcuts.CloseTab.Matches(e))
             {
-                if (e.Key == Key.W)
-                {
-                    vm.CloseTab(null);
-                    e.Handled = true;
-                    return;
-                }
+                vm.CloseTab(null);
+                e.Handled = true;
+                return;
+            }
 
-                if (e.Key == Key.R)
-                {
-                    if (vm.ActivePage.Data is not ViewModels.Welcome)
-                        vm.AddNewTab();
-
-                    ViewModels.Welcome.Instance.Clone();
-                    e.Handled = true;
-                    return;
-                }
-
-                if (e.Key == Key.L)
-                {
-                    if (vm.ActivePage.Data is not ViewModels.Welcome)
-                        vm.AddNewTab();
-
-                    ViewModels.Welcome.Instance.OpenLocalRepository();
-                    e.Handled = true;
-                    return;
-                }
-
-                if (e.Key == Key.T && e.KeyModifiers == cmdKey)
-                {
+            if (Models.Shortcuts.Clone.Matches(e))
+            {
+                if (vm.ActivePage.Data is not ViewModels.Welcome)
                     vm.AddNewTab();
+
+                ViewModels.Welcome.Instance.Clone();
+                e.Handled = true;
+                return;
+            }
+
+            if (Models.Shortcuts.OpenLocalRepository.Matches(e))
+            {
+                if (vm.ActivePage.Data is not ViewModels.Welcome)
+                    vm.AddNewTab();
+
+                ViewModels.Welcome.Instance.OpenLocalRepository();
+                e.Handled = true;
+                return;
+            }
+
+            if (Models.Shortcuts.NewTab.Matches(e))
+            {
+                vm.AddNewTab();
+                e.Handled = true;
+                return;
+            }
+
+            if (Models.Shortcuts.GotoNextTab.Matches(e))
+            {
+                vm.GotoNextTab();
+                e.Handled = true;
+                return;
+            }
+
+            if (Models.Shortcuts.GotoPrevTab.Matches(e))
+            {
+                vm.GotoPrevTab();
+                e.Handled = true;
+                return;
+            }
+
+            if (vm.ActivePage.Data is ViewModels.Repository activeRepo)
+            {
+                if (Models.Shortcuts.ViewHistories.Matches(e))
+                {
+                    activeRepo.SelectedViewIndex = 0;
                     e.Handled = true;
                     return;
                 }
 
-                if ((isMacOS && e.KeyModifiers.HasFlag(KeyModifiers.Alt) && e.Key == Key.Right) ||
-                    (!isMacOS && !e.KeyModifiers.HasFlag(KeyModifiers.Shift) && e.Key == Key.Tab))
+                if (Models.Shortcuts.ViewChanges.Matches(e))
                 {
-                    vm.GotoNextTab();
+                    activeRepo.SelectedViewIndex = 1;
                     e.Handled = true;
                     return;
                 }
 
-                if ((isMacOS && e.KeyModifiers.HasFlag(KeyModifiers.Alt) && e.Key == Key.Left) ||
-                    (!isMacOS && e.KeyModifiers.HasFlag(KeyModifiers.Shift) && e.Key == Key.Tab))
+                if (Models.Shortcuts.ViewStashes.Matches(e))
                 {
-                    vm.GotoPrevTab();
+                    activeRepo.SelectedViewIndex = 2;
                     e.Handled = true;
                     return;
                 }
 
-                if (vm.ActivePage.Data is ViewModels.Repository repo)
+                if (Models.Shortcuts.OpenCommandPalette.Matches(e))
                 {
-                    switch (e.Key)
-                    {
-                        case Key.D1 or Key.NumPad1:
-                            repo.SelectedViewIndex = 0;
-                            e.Handled = true;
-                            return;
-                        case Key.D2 or Key.NumPad2:
-                            repo.SelectedViewIndex = 1;
-                            e.Handled = true;
-                            return;
-                        case Key.D3 or Key.NumPad3:
-                            repo.SelectedViewIndex = 2;
-                            e.Handled = true;
-                            return;
-                        case Key.P when e.KeyModifiers.HasFlag(KeyModifiers.Shift):
-                            vm.CommandPalette = new ViewModels.RepositoryCommandPalette(repo);
-                            e.Handled = true;
-                            return;
-                        case Key.F when e.KeyModifiers.HasFlag(KeyModifiers.Shift):
-                            repo.Histories.IsSearchingCommits = !repo.Histories.IsSearchingCommits;
-                            e.Handled = true;
-                            return;
-                        case Key.B when e.KeyModifiers.HasFlag(KeyModifiers.Shift):
-                            if (repo.CanCreatePopup() && repo.GetSelectedCommitInHistory() is { } bc)
-                                repo.ShowPopup(new ViewModels.CreateBranch(repo, bc));
-                            e.Handled = true;
-                            return;
-                        case Key.T when e.KeyModifiers.HasFlag(KeyModifiers.Shift):
-                            if (repo.CanCreatePopup() && repo.GetSelectedCommitInHistory() is { } tc)
-                                repo.ShowPopup(new ViewModels.CreateTag(repo, tc));
-                            e.Handled = true;
-                            return;
-                        case Key.E:
-                            Native.OS.OpenInFileManager(repo.FullPath);
-                            e.Handled = true;
-                            return;
-                    }
+                    vm.CommandPalette = new ViewModels.RepositoryCommandPalette(activeRepo);
+                    e.Handled = true;
+                    return;
+                }
+
+                if (Models.Shortcuts.ToggleSearchCommits.Matches(e))
+                {
+                    activeRepo.Histories.IsSearchingCommits = !activeRepo.Histories.IsSearchingCommits;
+                    e.Handled = true;
+                    return;
+                }
+
+                if (Models.Shortcuts.CreateBranchFromCommit.Matches(e))
+                {
+                    if (activeRepo.CanCreatePopup() && activeRepo.GetSelectedCommitInHistory() is { } bc)
+                        activeRepo.ShowPopup(new ViewModels.CreateBranch(activeRepo, bc));
+                    e.Handled = true;
+                    return;
+                }
+
+                if (Models.Shortcuts.CreateTagFromCommit.Matches(e))
+                {
+                    if (activeRepo.CanCreatePopup() && activeRepo.GetSelectedCommitInHistory() is { } tc)
+                        activeRepo.ShowPopup(new ViewModels.CreateTag(activeRepo, tc));
+                    e.Handled = true;
+                    return;
+                }
+
+                if (Models.Shortcuts.OpenInFileManager.Matches(e))
+                {
+                    Native.OS.OpenInFileManager(activeRepo.FullPath);
+                    e.Handled = true;
+                    return;
                 }
             }
-            else if (e.Key == Key.Escape)
+
+            if (e is { Key: Key.Escape, KeyModifiers: KeyModifiers.None })
             {
                 vm.ActivePage.CancelPopup();
                 vm.ActivePage.Notifications.Clear();
                 e.Handled = true;
                 return;
             }
-            else if (e.Key == Key.F5)
+
+            if (Models.Shortcuts.Refresh.Matches(e))
             {
                 if (vm.ActivePage.Data is ViewModels.Repository repo)
                 {

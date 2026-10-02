@@ -220,7 +220,7 @@ namespace SourceGit.Views
                 await this.CopyTextAsync(builder.ToString());
                 e.Handled = true;
             }
-            else if (e.Key == Key.F && e.KeyModifiers == cmdKey)
+            else if (Models.Shortcuts.Search.Matches(e))
             {
                 ChangeSearchBox.Focus();
                 e.Handled = true;

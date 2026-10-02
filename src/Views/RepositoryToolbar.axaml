@@ -89,12 +89,12 @@
                  VerticalAlignment="Center"
                  Fill="{DynamicResource Brush.Border2}"/>
 
-      <Button Classes="icon_button" Width="32" Margin="18,0,0,0" Command="{Binding CreateNewBranch}" HotKey="{OnPlatform Ctrl+B, macOS=⌘+B}">
+      <Button Classes="icon_button" Width="32" Margin="18,0,0,0" Command="{Binding CreateNewBranch}" HotKey="{Binding Source={x:Static m:Shortcuts.CreateBranch}, Path=Gesture}">
         <ToolTip.Tip>
           <TextBlock>
             <Run Text="{DynamicResource Text.Repository.NewBranch}"/>
             <Run Text=" "/>
-            <Run Text="{OnPlatform Ctrl+B, macOS=⌘+B}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+            <Run Text="{Binding Source={x:Static m:Shortcuts.CreateBranch}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
           </TextBlock>
         </ToolTip.Tip>
         <Path Width="14" Height="14" Data="{StaticResource Icons.Branch.Add}"/>
@@ -122,9 +122,9 @@
     </StackPanel>
 
     <StackPanel Grid.Column="2" Orientation="Horizontal">
-      <Button Width="0" Height="0" Click="PushDirectlyByHotKey" IsVisible="False" HotKey="{OnPlatform Ctrl+Shift+Up, macOS=⌘+Shift+Up}"/>
-      <Button Width="0" Height="0" Click="PullDirectlyByHotKey" IsVisible="False" IsEnabled="{Binding !IsBare}" HotKey="{OnPlatform Ctrl+Shift+Down, macOS=⌘+Shift+Down}"/>
-      <Button Width="0" Height="0" Click="FetchDirectlyByHotKey" IsVisible="False" HotKey="{OnPlatform Ctrl+Down, macOS=⌘+Down}"/>
+      <Button Width="0" Height="0" Click="PushDirectlyByHotKey" IsVisible="False" HotKey="{Binding Source={x:Static m:Shortcuts.Push}, Path=Gesture}"/>
+      <Button Width="0" Height="0" Click="PullDirectlyByHotKey" IsVisible="False" IsEnabled="{Binding !IsBare}" HotKey="{Binding Source={x:Static m:Shortcuts.Pull}, Path=Gesture}"/>
+      <Button Width="0" Height="0" Click="FetchDirectlyByHotKey" IsVisible="False" HotKey="{Binding Source={x:Static m:Shortcuts.Fetch}, Path=Gesture}"/>
     </StackPanel>
 
     <Grid Grid.Column="3" HorizontalAlignment="Right" ColumnDefinitions="Auto,*,32">
