@@ -6,7 +6,7 @@ This document shows the translation status of each locale file in the repository
 
 ### ![en_US](https://img.shields.io/badge/en__US-%E2%88%9A-brightgreen)
 
-### ![de__DE](https://img.shields.io/badge/de__DE-95.66%25-yellow)
+### ![de__DE](https://img.shields.io/badge/de__DE-92.49%25-yellow)
 
 <details>
 <summary>Missing keys in de_DE.axaml</summary>
@@ -21,17 +21,53 @@ This document shows the translation status of each locale file in the repository
 - Text.File.HexViewer.GotoAddress
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Remote.ResetPushURL
 - Text.RemoteCM.SetPushURL
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -60,7 +96,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![el__GR](https://img.shields.io/badge/el__GR-95.19%25-yellow)
+### ![el__GR](https://img.shields.io/badge/el__GR-92.03%25-yellow)
 
 <details>
 <summary>Missing keys in el_GR.axaml</summary>
@@ -75,14 +111,47 @@ This document shows the translation status of each locale file in the repository
 - Text.File.HexViewer.GotoAddress
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
 - Text.Launcher.NewVersion
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Remote.ResetPushURL
 - Text.RemoteCM.SetPushURL
 - Text.Repository.FilterCommits.Collapse
@@ -90,6 +159,9 @@ This document shows the translation status of each locale file in the repository
 - Text.Repository.FilterCommits.Summary
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -119,18 +191,54 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![es__ES](https://img.shields.io/badge/es__ES-99.72%25-yellow)
+### ![es__ES](https://img.shields.io/badge/es__ES-96.43%25-yellow)
 
 <details>
 <summary>Missing keys in es_ES.axaml</summary>
 
 - Text.CommitDetail.Files.Tips
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.WorkingCopy.CollapseSidebar
 - Text.WorkingCopy.ExpandSidebar
 
 </details>
 
-### ![fr__FR](https://img.shields.io/badge/fr__FR-91.42%25-yellow)
+### ![fr__FR](https://img.shields.io/badge/fr__FR-88.37%25-yellow)
 
 <details>
 <summary>Missing keys in fr_FR.axaml</summary>
@@ -172,6 +280,26 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.StartName
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
@@ -180,11 +308,24 @@ This document shows the translation status of each locale file in the repository
 - Text.Merge.Test.NoConflicts
 - Text.Merge.Test.UnknownError
 - Text.Merge.Test.WillCauseConflicts
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
 - Text.Preferences.General.UseCompactBranchNames
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Rebase.Test
 - Text.Rebase.Test.OK
 - Text.Rebase.Test.UnknownError
@@ -196,6 +337,9 @@ This document shows the translation status of each locale file in the repository
 - Text.Repository.FilterCommits.Summary
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -229,7 +373,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![he__IL](https://img.shields.io/badge/he__IL-91.42%25-yellow)
+### ![he__IL](https://img.shields.io/badge/he__IL-88.37%25-yellow)
 
 <details>
 <summary>Missing keys in he_IL.axaml</summary>
@@ -271,6 +415,26 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.StartName
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
@@ -279,11 +443,24 @@ This document shows the translation status of each locale file in the repository
 - Text.Merge.Test.NoConflicts
 - Text.Merge.Test.UnknownError
 - Text.Merge.Test.WillCauseConflicts
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
 - Text.Preferences.General.UseCompactBranchNames
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Rebase.Test
 - Text.Rebase.Test.OK
 - Text.Rebase.Test.UnknownError
@@ -295,6 +472,9 @@ This document shows the translation status of each locale file in the repository
 - Text.Repository.FilterCommits.Summary
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -328,7 +508,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![id__ID](https://img.shields.io/badge/id__ID-95.66%25-yellow)
+### ![id__ID](https://img.shields.io/badge/id__ID-92.49%25-yellow)
 
 <details>
 <summary>Missing keys in id_ID.axaml</summary>
@@ -343,16 +523,52 @@ This document shows the translation status of each locale file in the repository
 - Text.File.HexViewer.GotoAddress
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Remote.ResetPushURL
 - Text.RemoteCM.SetPushURL
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -382,7 +598,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![it__IT](https://img.shields.io/badge/it__IT-85.28%25-yellow)
+### ![it__IT](https://img.shields.io/badge/it__IT-82.42%25-yellow)
 
 <details>
 <summary>Missing keys in it_IT.axaml</summary>
@@ -461,10 +677,30 @@ This document shows the translation status of each locale file in the repository
 - Text.HistoriesDetailsStandalone
 - Text.HistoriesDetailsStandalone.CommitDetail
 - Text.HistoriesDetailsStandalone.RevisionCompare
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
 - Text.Hotkeys.Global.OpenLocalRepository
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
 - Text.Hotkeys.Repo.CreateBranch
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.GoToChild
 - Text.Hotkeys.Repo.GoToParent
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
@@ -476,6 +712,12 @@ This document shows the translation status of each locale file in the repository
 - Text.Merge.Test.NoConflicts
 - Text.Merge.Test.UnknownError
 - Text.Merge.Test.WillCauseConflicts
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.OpenLocalRepository
@@ -491,6 +733,13 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.General.Use24Hours
 - Text.Preferences.General.UseCompactBranchNames
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Rebase.NoVerify
 - Text.Rebase.Test
 - Text.Rebase.Test.OK
@@ -505,7 +754,10 @@ This document shows the translation status of each locale file in the repository
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
 - Text.SelfUpdate.CurrentVersion
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
 - Text.SelfUpdate.ReleaseDate
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -546,18 +798,54 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ja__JP](https://img.shields.io/badge/ja__JP-99.72%25-yellow)
+### ![ja__JP](https://img.shields.io/badge/ja__JP-96.43%25-yellow)
 
 <details>
 <summary>Missing keys in ja_JP.axaml</summary>
 
 - Text.CommitDetail.Files.Tips
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.WorkingCopy.CollapseSidebar
 - Text.WorkingCopy.ExpandSidebar
 
 </details>
 
-### ![ko__KR](https://img.shields.io/badge/ko__KR-92.83%25-yellow)
+### ![ko__KR](https://img.shields.io/badge/ko__KR-89.74%25-yellow)
 
 <details>
 <summary>Missing keys in ko_KR.axaml</summary>
@@ -593,14 +881,47 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.StartName
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
 - Text.Launcher.NewVersion
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Remote.ResetPushURL
 - Text.RemoteCM.SetPushURL
 - Text.Repository.FilterCommits.Collapse
@@ -608,6 +929,9 @@ This document shows the translation status of each locale file in the repository
 - Text.Repository.FilterCommits.Summary
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -641,7 +965,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![pt__BR](https://img.shields.io/badge/pt__BR-60.19%25-red)
+### ![pt__BR](https://img.shields.io/badge/pt__BR-58.24%25-red)
 
 <details>
 <summary>Missing keys in pt_BR.axaml</summary>
@@ -829,14 +1153,33 @@ This document shows the translation status of each locale file in the repository
 - Text.HistoriesDetailsStandalone
 - Text.HistoriesDetailsStandalone.CommitDetail
 - Text.HistoriesDetailsStandalone.RevisionCompare
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
 - Text.Hotkeys.Global.Clone
 - Text.Hotkeys.Global.OpenLocalRepository
+- Text.Hotkeys.Global.Search
 - Text.Hotkeys.Global.ShowWorkspaceDropdownMenu
 - Text.Hotkeys.Global.SwitchTab
-- Text.Hotkeys.Global.Zoom
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
 - Text.Hotkeys.Repo.CreateBranch
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.GoToChild
 - Text.Hotkeys.Repo.GoToParent
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.OpenCommandPalette
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
@@ -883,6 +1226,12 @@ This document shows the translation status of each locale file in the repository
 - Text.MoveSubmodule
 - Text.MoveSubmodule.MoveTo
 - Text.MoveSubmodule.Submodule
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.No
 - Text.Open
 - Text.Open.SystemDefaultEditor
@@ -910,7 +1259,6 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.General.DateFormat
 - Text.Preferences.General.EnableCompactFolders
 - Text.Preferences.General.ShowChangesPageByDefault
-- Text.Preferences.General.ShowChangesTabInCommitDetailByDefault
 - Text.Preferences.General.ShowRelativeTimeInGraph
 - Text.Preferences.General.ShowTagsInGraph
 - Text.Preferences.General.Use24Hours
@@ -920,6 +1268,13 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.Git.SSLVerify
 - Text.Preferences.Git.UseLibsecret
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Preferences.Shell.Args
 - Text.Preferences.Shell.Args.Tip
 - Text.Push.New
@@ -971,7 +1326,10 @@ This document shows the translation status of each locale file in the repository
 - Text.ResetWithoutCheckout.Target
 - Text.ScanRepositories.UseCustomDir
 - Text.SelfUpdate.CurrentVersion
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
 - Text.SelfUpdate.ReleaseDate
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -1071,7 +1429,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ru__RU](https://img.shields.io/badge/ru__RU-98.02%25-yellow)
+### ![ru__RU](https://img.shields.io/badge/ru__RU-94.78%25-yellow)
 
 <details>
 <summary>Missing keys in ru_RU.axaml</summary>
@@ -1081,14 +1439,50 @@ This document shows the translation status of each locale file in the repository
 - Text.CommitDetail.Files.Tips
 - Text.Dashboard
 - Text.Histories.AdvancedOptions
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.Preferences.AI.ExtraHeaders
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Remote.ResetPushURL
 - Text.RemoteCM.SetPushURL
 - Text.Repository.Search.Method
 - Text.Repository.Search.ToolTip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -1100,7 +1494,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ta__IN](https://img.shields.io/badge/ta__IN-61.79%25-red)
+### ![ta__IN](https://img.shields.io/badge/ta__IN-59.80%25-red)
 
 <details>
 <summary>Missing keys in ta_IN.axaml</summary>
@@ -1303,13 +1697,32 @@ This document shows the translation status of each locale file in the repository
 - Text.HistoriesDetailsStandalone
 - Text.HistoriesDetailsStandalone.CommitDetail
 - Text.HistoriesDetailsStandalone.RevisionCompare
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
 - Text.Hotkeys.Global.OpenLocalRepository
+- Text.Hotkeys.Global.Search
 - Text.Hotkeys.Global.ShowWorkspaceDropdownMenu
 - Text.Hotkeys.Global.SwitchTab
-- Text.Hotkeys.Global.Zoom
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
 - Text.Hotkeys.Repo.CreateBranch
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.GoToChild
 - Text.Hotkeys.Repo.GoToParent
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.OpenCommandPalette
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
@@ -1347,6 +1760,12 @@ This document shows the translation status of each locale file in the repository
 - Text.MoveSubmodule
 - Text.MoveSubmodule.MoveTo
 - Text.MoveSubmodule.Submodule
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.No
 - Text.Open
 - Text.Open.SystemDefaultEditor
@@ -1372,7 +1791,6 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.DiffMerge.MergeArgs.Tip
 - Text.Preferences.General.EnableCompactFolders
 - Text.Preferences.General.ShowChangesPageByDefault
-- Text.Preferences.General.ShowChangesTabInCommitDetailByDefault
 - Text.Preferences.General.ShowRelativeTimeInGraph
 - Text.Preferences.General.Use24Hours
 - Text.Preferences.General.UseCompactBranchNames
@@ -1380,6 +1798,13 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.Git.IgnoreCRAtEOLInDiff
 - Text.Preferences.Git.UseLibsecret
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Preferences.Shell.Args
 - Text.Preferences.Shell.Args.Tip
 - Text.Push.New
@@ -1421,7 +1846,10 @@ This document shows the translation status of each locale file in the repository
 - Text.ResetWithoutCheckout.Target
 - Text.ScanRepositories.UseCustomDir
 - Text.SelfUpdate.CurrentVersion
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
 - Text.SelfUpdate.ReleaseDate
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -1513,7 +1941,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![uk__UA](https://img.shields.io/badge/uk__UA-62.55%25-red)
+### ![uk__UA](https://img.shields.io/badge/uk__UA-60.53%25-red)
 
 <details>
 <summary>Missing keys in uk_UA.axaml</summary>
@@ -1712,13 +2140,32 @@ This document shows the translation status of each locale file in the repository
 - Text.HistoriesDetailsStandalone
 - Text.HistoriesDetailsStandalone.CommitDetail
 - Text.HistoriesDetailsStandalone.RevisionCompare
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
 - Text.Hotkeys.Global.OpenLocalRepository
+- Text.Hotkeys.Global.Search
 - Text.Hotkeys.Global.ShowWorkspaceDropdownMenu
 - Text.Hotkeys.Global.SwitchTab
-- Text.Hotkeys.Global.Zoom
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
 - Text.Hotkeys.Repo.CreateBranch
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.GoToChild
 - Text.Hotkeys.Repo.GoToParent
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
 - Text.Hotkeys.Repo.OpenCommandPalette
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
@@ -1756,6 +2203,12 @@ This document shows the translation status of each locale file in the repository
 - Text.MoveSubmodule
 - Text.MoveSubmodule.MoveTo
 - Text.MoveSubmodule.Submodule
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
 - Text.No
 - Text.Open
 - Text.Open.SystemDefaultEditor
@@ -1781,7 +2234,6 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.DiffMerge.MergeArgs.Tip
 - Text.Preferences.General.EnableCompactFolders
 - Text.Preferences.General.ShowChangesPageByDefault
-- Text.Preferences.General.ShowChangesTabInCommitDetailByDefault
 - Text.Preferences.General.ShowRelativeTimeInGraph
 - Text.Preferences.General.Use24Hours
 - Text.Preferences.General.UseCompactBranchNames
@@ -1789,6 +2241,13 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.Git.IgnoreCRAtEOLInDiff
 - Text.Preferences.Git.UseLibsecret
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
 - Text.Preferences.Shell.Args
 - Text.Preferences.Shell.Args.Tip
 - Text.Push.New
@@ -1830,7 +2289,10 @@ This document shows the translation status of each locale file in the repository
 - Text.ResetWithoutCheckout.Target
 - Text.ScanRepositories.UseCustomDir
 - Text.SelfUpdate.CurrentVersion
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
 - Text.SelfUpdate.ReleaseDate
+- Text.SelfUpdate.RestartNow
 - Text.SetPushUrl
 - Text.SetPushUrl.PushURL
 - Text.SetPushUrl.Remote
@@ -1918,14 +2380,92 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![zh__CN](https://img.shields.io/badge/zh__CN-%E2%88%9A-brightgreen)
+### ![zh__CN](https://img.shields.io/badge/zh__CN-96.70%25-yellow)
 
-### ![zh__TW](https://img.shields.io/badge/zh__TW-99.72%25-yellow)
+<details>
+<summary>Missing keys in zh_CN.axaml</summary>
+
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
+
+</details>
+
+### ![zh__TW](https://img.shields.io/badge/zh__TW-96.43%25-yellow)
 
 <details>
 <summary>Missing keys in zh_TW.axaml</summary>
 
 - Text.CommitDetail.Files.Tips
+- Text.Hotkeys.CustomizeTip
+- Text.Hotkeys.Diff
+- Text.Hotkeys.Global.Search
+- Text.Hotkeys.Global.ZoomIn
+- Text.Hotkeys.Global.ZoomOut
+- Text.Hotkeys.InteractiveRebase
+- Text.Hotkeys.InteractiveRebase.Drop
+- Text.Hotkeys.InteractiveRebase.Edit
+- Text.Hotkeys.InteractiveRebase.Fixup
+- Text.Hotkeys.InteractiveRebase.MoveDown
+- Text.Hotkeys.InteractiveRebase.MoveUp
+- Text.Hotkeys.InteractiveRebase.Pick
+- Text.Hotkeys.InteractiveRebase.Reword
+- Text.Hotkeys.InteractiveRebase.Squash
+- Text.Hotkeys.MergeConflict
+- Text.Hotkeys.NestedRepos.SelectNext
+- Text.Hotkeys.NestedRepos.SelectPrev
+- Text.Hotkeys.Repo.CreateBranchFromCommit
+- Text.Hotkeys.Repo.CreateTagFromCommit
+- Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.NestedRepos
+- Text.NestedRepos.FetchAll
+- Text.NestedRepos.PullAll
+- Text.NestedRepos.PushAll
+- Text.NestedRepos.Refresh
+- Text.NestedRepos.Summary
+- Text.Preferences.Shortcuts
+- Text.Preferences.Shortcuts.Conflict
+- Text.Preferences.Shortcuts.Recording
+- Text.Preferences.Shortcuts.Reset
+- Text.Preferences.Shortcuts.ResetAll
+- Text.Preferences.Shortcuts.Search
+- Text.Preferences.Shortcuts.Tip
+- Text.SelfUpdate.Later
+- Text.SelfUpdate.ReadyToInstall
+- Text.SelfUpdate.RestartNow
 - Text.WorkingCopy.CollapseSidebar
 - Text.WorkingCopy.ExpandSidebar
 
