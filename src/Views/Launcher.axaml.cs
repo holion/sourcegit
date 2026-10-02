@@ -450,7 +450,8 @@ namespace SourceGit.Views
         {
             if (DataContext is ViewModels.Launcher { NewVersion: { } ver } vm)
             {
-                vm.NewVersion = null;
+                if (!ver.IsReadyToInstall)
+                    vm.NewVersion = null;
 
                 var ctx = new ViewModels.SelfUpdate { Data = ver };
                 var dialog = new SelfUpdate() { DataContext = ctx };

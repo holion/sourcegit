@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -17,6 +18,12 @@ namespace SourceGit.Models
 
         [JsonPropertyName("body")]
         public string Body { get; set; }
+
+        [JsonPropertyName("assets")]
+        public List<VersionAsset> Assets { get; set; } = [];
+
+        [JsonIgnore]
+        public bool IsReadyToInstall { get; set; }
 
         [JsonIgnore]
         public System.Version CurrentVersion { get; }
@@ -37,6 +44,18 @@ namespace SourceGit.Models
             var assembly = Assembly.GetExecutingAssembly().GetName();
             CurrentVersion = assembly.Version ?? new System.Version();
         }
+    }
+
+    public class VersionAsset
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("browser_download_url")]
+        public string DownloadUrl { get; set; }
+
+        [JsonPropertyName("digest")]
+        public string Digest { get; set; }
     }
 
     public class AlreadyUpToDate;

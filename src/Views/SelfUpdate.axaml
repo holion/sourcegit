@@ -69,7 +69,33 @@
                 <v:UpdateInfoView/>
               </Border>
 
-              <StackPanel Margin="0,8,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+              <TextBlock Margin="0,8,0,0"
+                         HorizontalAlignment="Center"
+                         Text="{DynamicResource Text.SelfUpdate.ReadyToInstall}"
+                         IsVisible="{Binding IsReadyToInstall}"/>
+
+              <StackPanel Margin="0,8,0,0" Orientation="Horizontal" HorizontalAlignment="Center" IsVisible="{Binding IsReadyToInstall}">
+                <Button Classes="flat primary"
+                        Height="30"
+                        Click="RestartNow"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                  <StackPanel Orientation="Horizontal">
+                    <Path Width="12" Height="12" Data="{StaticResource Icons.SoftwareUpdate}" Fill="{DynamicResource AccentButtonForeground}"/>
+                    <TextBlock Text="{DynamicResource Text.SelfUpdate.RestartNow}" Margin="8,0,0,0" Foreground="{DynamicResource AccentButtonForeground}"/>
+                  </StackPanel>
+                </Button>
+
+                <Button Classes="flat"
+                        Height="30"
+                        Margin="8,0,0,0"
+                        Click="CloseWindow"
+                        Content="{DynamicResource Text.SelfUpdate.Later}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"/>
+              </StackPanel>
+
+              <StackPanel Margin="0,8,0,0" Orientation="Horizontal" HorizontalAlignment="Center" IsVisible="{Binding !IsReadyToInstall}">
                 <Button Classes="flat primary"
                         Height="30"
                         Click="GotoDownload"

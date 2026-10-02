@@ -54,6 +54,11 @@ jobs:
         env:
           VERSION: ${{ inputs.version }}
           RUNTIME: ${{ matrix.runtime }}
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
         run: |
           mkdir build/SourceGit
           tar -xf "build/sourcegit.${{ matrix.runtime }}.tar" -C build/SourceGit
@@ -62,7 +67,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: package.${{ matrix.runtime }}
-          path: build/sourcegit_*.zip
+          path: |
+            build/sourcegit_*.zip
+            build/SourceGit-mac-*.dmg
       - name: Delete temp artifacts
         uses: geekyeggo/delete-artifact@v6
         with:

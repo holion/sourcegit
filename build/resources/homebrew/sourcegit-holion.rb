@@ -15,12 +15,13 @@ cask "sourcegit-holion" do
     strategy :github_latest
   end
 
+  auto_updates true
   conflicts_with cask: "sourcegit"
   depends_on macos: ">= :ventura"
 
   app "SourceGit.app"
 
-  # The app is not notarized, so strip the quarantine flag to keep Gatekeeper from blocking it.
+  # Builds made without the signing secrets are not notarized, so strip the quarantine flag for those.
   postflight do
     system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/SourceGit.app"]
   end

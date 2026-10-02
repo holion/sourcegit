@@ -81,6 +81,12 @@ namespace SourceGit.Views
             e.Handled = true;
         }
 
+        private void RestartNow(object _, RoutedEventArgs e)
+        {
+            App.RestartToInstallUpdate();
+            e.Handled = true;
+        }
+
         private void IgnoreThisVersion(object sender, RoutedEventArgs e)
         {
             if (sender is Button { DataContext: Models.Version ver })

@@ -227,6 +227,14 @@ namespace SourceGit
             return Current is App app ? app._launcher : null;
         }
 
+        public static void RestartToInstallUpdate()
+        {
+            if (Current is App app)
+                app._relaunchAfterUpdate = true;
+
+            Quit(0);
+        }
+
         public static void Quit(int exitCode)
         {
             if (Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -515,6 +523,9 @@ namespace SourceGit
             {
                 _ipcChannel?.Dispose();
                 _ipcChannel = null;
+
+                if (OperatingSystem.IsMacOS())
+                    Models.AutoUpdate.InstallOnExit(_relaunchAfterUpdate);
             };
 
             _ipcChannel.MessageReceived += repo =>
@@ -528,8 +539,22 @@ namespace SourceGit
             };
 
 #if !DISABLE_UPDATE_DETECTION
+            if (OperatingSystem.IsMacOS())
+            {
+                Models.AutoUpdate.Restore();
+                _launcher.NewVersion = Models.AutoUpdate.Staged;
+            }
+
             if (pref.ShouldCheck4UpdateOnStartup())
                 Check4Update();
+
+            // Keep looking for updates while the app stays open for days.
+            DispatcherTimer.Run(() =>
+            {
+                if (pref.Check4UpdatesOnStartup)
+                    Check4Update();
+                return true;
+            }, TimeSpan.FromHours(6));
 #endif
         }
         #endregion
@@ -537,7 +562,7 @@ namespace SourceGit
         #region Check for Updates
         private void Check4Update(bool manually = false)
         {
-            if (_launcher != null)
+            if (_launcher is { NewVersion.IsReadyToInstall: false })
                 _launcher.NewVersion = null;
 
             Task.Run(async () =>
@@ -554,20 +579,23 @@ namespace SourceGit
                     if (ver == null)
                         return;
 
-                    if (manually)
+                    if (!ver.IsNewVersion)
                     {
-                        if (ver.IsNewVersion)
-                            ShowSelfUpdateResult(ver);
-                        else
+                        if (manually)
                             ShowSelfUpdateResult(new Models.AlreadyUpToDate());
+                        return;
                     }
-                    else if (_launcher != null)
-                    {
-                        if (!ver.IsNewVersion || ver.TagName == ViewModels.Preferences.Instance.IgnoreUpdateTag)
-                            return;
 
-                        _launcher.NewVersion = ver;
-                    }
+                    if (!manually && ver.TagName == ViewModels.Preferences.Instance.IgnoreUpdateTag)
+                        return;
+
+                    if (OperatingSystem.IsMacOS() && await Models.AutoUpdate.StageAsync(ver))
+                        ver = Models.AutoUpdate.Staged;
+
+                    if (manually)
+                        ShowSelfUpdateResult(ver);
+                    else if (_launcher != null)
+                        Dispatcher.UIThread.Post(() => _launcher.NewVersion = ver);
                 }
                 catch (Exception e)
                 {
@@ -599,6 +627,7 @@ namespace SourceGit
         #endregion
 
         private Models.IpcChannel _ipcChannel = null;
+        private bool _relaunchAfterUpdate = false;
         private ViewModels.Launcher _launcher = null;
         private ResourceDictionary _activeLocale = null;
         private ResourceDictionary _themeOverrides = null;

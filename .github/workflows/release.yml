@@ -22,6 +22,7 @@ jobs:
     needs: [build, version]
     name: Package
     uses: ./.github/workflows/package.yml
+    secrets: inherit
     with:
       version: ${{ needs.version.outputs.version }}
   release:
