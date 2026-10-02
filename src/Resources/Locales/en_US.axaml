@@ -555,6 +555,8 @@
   <x:String x:Key="Text.Hotkeys.InteractiveRebase.Reword" xml:space="preserve">Set action of selected commits to 'Reword'</x:String>
   <x:String x:Key="Text.Hotkeys.InteractiveRebase.Squash" xml:space="preserve">Set action of selected commits to 'Squash'</x:String>
   <x:String x:Key="Text.Hotkeys.MergeConflict" xml:space="preserve">MERGE CONFLICT EDITOR</x:String>
+  <x:String x:Key="Text.Hotkeys.NestedRepos.SelectNext" xml:space="preserve">Switch to next repository</x:String>
+  <x:String x:Key="Text.Hotkeys.NestedRepos.SelectPrev" xml:space="preserve">Switch to previous repository</x:String>
   <x:String x:Key="Text.Hotkeys.Repo" xml:space="preserve">REPOSITORY</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit staged changes</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit and push staged changes</x:String>

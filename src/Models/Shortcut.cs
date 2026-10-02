@@ -11,6 +11,7 @@ namespace SourceGit.Models
     {
         Global,
         Repository,
+        NestedRepositories,
         Diff,
         MergeConflict,
         InteractiveRebase,
@@ -264,6 +265,14 @@ namespace SourceGit.Models
         public static readonly Shortcut OpenFileWithDefaultEditor = Add("OpenFileWithDefaultEditor", ShortcutCategory.Repository, "Hotkeys.Repo.OpenFileWithDefaultEditor", Key.O, s_cmd);
         public static readonly Shortcut Refresh = Add("Refresh", ShortcutCategory.Repository, "Hotkeys.Repo.Refresh", Key.F5);
 
+        // Nested repositories
+        public static readonly Shortcut FetchAllRepositories = Add("FetchAllRepositories", ShortcutCategory.NestedRepositories, "NestedRepos.FetchAll", Key.F, s_cmd | KeyModifiers.Alt | KeyModifiers.Shift);
+        public static readonly Shortcut PullAllRepositories = Add("PullAllRepositories", ShortcutCategory.NestedRepositories, "NestedRepos.PullAll", Key.Down, s_cmd | KeyModifiers.Alt | KeyModifiers.Shift);
+        public static readonly Shortcut PushAllRepositories = Add("PushAllRepositories", ShortcutCategory.NestedRepositories, "NestedRepos.PushAll", Key.Up, s_cmd | KeyModifiers.Alt | KeyModifiers.Shift);
+        public static readonly Shortcut RefreshAllRepositories = Add("RefreshAllRepositories", ShortcutCategory.NestedRepositories, "NestedRepos.Refresh", Key.F5, KeyModifiers.Shift);
+        public static readonly Shortcut SelectPrevRepository = Add("SelectPrevRepository", ShortcutCategory.NestedRepositories, "Hotkeys.NestedRepos.SelectPrev", Key.Up, KeyModifiers.Alt | KeyModifiers.Shift);
+        public static readonly Shortcut SelectNextRepository = Add("SelectNextRepository", ShortcutCategory.NestedRepositories, "Hotkeys.NestedRepos.SelectNext", Key.Down, KeyModifiers.Alt | KeyModifiers.Shift);
+
         // Diff
         public static readonly Shortcut GotoFirstChange = Add("GotoFirstChange", ShortcutCategory.Diff, "Diff.First", Key.Home, s_cmd | KeyModifiers.Alt);
         public static readonly Shortcut GotoPrevChange = Add("GotoPrevChange", ShortcutCategory.Diff, "Diff.Prev", Key.Up, s_cmd | KeyModifiers.Alt);
@@ -299,6 +308,7 @@ namespace SourceGit.Models
                 {
                     ShortcutCategory.Global => "Hotkeys.Global",
                     ShortcutCategory.Repository => "Hotkeys.Repo",
+                    ShortcutCategory.NestedRepositories => "NestedRepos",
                     ShortcutCategory.Diff => "Hotkeys.Diff",
                     ShortcutCategory.MergeConflict => "Hotkeys.MergeConflict",
                     _ => "Hotkeys.InteractiveRebase",
@@ -377,8 +387,8 @@ namespace SourceGit.Models
             if (a == b || a == ShortcutCategory.Global || b == ShortcutCategory.Global)
                 return true;
 
-            return a is ShortcutCategory.Repository or ShortcutCategory.Diff &&
-                b is ShortcutCategory.Repository or ShortcutCategory.Diff;
+            return a is ShortcutCategory.Repository or ShortcutCategory.NestedRepositories or ShortcutCategory.Diff &&
+                b is ShortcutCategory.Repository or ShortcutCategory.NestedRepositories or ShortcutCategory.Diff;
         }
 
         private static Shortcut Add(string id, ShortcutCategory category, string descriptionKey, Key key, KeyModifiers modifiers = KeyModifiers.None)

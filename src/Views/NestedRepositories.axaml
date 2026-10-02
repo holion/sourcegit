@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:m="using:SourceGit.Models"
              xmlns:vm="using:SourceGit.ViewModels"
              xmlns:v="using:SourceGit.Views"
              xmlns:c="using:SourceGit.Converters"
@@ -19,7 +20,7 @@
       <Border CornerRadius="8" ClipToBounds="True">
         <Grid RowDefinitions="32,*,Auto">
           <!-- Header -->
-          <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="8,0,4,0">
+          <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto,0,0" Margin="8,0,4,0">
             <TextBlock Grid.Column="0"
                        Classes="group_header_label"
                        Text="{DynamicResource Text.NestedRepos}"
@@ -31,7 +32,14 @@
                     Width="24" Height="24"
                     Click="OnFetchAll"
                     IsEnabled="{Binding !IsBusy}"
-                    ToolTip.Tip="{DynamicResource Text.NestedRepos.FetchAll}">
+                    HotKey="{Binding Source={x:Static m:Shortcuts.FetchAllRepositories}, Path=Gesture}">
+              <ToolTip.Tip>
+                <TextBlock>
+                  <Run Text="{DynamicResource Text.NestedRepos.FetchAll}"/>
+                  <Run Text=" "/>
+                  <Run Text="{Binding Source={x:Static m:Shortcuts.FetchAllRepositories}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+                </TextBlock>
+              </ToolTip.Tip>
               <Path Width="14" Height="14" Data="{StaticResource Icons.Fetch}"/>
             </Button>
 
@@ -40,7 +48,14 @@
                     Width="24" Height="24"
                     Click="OnPullAll"
                     IsEnabled="{Binding !IsBusy}"
-                    ToolTip.Tip="{DynamicResource Text.NestedRepos.PullAll}">
+                    HotKey="{Binding Source={x:Static m:Shortcuts.PullAllRepositories}, Path=Gesture}">
+              <ToolTip.Tip>
+                <TextBlock>
+                  <Run Text="{DynamicResource Text.NestedRepos.PullAll}"/>
+                  <Run Text=" "/>
+                  <Run Text="{Binding Source={x:Static m:Shortcuts.PullAllRepositories}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+                </TextBlock>
+              </ToolTip.Tip>
               <Path Width="14" Height="14" Data="{StaticResource Icons.Pull}"/>
             </Button>
 
@@ -49,7 +64,14 @@
                     Width="24" Height="24"
                     Click="OnPushAll"
                     IsEnabled="{Binding !IsBusy}"
-                    ToolTip.Tip="{DynamicResource Text.NestedRepos.PushAll}">
+                    HotKey="{Binding Source={x:Static m:Shortcuts.PushAllRepositories}, Path=Gesture}">
+              <ToolTip.Tip>
+                <TextBlock>
+                  <Run Text="{DynamicResource Text.NestedRepos.PushAll}"/>
+                  <Run Text=" "/>
+                  <Run Text="{Binding Source={x:Static m:Shortcuts.PushAllRepositories}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+                </TextBlock>
+              </ToolTip.Tip>
               <Path Width="14" Height="14" Data="{StaticResource Icons.Push}"/>
             </Button>
 
@@ -58,9 +80,20 @@
                     Width="24" Height="24"
                     Click="OnRefreshAll"
                     IsEnabled="{Binding !IsBusy}"
-                    ToolTip.Tip="{DynamicResource Text.NestedRepos.Refresh}">
+                    HotKey="{Binding Source={x:Static m:Shortcuts.RefreshAllRepositories}, Path=Gesture}">
+              <ToolTip.Tip>
+                <TextBlock>
+                  <Run Text="{DynamicResource Text.NestedRepos.Refresh}"/>
+                  <Run Text=" "/>
+                  <Run Text="{Binding Source={x:Static m:Shortcuts.RefreshAllRepositories}, Path=DisplayText}" FontSize="11" Foreground="{DynamicResource MenuFlyoutItemKeyboardAcceleratorTextForeground}"/>
+                </TextBlock>
+              </ToolTip.Tip>
               <Path Width="13" Height="13" Data="{StaticResource Icons.Loading}"/>
             </Button>
+
+            <!-- Invisible Buttons to handle switching repository by hotkeys -->
+            <Button Grid.Column="5" Width="0" Height="0" Click="OnSelectPrev" HotKey="{Binding Source={x:Static m:Shortcuts.SelectPrevRepository}, Path=Gesture}"/>
+            <Button Grid.Column="6" Width="0" Height="0" Click="OnSelectNext" HotKey="{Binding Source={x:Static m:Shortcuts.SelectNextRepository}, Path=Gesture}"/>
           </Grid>
 
           <!-- Repositories -->

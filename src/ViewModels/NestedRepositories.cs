@@ -118,6 +118,17 @@ namespace SourceGit.ViewModels
             return false;
         }
 
+        public void SelectAdjacent(int delta)
+        {
+            if (Items.Count < 2)
+                return;
+
+            var idx = Items.IndexOf(_selected);
+            var next = Math.Clamp(idx + delta, 0, Items.Count - 1);
+            if (next != idx)
+                Selected = Items[next];
+        }
+
         public void Rescan()
         {
             Sync(Scan(_root.Repo.FullPath));

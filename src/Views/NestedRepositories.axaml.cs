@@ -41,6 +41,22 @@ namespace SourceGit.Views
             e.Handled = true;
         }
 
+        private void OnSelectPrev(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ViewModels.NestedRepositories vm)
+                vm.SelectAdjacent(-1);
+
+            e.Handled = true;
+        }
+
+        private void OnSelectNext(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ViewModels.NestedRepositories vm)
+                vm.SelectAdjacent(1);
+
+            e.Handled = true;
+        }
+
         private void OnResizePointerPressed(object sender, PointerPressedEventArgs e)
         {
             if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
