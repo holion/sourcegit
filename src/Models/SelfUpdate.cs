@@ -22,7 +22,9 @@ namespace SourceGit.Models
         public System.Version CurrentVersion { get; }
 
         [JsonIgnore]
-        public string CurrentVersionStr => $"v{CurrentVersion.Major}.{CurrentVersion.Minor:D2}";
+        public string CurrentVersionStr => CurrentVersion.Build > 0
+            ? $"v{CurrentVersion.Major}.{CurrentVersion.Minor:D2}.{CurrentVersion.Build}"
+            : $"v{CurrentVersion.Major}.{CurrentVersion.Minor:D2}";
 
         [JsonIgnore]
         public bool IsNewVersion => CurrentVersion.CompareTo(new System.Version(TagName.Substring(1))) < 0;

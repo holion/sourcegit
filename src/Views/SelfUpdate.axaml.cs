@@ -77,7 +77,7 @@ namespace SourceGit.Views
 
         private void GotoDownload(object _, RoutedEventArgs e)
         {
-            Native.OS.OpenBrowser("https://github.com/sourcegit-scm/sourcegit/releases/latest");
+            Native.OS.OpenBrowser("https://github.com/holion/sourcegit/releases/latest");
             e.Handled = true;
         }
 

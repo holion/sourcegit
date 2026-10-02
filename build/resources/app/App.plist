@@ -9,7 +9,7 @@
 	<key>CFBundleName</key>
 	<string>SourceGit</string>
 	<key>CFBundleVersion</key>
-	<string>SOURCE_GIT_VERSION.0</string>
+	<string>SOURCE_GIT_VERSION</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>11.0</string>
 	<key>CFBundleExecutable</key>

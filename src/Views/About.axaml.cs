@@ -32,7 +32,7 @@ namespace SourceGit.Views
             {
                 var ver = assembly.GetName().Version;
                 if (ver != null)
-                    TxtVersion.Text = $"v{ver.Major}.{ver.Minor:D2}";
+                    TxtVersion.Text = ver.Build > 0 ? $"v{ver.Major}.{ver.Minor:D2}.{ver.Build}" : $"v{ver.Major}.{ver.Minor:D2}";
             }
 
             var copyright = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>();
@@ -47,7 +47,7 @@ namespace SourceGit.Views
             if (endOfTagIdx > 0)
                 ver = ver.Substring(0, endOfTagIdx);
 
-            Native.OS.OpenBrowser($"https://github.com/sourcegit-scm/sourcegit/releases/tag/{ver}");
+            Native.OS.OpenBrowser($"https://github.com/holion/sourcegit/releases/tag/{ver}");
             e.Handled = true;
         }
 
@@ -59,11 +59,11 @@ namespace SourceGit.Views
 
         private void OnVisitSourceCode(object _, RoutedEventArgs e)
         {
-            Native.OS.OpenBrowser("https://github.com/sourcegit-scm/sourcegit");
+            Native.OS.OpenBrowser("https://github.com/holion/sourcegit");
             e.Handled = true;
         }
 
-        [GeneratedRegex(@"^v\d{4}\.\d{1,2}(?:\-\d+\-[0-9a-f]{8})?(?:\-dirty)?$")]
+        [GeneratedRegex(@"^v\d{4}\.\d{1,2}(?:\.\d+)?(?:\-\d+\-[0-9a-f]{8})?(?:\-dirty)?$")]
         private static partial Regex REG_FRIENDLY_VERSION();
     }
 }
