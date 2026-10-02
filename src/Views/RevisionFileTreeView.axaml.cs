@@ -382,7 +382,7 @@ namespace SourceGit.Views
                 _tree.Clear();
                 _searchResult.Clear();
 
-                if (DataContext is ViewModels.CommitDetail { ActiveTabIndex: 2 } vm)
+                if (DataContext is ViewModels.CommitDetail { ActiveTabIndex: 1 } vm)
                     await ReloadTreeData(vm);
                 else
                     Rows.Clear();

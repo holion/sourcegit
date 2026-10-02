@@ -77,6 +77,12 @@ namespace SourceGit.ViewModels
             set => SetProperty(ref _commitDetailChangesLeftWidth, value);
         }
 
+        public GridLength CommitDetailInfoHeight
+        {
+            get => _commitDetailInfoHeight;
+            set => SetProperty(ref _commitDetailInfoHeight, value);
+        }
+
         public GridLength CommitDetailFilesLeftWidth
         {
             get => _commitDetailFilesLeftWidth;
@@ -86,6 +92,7 @@ namespace SourceGit.ViewModels
         private GridLength _workingCopyLeftWidth = new GridLength(300, GridUnitType.Pixel);
         private GridLength _stashesLeftWidth = new GridLength(300, GridUnitType.Pixel);
         private GridLength _commitDetailChangesLeftWidth = new GridLength(256, GridUnitType.Pixel);
+        private GridLength _commitDetailInfoHeight = new GridLength(240, GridUnitType.Pixel);
         private GridLength _commitDetailFilesLeftWidth = new GridLength(256, GridUnitType.Pixel);
         private double _nestedRepositoriesWidth = 220;
         private bool _isSidebarCollapsedInLocalChanges = false;

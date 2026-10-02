@@ -187,7 +187,6 @@
   <x:String x:Key="Text.CommitDetail.Files.LFS" xml:space="preserve">LFS ファイル</x:String>
   <x:String x:Key="Text.CommitDetail.Files.Search" xml:space="preserve">ファイルを検索...</x:String>
   <x:String x:Key="Text.CommitDetail.Files.Submodule" xml:space="preserve">サブモジュール</x:String>
-  <x:String x:Key="Text.CommitDetail.Info" xml:space="preserve">コミットの情報</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Author" xml:space="preserve">著者</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Committer" xml:space="preserve">コミッター</x:String>
   <x:String x:Key="Text.CommitDetail.Info.ContainsIn" xml:space="preserve">このコミットが含まれる参照を確認</x:String>
@@ -195,7 +194,6 @@
   <x:String x:Key="Text.CommitDetail.Info.CopyEmail" xml:space="preserve">メールアドレスをコピー</x:String>
   <x:String x:Key="Text.CommitDetail.Info.CopyName" xml:space="preserve">名前をコピー</x:String>
   <x:String x:Key="Text.CommitDetail.Info.CopyNameAndEmail" xml:space="preserve">名前 &amp; メールアドレスをコピー</x:String>
-  <x:String x:Key="Text.CommitDetail.Info.GotoChangesPage" xml:space="preserve">最初の 100 件の変更のみが表示されています。'変更' タブですべての変更を確認できます。</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Key" xml:space="preserve">鍵:</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Message" xml:space="preserve">メッセージ</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Parents" xml:space="preserve">親コミット</x:String>
@@ -700,7 +698,6 @@
   <x:String x:Key="Text.Preferences.General.Locale" xml:space="preserve">言語</x:String>
   <x:String x:Key="Text.Preferences.General.MaxHistoryCommits" xml:space="preserve">コミット履歴</x:String>
   <x:String x:Key="Text.Preferences.General.ShowChangesPageByDefault" xml:space="preserve">初めから `ローカルの変更` ページを表示</x:String>
-  <x:String x:Key="Text.Preferences.General.ShowChangesTabInCommitDetailByDefault" xml:space="preserve">初めからコミットの詳細の `変更` タブを表示</x:String>
   <x:String x:Key="Text.Preferences.General.ShowRelativeTimeInGraph" xml:space="preserve">コミットグラフを相対時間で表記</x:String>
   <x:String x:Key="Text.Preferences.General.ShowTagsInGraph" xml:space="preserve">コミットグラフにタグを表示</x:String>
   <x:String x:Key="Text.Preferences.General.SubjectGuideLength" xml:space="preserve">適切とするコミットタイトルの長さ</x:String>

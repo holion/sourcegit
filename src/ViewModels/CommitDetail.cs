@@ -18,11 +18,6 @@ namespace SourceGit.ViewModels
             get;
             set;
         }
-
-        public CommitDetailSharedData()
-        {
-            ActiveTabIndex = Preferences.Instance.ShowChangesInCommitDetailByDefault ? 1 : 0;
-        }
     }
 
     public partial class CommitDetail : ObservableObject
@@ -541,7 +536,7 @@ namespace SourceGit.ViewModels
 
         private void UpdateDetails()
         {
-            if (ActiveTabIndex == 1 && _changeSelection is { Count: 1, HasFolder: false })
+            if (ActiveTabIndex == 0 && _changeSelection is { Count: 1, HasFolder: false })
                 DiffContext = new DiffContext(_repo.FullPath, new Models.DiffOption(_commit, _changeSelection.Changes[0]), _diffContext);
             else
                 DiffContext = null;

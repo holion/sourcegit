@@ -316,7 +316,7 @@
                 <TabItem>
                   <TabItem.Header>
                     <Border Background="Transparent" PointerPressed="OnTabHeaderPointerPressed">
-                      <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Info}"/>
+                      <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Changes}"/>
                     </Border>
                   </TabItem.Header>
 
@@ -335,11 +335,6 @@
                   </Grid>
                 </TabItem>
 
-                <TabItem IsEnabled="False">
-                  <TabItem.Header>
-                    <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Changes}"/>
-                  </TabItem.Header>
-                </TabItem>
 
                 <TabItem IsEnabled="False">
                   <TabItem.Header>
@@ -354,12 +349,7 @@
           </DataTemplate>
 
           <DataTemplate DataType="vm:RevisionCompare">
-            <TabControl SelectedIndex="1" Padding="0">
-              <TabItem IsEnabled="False">
-                <TabItem.Header>
-                  <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Info}"/>
-                </TabItem.Header>
-              </TabItem>
+            <TabControl Padding="0">
 
               <TabItem>
                 <TabItem.Header>
@@ -384,7 +374,7 @@
               <TabItem>
                 <TabItem.Header>
                   <Border Background="Transparent" PointerPressed="OnTabHeaderPointerPressed">
-                    <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Info}"/>
+                    <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Changes}"/>
                   </Border>
                 </TabItem.Header>
 
@@ -405,11 +395,6 @@
                 </StackPanel>
               </TabItem>
 
-              <TabItem IsEnabled="False">
-                <TabItem.Header>
-                  <TextBlock Classes="tab_header" Text="{DynamicResource Text.CommitDetail.Changes}"/>
-                </TabItem.Header>
-              </TabItem>
 
               <TabItem IsEnabled="False">
                 <TabItem.Header>

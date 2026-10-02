@@ -180,7 +180,6 @@
   <x:String x:Key="Text.CommitDetail.Files.LFS" xml:space="preserve">LFS 파일</x:String>
   <x:String x:Key="Text.CommitDetail.Files.Search" xml:space="preserve">파일 검색...</x:String>
   <x:String x:Key="Text.CommitDetail.Files.Submodule" xml:space="preserve">서브모듈</x:String>
-  <x:String x:Key="Text.CommitDetail.Info" xml:space="preserve">정보</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Author" xml:space="preserve">작성자</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Committer" xml:space="preserve">커밋터</x:String>
   <x:String x:Key="Text.CommitDetail.Info.ContainsIn" xml:space="preserve">이 커밋을 포함하는 ref 확인</x:String>
@@ -188,7 +187,6 @@
   <x:String x:Key="Text.CommitDetail.Info.CopyEmail" xml:space="preserve">이메일 복사</x:String>
   <x:String x:Key="Text.CommitDetail.Info.CopyName" xml:space="preserve">이름 복사</x:String>
   <x:String x:Key="Text.CommitDetail.Info.CopyNameAndEmail" xml:space="preserve">이름 &amp; 이메일 복사</x:String>
-  <x:String x:Key="Text.CommitDetail.Info.GotoChangesPage" xml:space="preserve">처음 100개의 변경 사항만 표시합니다. 모든 변경 사항은 '변경 사항' 탭에서 확인하세요.</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Key" xml:space="preserve">키:</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Message" xml:space="preserve">메시지</x:String>
   <x:String x:Key="Text.CommitDetail.Info.Parents" xml:space="preserve">부모</x:String>
@@ -655,7 +653,6 @@
   <x:String x:Key="Text.Preferences.General.Locale" xml:space="preserve">언어</x:String>
   <x:String x:Key="Text.Preferences.General.MaxHistoryCommits" xml:space="preserve">히스토리 커밋 수</x:String>
   <x:String x:Key="Text.Preferences.General.ShowChangesPageByDefault" xml:space="preserve">기본으로 `로컬 변경 사항` 페이지 표시</x:String>
-  <x:String x:Key="Text.Preferences.General.ShowChangesTabInCommitDetailByDefault" xml:space="preserve">커밋 세부 정보에서 기본으로 `변경 사항` 탭 표시</x:String>
   <x:String x:Key="Text.Preferences.General.ShowRelativeTimeInGraph" xml:space="preserve">커밋 그래프에 상대 시간 표시</x:String>
   <x:String x:Key="Text.Preferences.General.ShowTagsInGraph" xml:space="preserve">커밋 그래프에 태그 표시</x:String>
   <x:String x:Key="Text.Preferences.General.SubjectGuideLength" xml:space="preserve">제목 가이드 길이</x:String>

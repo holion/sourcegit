@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 using Avalonia;
@@ -308,53 +307,6 @@ namespace SourceGit.Views
 
             if (vm.IsCollapseDetails)
                 vm.IsCollapseDetails = false;
-        }
-
-        private async void OnCommitListKeyDown(object sender, KeyEventArgs e)
-        {
-            if (DataContext is not ViewModels.CommitDetail vm)
-                return;
-
-            if (sender is not ListBox { SelectedItem: Models.Change change })
-                return;
-
-            if (e.Key == Key.C &&
-                e.KeyModifiers.HasFlag(OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control))
-            {
-                if (e.KeyModifiers.HasFlag(KeyModifiers.Shift))
-                    await this.CopyTextAsync(vm.GetAbsPath(change.Path));
-                else
-                    await this.CopyTextAsync(change.Path);
-
-                e.Handled = true;
-                return;
-            }
-
-            if (e.Key == Key.D &&
-                e.KeyModifiers.HasFlag(OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control) &&
-                e.KeyModifiers.HasFlag(KeyModifiers.Shift))
-            {
-                vm.OpenChangeInMergeTool(change);
-                e.Handled = true;
-            }
-        }
-
-        private void OnChangeDoubleTapped(object sender, TappedEventArgs e)
-        {
-            if (DataContext is ViewModels.CommitDetail detail && sender is Grid { DataContext: Models.Change change })
-            {
-                detail.ChangeSelection = new(new List<Models.Change> { change });
-                detail.ActiveTabIndex = 1;
-            }
-
-            e.Handled = true;
-        }
-
-        private void OnChangeContextRequested(object sender, ContextRequestedEventArgs e)
-        {
-            if (sender is Grid { DataContext: Models.Change change } grid)
-                CreateChangeContextMenu(change)?.Open(grid);
-            e.Handled = true;
         }
 
         private bool _isDetailsPanelExpanded = true;
