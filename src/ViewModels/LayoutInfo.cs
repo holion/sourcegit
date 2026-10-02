@@ -47,6 +47,12 @@ namespace SourceGit.ViewModels
             set;
         } = 250;
 
+        public double NestedRepositoriesWidth
+        {
+            get => _nestedRepositoriesWidth;
+            set => SetProperty(ref _nestedRepositoriesWidth, value);
+        }
+
         public bool IsSidebarCollapsedInLocalChanges
         {
             get => _isSidebarCollapsedInLocalChanges;
@@ -81,6 +87,7 @@ namespace SourceGit.ViewModels
         private GridLength _stashesLeftWidth = new GridLength(300, GridUnitType.Pixel);
         private GridLength _commitDetailChangesLeftWidth = new GridLength(256, GridUnitType.Pixel);
         private GridLength _commitDetailFilesLeftWidth = new GridLength(256, GridUnitType.Pixel);
+        private double _nestedRepositoriesWidth = 220;
         private bool _isSidebarCollapsedInLocalChanges = false;
     }
 }

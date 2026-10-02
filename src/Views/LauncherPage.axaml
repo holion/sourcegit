@@ -28,8 +28,17 @@
     </Border>
 
     <!-- Body -->
-    <Border Grid.Row="1">
-      <ContentControl Content="{Binding Data}">
+    <Grid Grid.Row="1" ColumnDefinitions="Auto,*">
+      <!-- Nested Repositories -->
+      <ContentControl Grid.Column="0" Content="{Binding Nested}">
+        <ContentControl.DataTemplates>
+          <DataTemplate DataType="vm:NestedRepositories">
+            <v:NestedRepositories/>
+          </DataTemplate>
+        </ContentControl.DataTemplates>
+      </ContentControl>
+
+      <ContentControl Grid.Column="1" Content="{Binding Data}">
         <ContentControl.DataTemplates>
           <DataTemplate DataType="vm:Welcome">
             <v:Welcome Margin="4,0,4,4"
@@ -64,7 +73,7 @@
           </DataTemplate>
         </ContentControl.DataTemplates>
       </ContentControl>
-    </Border>
+    </Grid>
 
     <!-- Floating -->
     <Grid Grid.Row="1" ClipToBounds="True">

@@ -225,6 +225,12 @@ namespace SourceGit.Models
             set;
         } = string.Empty;
 
+        public string SelectedNestedRepository
+        {
+            get;
+            set;
+        } = string.Empty;
+
         public AvaloniaList<HistoryFilter> HistoryFilters
         {
             get;

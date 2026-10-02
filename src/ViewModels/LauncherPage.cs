@@ -16,7 +16,30 @@ namespace SourceGit.ViewModels
         public object Data
         {
             get => _data;
-            set => SetProperty(ref _data, value);
+            set
+            {
+                if (SetProperty(ref _data, value))
+                    UpdateDirtyState();
+            }
+        }
+
+        public NestedRepositories Nested
+        {
+            get => _nested;
+            set
+            {
+                if (SetProperty(ref _nested, value))
+                    UpdateDirtyState();
+            }
+        }
+
+        /// <summary>
+        ///     The repository this page was opened for. When the page has nested repositories, `Data` may be one of
+        ///     them instead.
+        /// </summary>
+        public Repository RootRepository
+        {
+            get => _nested?.Root ?? _data as Repository;
         }
 
         public Models.DirtyState DirtyState
@@ -57,17 +80,22 @@ namespace SourceGit.ViewModels
             Notifications.Clear();
         }
 
-        public void ChangeDirtyState(Models.DirtyState flag, bool remove)
+        public bool Owns(Repository repo)
         {
-            var state = _dirtyState;
-            if (remove)
+            return _data == repo || (_nested != null && _nested.Contains(repo));
+        }
+
+        public void UpdateDirtyState()
+        {
+            var state = Models.DirtyState.None;
+            if (_nested != null)
             {
-                if (state.HasFlag(flag))
-                    state -= flag;
+                foreach (var item in _nested.Items)
+                    state |= item.Repo.DirtyState;
             }
-            else
+            else if (_data is Repository repo)
             {
-                state |= flag;
+                state = repo.DirtyState;
             }
 
             DirtyState = state;
@@ -75,7 +103,7 @@ namespace SourceGit.ViewModels
 
         public bool CanCreatePopup()
         {
-            return _popup is not { InProgress: true };
+            return _popup is not { InProgress: true } && _nested is not { IsBusy: true };
         }
 
         public async Task ProcessPopupAsync()
@@ -124,6 +152,7 @@ namespace SourceGit.ViewModels
 
         private RepositoryNode _node = null;
         private object _data = null;
+        private NestedRepositories _nested = null;
         private Models.DirtyState _dirtyState = Models.DirtyState.None;
         private Popup _popup = null;
     }

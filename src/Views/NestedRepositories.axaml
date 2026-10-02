@@ -1,0 +1,181 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SourceGit.ViewModels"
+             xmlns:v="using:SourceGit.Views"
+             xmlns:c="using:SourceGit.Converters"
+             mc:Ignorable="d" d:DesignWidth="220" d:DesignHeight="450"
+             x:Class="SourceGit.Views.NestedRepositories"
+             x:DataType="vm:NestedRepositories"
+             Width="{Binding Source={x:Static vm:Preferences.Instance}, Path=Layout.NestedRepositoriesWidth, Mode=OneWay}">
+  <Grid ColumnDefinitions="*,4">
+    <Border Grid.Column="0"
+            Margin="4,0,0,4"
+            BorderThickness="1"
+            BorderBrush="{DynamicResource Brush.Border0}"
+            Background="{DynamicResource Brush.Window}"
+            CornerRadius="8">
+      <Border CornerRadius="8" ClipToBounds="True">
+        <Grid RowDefinitions="32,*,Auto">
+          <!-- Header -->
+          <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="8,0,4,0">
+            <TextBlock Grid.Column="0"
+                       Classes="group_header_label"
+                       Text="{DynamicResource Text.NestedRepos}"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"/>
+
+            <Button Grid.Column="1"
+                    Classes="icon_button"
+                    Width="24" Height="24"
+                    Click="OnFetchAll"
+                    IsEnabled="{Binding !IsBusy}"
+                    ToolTip.Tip="{DynamicResource Text.NestedRepos.FetchAll}">
+              <Path Width="14" Height="14" Data="{StaticResource Icons.Fetch}"/>
+            </Button>
+
+            <Button Grid.Column="2"
+                    Classes="icon_button"
+                    Width="24" Height="24"
+                    Click="OnPullAll"
+                    IsEnabled="{Binding !IsBusy}"
+                    ToolTip.Tip="{DynamicResource Text.NestedRepos.PullAll}">
+              <Path Width="14" Height="14" Data="{StaticResource Icons.Pull}"/>
+            </Button>
+
+            <Button Grid.Column="3"
+                    Classes="icon_button"
+                    Width="24" Height="24"
+                    Click="OnPushAll"
+                    IsEnabled="{Binding !IsBusy}"
+                    ToolTip.Tip="{DynamicResource Text.NestedRepos.PushAll}">
+              <Path Width="14" Height="14" Data="{StaticResource Icons.Push}"/>
+            </Button>
+
+            <Button Grid.Column="4"
+                    Classes="icon_button"
+                    Width="24" Height="24"
+                    Click="OnRefreshAll"
+                    IsEnabled="{Binding !IsBusy}"
+                    ToolTip.Tip="{DynamicResource Text.NestedRepos.Refresh}">
+              <Path Width="13" Height="13" Data="{StaticResource Icons.Loading}"/>
+            </Button>
+          </Grid>
+
+          <!-- Repositories -->
+          <ListBox Grid.Row="1"
+                   Background="Transparent"
+                   ItemsSource="{Binding Items}"
+                   SelectedItem="{Binding Selected, Mode=TwoWay}"
+                   SelectionMode="Single"
+                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.Styles>
+              <Style Selector="ListBoxItem">
+                <Setter Property="Height" Value="42"/>
+                <Setter Property="Margin" Value="4,0,4,2"/>
+                <Setter Property="Padding" Value="6,0"/>
+                <Setter Property="CornerRadius" Value="4"/>
+              </Style>
+              <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="#18888888"/>
+              </Style>
+              <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource Brush.AccentHovered}"/>
+              </Style>
+            </ListBox.Styles>
+
+            <ListBox.ItemsPanel>
+              <ItemsPanelTemplate>
+                <VirtualizingStackPanel Orientation="Vertical"/>
+              </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+              <DataTemplate DataType="vm:NestedRepository">
+                <Grid RowDefinitions="20,16" ColumnDefinitions="18,*,Auto" VerticalAlignment="Center" Background="Transparent" ToolTip.Tip="{Binding Repo.FullPath}">
+                  <Path Grid.Row="0" Grid.Column="0"
+                        Width="12" Height="12"
+                        HorizontalAlignment="Left"
+                        Data="{StaticResource Icons.Repositories}"
+                        Fill="{DynamicResource Brush.FG2}"
+                        IsVisible="{Binding IsRoot}"/>
+                  <Path Grid.Row="0" Grid.Column="0"
+                        Width="12" Height="12"
+                        HorizontalAlignment="Left"
+                        Data="{StaticResource Icons.Folder}"
+                        Fill="{DynamicResource Brush.FG2}"
+                        IsVisible="{Binding !IsRoot}"/>
+
+                  <TextBlock Grid.Row="0" Grid.Column="1"
+                             Text="{Binding Name}"
+                             FontWeight="{Binding IsRoot, Converter={x:Static c:BoolConverters.IsBoldToFontWeight}}"
+                             VerticalAlignment="Center"
+                             TextTrimming="CharacterEllipsis"/>
+
+                  <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Height="14"
+                            Padding="5,0"
+                            CornerRadius="7"
+                            Background="{DynamicResource Brush.Accent}"
+                            IsVisible="{Binding Repo.LocalChangesCount, Mode=OneWay, Converter={x:Static c:IntConverters.IsGreaterThanZero}}">
+                      <TextBlock Text="{Binding Repo.LocalChangesCount, Mode=OneWay, Converter={x:Static c:IntConverters.ToBadgeWithLimit}}"
+                                 Foreground="White"
+                                 FontFamily="{DynamicResource Fonts.Monospace}"
+                                 FontSize="10"
+                                 VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Ellipse Width="8" Height="8"
+                             Margin="6,0,0,0"
+                             Fill="{Binding Repo.DirtyState, Converter={x:Static c:DirtyStateConverters.ToBrush}}"
+                             ToolTip.Tip="{Binding Repo.DirtyState, Converter={x:Static c:DirtyStateConverters.ToDesc}}"/>
+                  </StackPanel>
+
+                  <Path Grid.Row="1" Grid.Column="0"
+                        Width="10" Height="10"
+                        HorizontalAlignment="Left"
+                        Data="{StaticResource Icons.Branch}"
+                        Fill="{DynamicResource Brush.FG2}"/>
+
+                  <TextBlock Grid.Row="1" Grid.Column="1"
+                             Text="{Binding Repo.CurrentBranch.Name, FallbackValue=''}"
+                             FontSize="11"
+                             Foreground="{DynamicResource Brush.FG2}"
+                             VerticalAlignment="Center"
+                             TextTrimming="CharacterEllipsis"/>
+
+                  <TextBlock Grid.Row="1" Grid.Column="2"
+                             Text="{Binding Repo.CurrentBranch.TrackStatusDescription, FallbackValue=''}"
+                             FontFamily="{DynamicResource Fonts.Monospace}"
+                             FontSize="10"
+                             Foreground="{DynamicResource Brush.FG2}"
+                             VerticalAlignment="Center"/>
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+
+          <!-- Progress of actions running on all repositories -->
+          <Grid Grid.Row="2" Height="28" ColumnDefinitions="Auto,*" Margin="8,0" IsVisible="{Binding IsBusy}">
+            <v:LoadingIcon Grid.Column="0" Width="14" Height="14" IsVisible="{Binding IsBusy}"/>
+            <TextBlock Grid.Column="1"
+                       Margin="6,0,0,0"
+                       Text="{Binding BusyDescription}"
+                       Foreground="{DynamicResource Brush.FG2}"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"/>
+          </Grid>
+        </Grid>
+      </Border>
+    </Border>
+
+    <!-- Resize handle -->
+    <Border Grid.Column="1"
+            Background="Transparent"
+            Cursor="SizeWestEast"
+            PointerPressed="OnResizePointerPressed"
+            PointerMoved="OnResizePointerMoved"
+            PointerReleased="OnResizePointerReleased"/>
+  </Grid>
+</UserControl>

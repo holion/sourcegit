@@ -625,6 +625,12 @@
   <x:String x:Key="Text.MoveRepositoryNode" xml:space="preserve">Move Repository Node</x:String>
   <x:String x:Key="Text.MoveRepositoryNode.Target" xml:space="preserve">Select parent node for:</x:String>
   <x:String x:Key="Text.Name" xml:space="preserve">Name:</x:String>
+  <x:String x:Key="Text.NestedRepos" xml:space="preserve">REPOSITORIES</x:String>
+  <x:String x:Key="Text.NestedRepos.FetchAll" xml:space="preserve">Fetch All Repositories</x:String>
+  <x:String x:Key="Text.NestedRepos.PullAll" xml:space="preserve">Pull All Repositories</x:String>
+  <x:String x:Key="Text.NestedRepos.PushAll" xml:space="preserve">Push All Repositories (with outgoing commits)</x:String>
+  <x:String x:Key="Text.NestedRepos.Refresh" xml:space="preserve">Rescan &amp; Refresh All Repositories</x:String>
+  <x:String x:Key="Text.NestedRepos.Summary" xml:space="preserve">{0} all repositories: {1} succeeded, {2} failed, {3} skipped</x:String>
   <x:String x:Key="Text.No" xml:space="preserve">NO</x:String>
   <x:String x:Key="Text.NotConfigured" xml:space="preserve">Git has NOT been configured. Please to go [Preferences] and configure it first.</x:String>
   <x:String x:Key="Text.Open" xml:space="preserve">Open</x:String>

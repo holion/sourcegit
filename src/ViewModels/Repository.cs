@@ -241,6 +241,29 @@ namespace SourceGit.ViewModels
             private set => SetProperty(ref _localChangesCount, value);
         }
 
+        public Models.DirtyState DirtyState
+        {
+            get => _dirtyState;
+            private set => SetProperty(ref _dirtyState, value);
+        }
+
+        public bool IsBackground
+        {
+            get => _isBackground;
+            set
+            {
+                if (_isBackground == value)
+                    return;
+
+                _isBackground = value;
+                if (!value && _isCommitsRefreshPending)
+                {
+                    _isCommitsRefreshPending = false;
+                    RefreshCommits();
+                }
+            }
+        }
+
         public int StashesCount
         {
             get => _stashesCount;
@@ -1145,7 +1168,7 @@ namespace SourceGit.ViewModels
                         _workingCopy.HasRemotes = remotes.Count > 0;
 
                     var hasPendingPullOrPush = CurrentBranch?.IsTrackStatusVisible ?? false;
-                    GetOwnerPage()?.ChangeDirtyState(Models.DirtyState.HasPendingPullOrPush, !hasPendingPullOrPush);
+                    ChangeDirtyState(Models.DirtyState.HasPendingPullOrPush, !hasPendingPullOrPush);
                 });
             }, token);
         }
@@ -1185,6 +1208,14 @@ namespace SourceGit.ViewModels
 
         public void RefreshCommits()
         {
+            // Repositories in the background of a page (nested repositories that are not shown) do not need the
+            // commit graph. It will be loaded once the repository becomes visible.
+            if (_isBackground)
+            {
+                _isCommitsRefreshPending = true;
+                return;
+            }
+
             if (_cancellationRefreshCommits is { IsCancellationRequested: false })
                 _cancellationRefreshCommits.Cancel();
 
@@ -1322,7 +1353,7 @@ namespace SourceGit.ViewModels
                     _workingCopy.SetData(changes);
                     LocalChangesCount = changes.Count;
                     OnPropertyChanged(nameof(InProgressContext));
-                    GetOwnerPage()?.ChangeDirtyState(Models.DirtyState.HasLocalChanges, changes.Count == 0);
+                    ChangeDirtyState(Models.DirtyState.HasLocalChanges, changes.Count == 0);
                 });
             }, token);
         }
@@ -1630,11 +1661,28 @@ namespace SourceGit.ViewModels
 
             foreach (var page in launcher.Pages)
             {
-                if (page.Node.Id.Equals(FullPath))
+                if (page.Owns(this))
                     return page;
             }
 
             return null;
+        }
+
+        private void ChangeDirtyState(Models.DirtyState flag, bool remove)
+        {
+            var state = _dirtyState;
+            if (remove)
+            {
+                if (state.HasFlag(flag))
+                    state -= flag;
+            }
+            else
+            {
+                state |= flag;
+            }
+
+            DirtyState = state;
+            GetOwnerPage()?.UpdateDirtyState();
         }
 
         private BranchTreeNode.Builder BuildBranchTree(List<Models.Branch> branches, List<Models.Remote> remotes, bool validateExpandedNodes = true)
@@ -1930,6 +1978,9 @@ namespace SourceGit.ViewModels
         private int _localBranchesCount = 0;
         private int _localChangesCount = 0;
         private int _stashesCount = 0;
+        private Models.DirtyState _dirtyState = Models.DirtyState.None;
+        private bool _isBackground = false;
+        private bool _isCommitsRefreshPending = false;
 
         private string _filter = string.Empty;
         private List<Models.Remote> _remotes = [];

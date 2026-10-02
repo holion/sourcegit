@@ -176,7 +176,7 @@ namespace SourceGit.ViewModels
             _activeWorkspace.Repositories.Clear();
             foreach (var p in Pages)
             {
-                if (p.Data is Repository r)
+                if (p.RootRepository is { } r)
                     _activeWorkspace.Repositories.Add(r.FullPath);
             }
 
@@ -209,13 +209,15 @@ namespace SourceGit.ViewModels
             if (Pages.Count == 1)
             {
                 var last = Pages[0];
-                if (last.Data is Repository repo)
+                if (last.RootRepository is { } repo)
                 {
                     _activeWorkspace.Repositories.Clear();
                     _activeWorkspace.ActiveIdx = 0;
 
                     if (last.Node.IsUnmanaged)
                         last.Node.SaveMinimalInfo(repo.GitDir);
+                    last.Nested?.Close();
+                    last.Nested = null;
                     repo.Close();
 
                     Welcome.Instance.ClearSearchFilter();
@@ -301,14 +303,8 @@ namespace SourceGit.ViewModels
 
         public void OpenRepositoryInTab(RepositoryNode node, LauncherPage page)
         {
-            foreach (var one in Pages)
-            {
-                if (one.Node.Id == node.Id)
-                {
-                    ActivePage = one;
-                    return;
-                }
-            }
+            if (TryActivateOpenedRepository(node.Id))
+                return;
 
             if (!Directory.Exists(node.Id))
             {
@@ -340,6 +336,7 @@ namespace SourceGit.ViewModels
             var repo = new Repository(isBare, node.Id, gitDir);
             repo.Open();
 
+            page?.Nested?.Close();
             if (page == null)
             {
                 if (_activePage == null || _activePage.Node.IsRepository)
@@ -360,10 +357,12 @@ namespace SourceGit.ViewModels
                 page.Data = repo;
             }
 
+            page.Nested = NestedRepositories.TryCreate(page, repo);
+
             _activeWorkspace.Repositories.Clear();
             foreach (var p in Pages)
             {
-                if (p.Data is Repository r)
+                if (p.RootRepository is { } r)
                     _activeWorkspace.Repositories.Add(r.FullPath);
             }
 
@@ -378,14 +377,8 @@ namespace SourceGit.ViewModels
             var normalizedPath = fullpath.Replace('\\', '/').TrimEnd('/');
 
             // Check if the sub-repository is already open in any of the tabs
-            foreach (var one in Pages)
-            {
-                if (one.Node.Id.Equals(normalizedPath, StringComparison.Ordinal))
-                {
-                    ActivePage = one;
-                    return;
-                }
-            }
+            if (TryActivateOpenedRepository(normalizedPath))
+                return;
 
             // Make sure the target directory exists
             if (!Directory.Exists(normalizedPath))
@@ -433,6 +426,7 @@ namespace SourceGit.ViewModels
             repo.Open();
 
             var page = new LauncherPage(node, repo);
+            page.Nested = NestedRepositories.TryCreate(page, repo);
             var idxOfOwner = Pages.IndexOf(ownerPage);
             Pages.Insert(idxOfOwner + 1, page);
             _activeWorkspace.Repositories.Insert(idxOfOwner + 1, normalizedPath);
@@ -460,6 +454,18 @@ namespace SourceGit.ViewModels
                 {
                     page.Notifications.Add(notification);
                     return;
+                }
+
+                if (page.Nested is { } nested)
+                {
+                    foreach (var item in nested.Items)
+                    {
+                        if (item.Repo.FullPath.Equals(notification.Group, StringComparison.OrdinalIgnoreCase))
+                        {
+                            page.Notifications.Add(notification);
+                            return;
+                        }
+                    }
                 }
             }
 
@@ -497,9 +503,33 @@ namespace SourceGit.ViewModels
             return new Commands.QueryGitDir(repo).GetResult();
         }
 
+        private bool TryActivateOpenedRepository(string path)
+        {
+            var normalizedPath = path.Replace('\\', '/').TrimEnd('/');
+            foreach (var one in Pages)
+            {
+                if (one.Node.Id.Replace('\\', '/').TrimEnd('/').Equals(normalizedPath, StringComparison.Ordinal))
+                {
+                    ActivePage = one;
+                    return true;
+                }
+            }
+
+            foreach (var one in Pages)
+            {
+                if (one.Nested != null && one.Nested.TrySelect(normalizedPath))
+                {
+                    ActivePage = one;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void CloseRepositoryInTab(LauncherPage page, bool removeFromWorkspace = true)
         {
-            if (page.Data is Repository repo)
+            if (page.RootRepository is { } repo)
             {
                 if (removeFromWorkspace)
                     _activeWorkspace.Repositories.Remove(repo.FullPath);
@@ -507,6 +537,8 @@ namespace SourceGit.ViewModels
                 if (page.Node.IsUnmanaged)
                     page.Node.SaveMinimalInfo(repo.GitDir);
 
+                page.Nested?.Close();
+                page.Nested = null;
                 repo.Close();
             }
 
@@ -520,7 +552,7 @@ namespace SourceGit.ViewModels
             if (_ignoreIndexChange)
                 return;
 
-            if (_activePage is { Data: Repository repo })
+            if (_activePage?.RootRepository is { } repo)
                 _activeWorkspace.ActiveIdx = _activeWorkspace.Repositories.IndexOf(repo.FullPath);
 
             var builder = new StringBuilder(512);
