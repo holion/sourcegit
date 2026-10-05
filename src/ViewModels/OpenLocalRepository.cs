@@ -55,22 +55,7 @@ namespace SourceGit.ViewModels
             RepositoryNode parent = null;
             if (_selectedGroupIndex == 0) // Auto (Based-on Default Clone Dir)
             {
-                var activeWorkspace = Preferences.Instance.GetActiveWorkspace();
-                var defaultCloneDir = activeWorkspace?.DefaultCloneDir;
-                if (string.IsNullOrEmpty(defaultCloneDir))
-                    defaultCloneDir = Preferences.Instance.GitDefaultCloneDir;
-
-                if (!string.IsNullOrEmpty(defaultCloneDir))
-                {
-                    var normalizedParentFolder = new DirectoryInfo(RepoPath).Parent!.FullName.Replace('\\', '/').TrimEnd('/') + "/";
-                    var normalizedDefaultCloneDir = defaultCloneDir.Replace('\\', '/').TrimEnd('/') + "/";
-                    if (normalizedParentFolder.Length > normalizedDefaultCloneDir.Length &&
-                        normalizedParentFolder.StartsWith(normalizedDefaultCloneDir, StringComparison.Ordinal))
-                    {
-                        var relativePath = normalizedParentFolder.Substring(normalizedDefaultCloneDir.Length);
-                        parent = Preferences.Instance.FindOrCreateGroupRecursive(relativePath.TrimEnd('/'));
-                    }
-                }
+                parent = Preferences.Instance.FindOrCreateGroupByDefaultCloneDir(RepoPath);
             }
             else if (_selectedGroupIndex > 1 && _selectedGroupIndex < Groups.Count) // Existing group
             {

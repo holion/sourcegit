@@ -190,7 +190,7 @@ namespace SourceGit.ViewModels
             Items.Add(_root);
         }
 
-        private static List<string> Scan(string root)
+        public static List<string> Scan(string root)
         {
             var paths = new List<string>();
 

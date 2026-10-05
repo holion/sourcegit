@@ -540,6 +540,32 @@ namespace SourceGit.ViewModels
             return FindNodeRecursive(id, RepositoryNodes);
         }
 
+        public string GetDefaultCloneDir()
+        {
+            var dir = GetActiveWorkspace().DefaultCloneDir;
+            return string.IsNullOrEmpty(dir) ? GitDefaultCloneDir : dir;
+        }
+
+        /// <summary>
+        ///     Finds or creates the group mirroring the folders between the default clone dir and the given repository.
+        ///     Returns null when the repository lives directly in, or outside of, the default clone dir.
+        /// </summary>
+        public RepositoryNode FindOrCreateGroupByDefaultCloneDir(string repo)
+        {
+            var defaultCloneDir = GetDefaultCloneDir();
+            if (string.IsNullOrEmpty(defaultCloneDir))
+                return null;
+
+            var normalizedParentFolder = new DirectoryInfo(repo).Parent!.FullName.Replace('\\', '/').TrimEnd('/') + "/";
+            var normalizedDefaultCloneDir = defaultCloneDir.Replace('\\', '/').TrimEnd('/') + "/";
+            if (normalizedParentFolder.Length <= normalizedDefaultCloneDir.Length ||
+                !normalizedParentFolder.StartsWith(normalizedDefaultCloneDir, StringComparison.Ordinal))
+                return null;
+
+            var relativePath = normalizedParentFolder.Substring(normalizedDefaultCloneDir.Length);
+            return FindOrCreateGroupRecursive(relativePath.TrimEnd('/'));
+        }
+
         public RepositoryNode FindOrCreateGroupRecursive(string path)
         {
             List<RepositoryNode> collection = RepositoryNodes;
