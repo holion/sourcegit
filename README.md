@@ -6,6 +6,32 @@
 [![latest](https://img.shields.io/github/v/release/sourcegit-scm/sourcegit.svg)](https://github.com/sourcegit-scm/sourcegit/releases/latest)
 [![downloads](https://img.shields.io/github/downloads/sourcegit-scm/sourcegit/total)](https://github.com/sourcegit-scm/sourcegit/releases)
 
+## Holion fork
+
+This is Holion's fork of SourceGit. It adds our own features and ships its own releases with automatic updates on macOS.
+
+### Install
+
+* Download: [SourceGit for Mac (Apple Silicon)](https://github.com/holion/sourcegit/releases/latest/download/SourceGit-mac-apple-silicon.dmg)
+* Or with Homebrew: `brew trust --cask holion/tap/sourcegit-holion && brew install --cask holion/tap/sourcegit-holion`
+
+The app checks for new releases on startup and every 6 hours, downloads them in the background and installs them when it quits.
+
+### Release
+
+From a clean `develop`, run:
+
+```shell
+./release.sh             # bumps VERSION, e.g. 2026.21.2 -> 2026.21.3
+./release.sh 2026.22.1   # or release a specific version
+```
+
+The script commits `VERSION`, pushes a `v*` tag and the [Release workflow](https://github.com/holion/sourcegit/actions/workflows/release.yml) does the rest: build, sign and notarize, publish the release and update the [Homebrew tap](https://github.com/holion/homebrew-tap).
+
+* Only `osx-arm64` is built by default. Set the `BUILD_RUNTIMES` repository variable to build more, e.g. `gh variable set BUILD_RUNTIMES -b "osx-arm64,osx-x64,win-x64"`.
+* Versions use a third number on top of upstream's, e.g. `2026.21.3`. After merging a new upstream version, release e.g. `./release.sh 2026.22.1`.
+* Signing needs the `MACOS_CERTIFICATE`, `MACOS_CERTIFICATE_PASSWORD`, `APPLE_API_KEY`, `APPLE_API_KEY_ID` and `APPLE_API_ISSUER_ID` secrets, and the Homebrew tap needs `HOMEBREW_TAP_TOKEN`.
+
 ## Screenshots
 
 * Dark Theme
