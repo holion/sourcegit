@@ -1,31 +1,38 @@
 name: Build
 on:
   workflow_call:
+    inputs:
+      runtimes:
+        description: Comma-separated runtimes to build. Falls back to the BUILD_RUNTIMES repository variable, then osx-arm64.
+        required: false
+        type: string
 jobs:
+  select:
+    name: Select runtimes
+    runs-on: ubuntu-latest
+    outputs:
+      include: ${{ steps.select.outputs.include }}
+    steps:
+      - name: Select runtimes
+        id: select
+        env:
+          RUNTIMES: ${{ inputs.runtimes || vars.BUILD_RUNTIMES || 'osx-arm64' }}
+        run: |
+          ALL='[
+            {"name": "Windows x64", "os": "windows-2022", "runtime": "win-x64"},
+            {"name": "Windows ARM64", "os": "windows-2022", "runtime": "win-arm64"},
+            {"name": "macOS (Intel)", "os": "macos-15-intel", "runtime": "osx-x64"},
+            {"name": "macOS (Apple Silicon)", "os": "macos-latest", "runtime": "osx-arm64"},
+            {"name": "Linux", "os": "ubuntu-latest", "runtime": "linux-x64", "container": "ubuntu:20.04"},
+            {"name": "Linux (arm64)", "os": "ubuntu-latest", "runtime": "linux-arm64", "container": "ubuntu:20.04"}
+          ]'
+          echo "include=$(jq -c --arg want "$RUNTIMES" '($want | split(",") | map(gsub("\\s"; ""))) as $w | map(select(.runtime as $r | $w | index($r)))' <<< "$ALL")" >> "$GITHUB_OUTPUT"
   build:
+    needs: select
+    if: needs.select.outputs.include != '[]'
     strategy:
       matrix:
-        include:
-          - name: Windows x64
-            os: windows-2022
-            runtime: win-x64
-          - name: Windows ARM64
-            os: windows-2022
-            runtime: win-arm64
-          - name: macOS (Intel)
-            os: macos-15-intel
-            runtime: osx-x64
-          - name: macOS (Apple Silicon)
-            os: macos-latest
-            runtime: osx-arm64
-          - name: Linux
-            os: ubuntu-latest
-            runtime: linux-x64
-            container: ubuntu:20.04
-          - name: Linux (arm64)
-            os: ubuntu-latest
-            runtime: linux-arm64
-            container: ubuntu:20.04
+        include: ${{ fromJSON(needs.select.outputs.include) }}
     name: Build ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.container || '' }}

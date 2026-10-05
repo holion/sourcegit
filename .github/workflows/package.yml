@@ -6,13 +6,38 @@ on:
         description: SourceGit package version
         required: true
         type: string
+      runtimes:
+        description: Comma-separated runtimes to package. Falls back to the BUILD_RUNTIMES repository variable, then osx-arm64.
+        required: false
+        type: string
 jobs:
+  select:
+    name: Select runtimes
+    runs-on: ubuntu-latest
+    outputs:
+      windows: ${{ steps.select.outputs.windows }}
+      osx: ${{ steps.select.outputs.osx }}
+      linux: ${{ steps.select.outputs.linux }}
+    steps:
+      - name: Select runtimes
+        id: select
+        env:
+          RUNTIMES: ${{ inputs.runtimes || vars.BUILD_RUNTIMES || 'osx-arm64' }}
+        run: |
+          pick() {
+            jq -cn --arg want "$RUNTIMES" --arg prefix "$1" '$want | split(",") | map(gsub("\\s"; "")) | map(select(startswith($prefix)))'
+          }
+          echo "windows=$(pick win-)" >> "$GITHUB_OUTPUT"
+          echo "osx=$(pick osx-)" >> "$GITHUB_OUTPUT"
+          echo "linux=$(pick linux-)" >> "$GITHUB_OUTPUT"
   windows:
     name: Package Windows
+    needs: select
+    if: needs.select.outputs.windows != '[]'
     runs-on: windows-2022
     strategy:
       matrix:
-        runtime: [win-x64, win-arm64]
+        runtime: ${{ fromJSON(needs.select.outputs.windows) }}
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
@@ -38,10 +63,12 @@ jobs:
           name: sourcegit.${{ matrix.runtime }}
   osx-app:
     name: Package macOS
+    needs: select
+    if: needs.select.outputs.osx != '[]'
     runs-on: macos-latest
     strategy:
       matrix:
-        runtime: [osx-x64, osx-arm64]
+        runtime: ${{ fromJSON(needs.select.outputs.osx) }}
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
@@ -76,11 +103,13 @@ jobs:
           name: sourcegit.${{ matrix.runtime }}
   linux:
     name: Package Linux
+    needs: select
+    if: needs.select.outputs.linux != '[]'
     runs-on: ubuntu-latest
     container: ubuntu:20.04
     strategy:
       matrix:
-        runtime: [linux-x64, linux-arm64]
+        runtime: ${{ fromJSON(needs.select.outputs.linux) }}
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6

@@ -3,10 +3,18 @@ on:
   push:
     tags:
       - v*
+  workflow_dispatch:
+    inputs:
+      runtimes:
+        description: Comma-separated runtimes, e.g. osx-arm64,osx-x64,win-x64 (run it on a tag)
+        required: false
+        type: string
 jobs:
   build:
     name: Build
     uses: ./.github/workflows/build.yml
+    with:
+      runtimes: ${{ inputs.runtimes }}
   version:
     name: Prepare version string
     runs-on: ubuntu-latest
@@ -25,6 +33,7 @@ jobs:
     secrets: inherit
     with:
       version: ${{ needs.version.outputs.version }}
+      runtimes: ${{ inputs.runtimes }}
   release:
     needs: [package, version]
     name: Release
