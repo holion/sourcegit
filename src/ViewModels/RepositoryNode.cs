@@ -95,9 +95,12 @@ namespace SourceGit.ViewModels
             if (!_isRepository)
             {
                 foreach (var subNode in SubNodes)
-                    subNode.Open();
+                {
+                    if (!subNode.IsInvalid)
+                        subNode.Open();
+                }
             }
-            else if (Directory.Exists(_id))
+            else
             {
                 App.GetLauncher().OpenRepositoryInTab(this, null);
             }

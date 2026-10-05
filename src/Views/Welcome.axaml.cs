@@ -114,6 +114,11 @@ namespace SourceGit.Views
                 }
                 else if (e.Key == Key.Enter)
                 {
+                    // Leave Enter to the popup's hotkey (e.g. confirming removal of a missing repository).
+                    var page = this.FindAncestorOfType<LauncherPage>();
+                    if (page is { DataContext: ViewModels.LauncherPage { Popup: not null } })
+                        return;
+
                     if (TreeContainer.SelectedItem is ViewModels.RepositoryNode { IsRepository: true } node)
                     {
                         node.Open();

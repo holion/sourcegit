@@ -308,6 +308,12 @@ namespace SourceGit.ViewModels
 
             if (!Directory.Exists(node.Id))
             {
+                if (!node.IsUnmanaged && ActivePage.CanCreatePopup())
+                {
+                    ActivePage.Popup = new DeleteRepositoryNode(node);
+                    return;
+                }
+
                 ActivePage.Notifications.Add(new Models.Notification
                 {
                     Group = node.Id,
