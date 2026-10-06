@@ -18,9 +18,17 @@ namespace SourceGit.Native
         [DllImport("/usr/lib/libSystem.B.dylib", SetLastError = true)]
         private static extern int kill(int pid, int sig);
 
+        [DllImport("/usr/lib/libSystem.B.dylib")]
+        private static extern void _exit(int status);
+
         public MacOS()
         {
             _setsidExecutable = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "setsid");
+        }
+
+        public static void ExitWithoutCleanup(int code)
+        {
+            _exit(code);
         }
 
         public void SetupApp(AppBuilder builder)

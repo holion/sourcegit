@@ -50,6 +50,11 @@ namespace SourceGit
             catch (Exception ex)
             {
                 Native.OS.LogException(ex);
+
+                // When Avalonia.Native fails to start (e.g. askpass launched by SSH in the background), its static
+                // destructors abort the process on a normal exit, which macOS reports as a crash of the whole app.
+                if (OperatingSystem.IsMacOS())
+                    Native.MacOS.ExitWithoutCleanup(-1);
             }
         }
 
