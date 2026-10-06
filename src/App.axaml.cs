@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
@@ -37,7 +38,9 @@ namespace SourceGit
 
             try
             {
-                if (TryLaunchAsRebaseTodoEditor(args, out int exitTodo))
+                if (TryLaunchAsGitHubCredentialHelper(args))
+                    Environment.Exit(0);
+                else if (TryLaunchAsRebaseTodoEditor(args, out int exitTodo))
                     Environment.Exit(exitTodo);
                 else if (TryLaunchAsRebaseMessageEditor(args, out int exitMessage))
                     Environment.Exit(exitMessage);
@@ -287,6 +290,39 @@ namespace SourceGit
         #endregion
 
         #region Launch Ways
+        /// <summary>
+        ///     Git credential helper protocol (`git help credential`) for github.com: `get` answers with the token of
+        ///     the signed-in GitHub account. `store` and `erase` are ignored, since the token is managed by this app.
+        /// </summary>
+        private static bool TryLaunchAsGitHubCredentialHelper(string[] args)
+        {
+            if (args.Length != 2 || !args[0].Equals("--github-credential", StringComparison.Ordinal))
+                return false;
+
+            var attributes = new Dictionary<string, string>();
+            string line;
+            while (!string.IsNullOrEmpty(line = Console.In.ReadLine()))
+            {
+                var idx = line.IndexOf('=');
+                if (idx > 0)
+                    attributes[line.Substring(0, idx)] = line.Substring(idx + 1);
+            }
+
+            if (!args[1].Equals("get", StringComparison.Ordinal) ||
+                !attributes.TryGetValue("protocol", out var protocol) || protocol != "https" ||
+                !attributes.TryGetValue("host", out var host) || !host.Equals(Models.GitHub.Host, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            var token = Native.SecretStore.Get(ViewModels.GitHubAccount.SecretKey);
+            if (!string.IsNullOrEmpty(token))
+            {
+                Console.Out.Write($"username={Models.GitHub.TokenUserName}\npassword={token}\n");
+                Console.Out.Flush();
+            }
+
+            return true;
+        }
+
         private static bool TryLaunchAsRebaseTodoEditor(string[] args, out int exitCode)
         {
             exitCode = -1;

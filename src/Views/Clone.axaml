@@ -37,7 +37,16 @@
         </TextBox.InnerLeftContent>
 
         <TextBox.InnerRightContent>
-          <v:RemoteProtocolSwitcher Url="{Binding Remote, Mode=TwoWay}"/>
+          <StackPanel Orientation="Horizontal">
+            <v:RemoteProtocolSwitcher Url="{Binding Remote, Mode=TwoWay}"/>
+            <Button Classes="icon_button"
+                    Width="28" Height="28"
+                    Click="SelectGitHubRepository"
+                    ToolTip.Tip="{DynamicResource Text.Clone.FromGitHub}"
+                    IsVisible="{Binding Source={x:Static vm:GitHubAccount.Instance}, Path=IsAvailable}">
+              <Path Width="14" Height="14" Data="{StaticResource Icons.GitHub}" Fill="{DynamicResource Brush.FG1}"/>
+            </Button>
+          </StackPanel>
         </TextBox.InnerRightContent>
       </TextBox>
 

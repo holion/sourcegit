@@ -17,6 +17,16 @@ This is Holion's fork of SourceGit. It adds our own features and ships its own r
 
 The app checks for new releases on startup and every 6 hours, downloads them in the background and installs them when it quits.
 
+### GitHub
+
+Sign in under `Preferences > GitHub` (or from the GitHub button in the clone dialog). After that:
+
+* The clone dialog's GitHub button lists every repository you can access, grouped by owner. Picked repositories go into `<default clone dir>/<owner>`.
+* Typing in the tab switcher (`Ctrl/⌘+P`) also lists GitHub repositories that are not cloned yet; picking one opens the clone dialog with it filled in.
+* Fetch, pull and push to `https://github.com/...` use the account automatically, so no SSH key or credential manager is needed (this can be turned off in the same tab). The token lives in the system keychain (Keychain, Windows Credential Manager or libsecret).
+
+The sign-in uses the device flow of the Holion OAuth app, whose client id is `Models.GitHub.ClientId` in `src/Models/GitHub.cs` (the integration is hidden while it is empty). The app is registered under [holion's OAuth apps](https://github.com/organizations/holion/settings/applications) with "Enable Device Flow" checked. Organizations that restrict third-party access have to approve it once; until then their private repositories are missing from the list.
+
 ### Release
 
 From a clean `develop`, run:

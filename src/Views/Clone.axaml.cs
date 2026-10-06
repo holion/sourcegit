@@ -22,8 +22,9 @@ namespace SourceGit.Views
             if (DataContext is not ViewModels.Clone vm)
                 return;
 
+            // Keep a URL that was filled in before showing the dialog (e.g. a repository picked from GitHub).
             var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
-            if (clipboard != null)
+            if (clipboard != null && string.IsNullOrEmpty(vm.Remote))
             {
                 try
                 {
@@ -65,6 +66,15 @@ namespace SourceGit.Views
             }
 
             e.Handled = true;
+        }
+
+        private async void SelectGitHubRepository(object _, RoutedEventArgs e)
+        {
+            e.Handled = true;
+
+            var repo = await GitHubRepositoryPicker.ShowAsync(this);
+            if (repo != null && DataContext is ViewModels.Clone vm)
+                vm.UseGitHubRepository(repo);
         }
 
         private async void SelectSSHKey(object _, RoutedEventArgs e)

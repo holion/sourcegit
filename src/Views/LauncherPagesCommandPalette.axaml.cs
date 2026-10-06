@@ -31,71 +31,63 @@ namespace SourceGit.Views
             }
             else if (e.Key == Key.Up)
             {
-                if (RepoListBox.IsKeyboardFocusWithin)
-                {
-                    if (vm.VisiblePages.Count > 0)
-                    {
-                        PageListBox.Focus(NavigationMethod.Directional);
-                        vm.SelectedPage = vm.VisiblePages[^1];
-                    }
-                    else
-                    {
-                        FilterTextBox.Focus(NavigationMethod.Directional);
-                    }
-
-                    e.Handled = true;
+                var idx = GetFocusedSection();
+                if (idx < 0)
                     return;
-                }
 
-                if (PageListBox.IsKeyboardFocusWithin)
-                {
+                // Move to the last item of the previous non-empty section, or back to the filter box.
+                if (!FocusSection(vm, idx - 1, -1, false))
                     FilterTextBox.Focus(NavigationMethod.Directional);
-                    e.Handled = true;
-                    return;
-                }
+
+                e.Handled = true;
             }
             else if (e.Key == Key.Down || e.Key == Key.Tab)
             {
-                if (FilterTextBox.IsKeyboardFocusWithin)
-                {
-                    if (vm.VisiblePages.Count > 0)
-                    {
-                        PageListBox.Focus(NavigationMethod.Directional);
-                        vm.SelectedPage = vm.VisiblePages[0];
-                    }
-                    else if (vm.VisibleRepos.Count > 0)
-                    {
-                        RepoListBox.Focus(NavigationMethod.Directional);
-                        vm.SelectedRepo = vm.VisibleRepos[0];
-                    }
-
-                    e.Handled = true;
+                var idx = FilterTextBox.IsKeyboardFocusWithin ? -1 : GetFocusedSection();
+                if (idx < 0 && !FilterTextBox.IsKeyboardFocusWithin)
                     return;
-                }
 
-                if (PageListBox.IsKeyboardFocusWithin)
-                {
-                    if (vm.VisibleRepos.Count > 0)
-                    {
-                        RepoListBox.Focus(NavigationMethod.Directional);
-                        vm.SelectedRepo = vm.VisibleRepos[0];
-                    }
-                    else if (e.Key == Key.Tab)
-                    {
-                        FilterTextBox.Focus(NavigationMethod.Directional);
-                    }
-
-                    e.Handled = true;
-                    return;
-                }
-
-                if (RepoListBox.IsKeyboardFocusWithin && e.Key == Key.Tab)
-                {
+                // Move to the first item of the next non-empty section. Tab wraps around to the filter box.
+                if (!FocusSection(vm, idx + 1, 1, true) && e.Key == Key.Tab)
                     FilterTextBox.Focus(NavigationMethod.Directional);
-                    e.Handled = true;
-                    return;
+
+                e.Handled = true;
+            }
+        }
+
+        private int GetFocusedSection()
+        {
+            if (PageListBox.IsKeyboardFocusWithin)
+                return 0;
+            if (RepoListBox.IsKeyboardFocusWithin)
+                return 1;
+            if (GitHubRepoListBox.IsKeyboardFocusWithin)
+                return 2;
+            return -1;
+        }
+
+        private bool FocusSection(ViewModels.LauncherPagesCommandPalette vm, int idx, int step, bool first)
+        {
+            for (; idx >= 0 && idx <= 2; idx += step)
+            {
+                switch (idx)
+                {
+                    case 0 when vm.VisiblePages.Count > 0:
+                        PageListBox.Focus(NavigationMethod.Directional);
+                        vm.SelectedPage = first ? vm.VisiblePages[0] : vm.VisiblePages[^1];
+                        return true;
+                    case 1 when vm.VisibleRepos.Count > 0:
+                        RepoListBox.Focus(NavigationMethod.Directional);
+                        vm.SelectedRepo = first ? vm.VisibleRepos[0] : vm.VisibleRepos[^1];
+                        return true;
+                    case 2 when vm.VisibleGitHubRepos.Count > 0:
+                        GitHubRepoListBox.Focus(NavigationMethod.Directional);
+                        vm.SelectedGitHubRepo = first ? vm.VisibleGitHubRepos[0] : vm.VisibleGitHubRepos[^1];
+                        return true;
                 }
             }
+
+            return false;
         }
 
         private void OnItemTapped(object sender, TappedEventArgs e)

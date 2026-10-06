@@ -2,13 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:m="using:SourceGit.Models"
              xmlns:vm="using:SourceGit.ViewModels"
              xmlns:v="using:SourceGit.Views"
              xmlns:c="using:SourceGit.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="SourceGit.Views.LauncherPagesCommandPalette"
              x:DataType="vm:LauncherPagesCommandPalette">
-  <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+  <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
     <TextBox Grid.Row="0"
              x:Name="FilterTextBox"
              Height="24"
@@ -197,6 +198,67 @@
                        IsHitTestVisible="False">
               <Run Text="{Binding Name, Mode=OneWay}"/>
               <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0}), Converter={x:Static c:PathConverters.RelativeToHome}}" Foreground="{DynamicResource Brush.FG2}"/>
+            </TextBlock>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </v:ListBoxEx>
+
+    <TextBlock Grid.Row="5"
+               Margin="6,8,0,4"
+               Text="{DynamicResource Text.Launcher.CloneFromGitHub}"
+               FontWeight="Bold"
+               Foreground="{DynamicResource Brush.FG2}"
+               IsVisible="{Binding VisibleGitHubRepos, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}"/>
+
+    <v:ListBoxEx Grid.Row="6"
+                 x:Name="GitHubRepoListBox"
+                 MaxHeight="200"
+                 Margin="4,0"
+                 BorderThickness="0"
+                 SelectionMode="Single"
+                 Background="Transparent"
+                 Focusable="True"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 ItemsSource="{Binding VisibleGitHubRepos, Mode=OneWay}"
+                 SelectedItem="{Binding SelectedGitHubRepo, Mode=TwoWay}"
+                 IsVisible="{Binding VisibleGitHubRepos, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}">
+      <ListBox.Styles>
+        <Style Selector="ListBoxItem">
+          <Setter Property="Padding" Value="8,0"/>
+          <Setter Property="MinHeight" Value="26"/>
+          <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+
+        <Style Selector="ListBox">
+          <Setter Property="FocusAdorner">
+            <FocusAdornerTemplate>
+              <Grid/>
+            </FocusAdornerTemplate>
+          </Setter>
+        </Style>
+      </ListBox.Styles>
+
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <VirtualizingStackPanel Orientation="Vertical"/>
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+
+      <ListBox.ItemTemplate>
+        <DataTemplate DataType="m:GitHubRepository">
+          <Grid ColumnDefinitions="Auto,*" Background="Transparent" Tapped="OnItemTapped" ToolTip.Tip="{Binding Description, Mode=OneWay}">
+            <Path Grid.Column="0"
+                  Width="12" Height="12"
+                  Fill="{DynamicResource Brush.FG1}"
+                  Data="{StaticResource Icons.GitHub}"/>
+            <TextBlock Grid.Column="1"
+                       Margin="6,0,0,0"
+                       VerticalAlignment="Center"
+                       IsHitTestVisible="False">
+              <Run Text="{Binding Name, Mode=OneWay}"/>
+              <Run Text="{Binding Owner.Login, Mode=OneWay, StringFormat=({0})}" Foreground="{DynamicResource Brush.FG2}"/>
             </TextBlock>
           </Grid>
         </DataTemplate>

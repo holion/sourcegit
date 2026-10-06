@@ -102,6 +102,20 @@ namespace SourceGit.ViewModels
             ParentFolder = _defaultCloneDir;
         }
 
+        /// <summary>
+        ///     Fills in a repository picked from GitHub. It goes into `<default clone dir>/<owner>`, so the "Auto" group
+        ///     files it under its organization.
+        /// </summary>
+        public void UseGitHubRepository(Models.GitHubRepository repo)
+        {
+            Remote = GitHubAccount.Instance.GetCloneUrl(repo);
+            Local = string.Empty;
+
+            var folder = GitHubAccount.PrepareParentFolder(repo);
+            if (!string.IsNullOrEmpty(folder))
+                ParentFolder = folder;
+        }
+
         public static ValidationResult ValidateRemote(string remote, ValidationContext _)
         {
             if (!Models.Remote.IsValidURL(remote))

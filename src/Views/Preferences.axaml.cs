@@ -254,6 +254,24 @@ namespace SourceGit.Views
             preferences.Save();
         }
 
+        private async void OnGitHubSignIn(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            await GitHubSignIn.ShowAsync(this);
+        }
+
+        private void OnGitHubSignOut(object sender, RoutedEventArgs e)
+        {
+            ViewModels.GitHubAccount.Instance.SignOut();
+            e.Handled = true;
+        }
+
+        private void OnGitHubGrantAccess(object sender, Avalonia.Input.PointerPressedEventArgs e)
+        {
+            Native.OS.OpenBrowser(Models.GitHub.ApplicationSettingsUrl);
+            e.Handled = true;
+        }
+
         private void OnClearShortcutFilter(object sender, RoutedEventArgs e)
         {
             ShortcutFilter = string.Empty;

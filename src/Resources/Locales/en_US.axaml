@@ -137,6 +137,7 @@
   <x:String x:Key="Text.Clone.AdditionalParam" xml:space="preserve">Extra Parameters:</x:String>
   <x:String x:Key="Text.Clone.AdditionalParam.Placeholder" xml:space="preserve">Additional arguments to clone repository. Optional.</x:String>
   <x:String x:Key="Text.Clone.Bookmark" xml:space="preserve">Bookmark:</x:String>
+  <x:String x:Key="Text.Clone.FromGitHub" xml:space="preserve">Pick a repository from GitHub</x:String>
   <x:String x:Key="Text.Clone.Group" xml:space="preserve">Group:</x:String>
   <x:String x:Key="Text.Clone.LocalName" xml:space="preserve">Local Name:</x:String>
   <x:String x:Key="Text.Clone.LocalName.Placeholder" xml:space="preserve">Repository name. Optional.</x:String>
@@ -479,6 +480,25 @@
   <x:String x:Key="Text.GitFlow.StartRelease" xml:space="preserve">Start Release...</x:String>
   <x:String x:Key="Text.GitFlow.StartReleaseTitle" xml:space="preserve">Start Release</x:String>
   <x:String x:Key="Text.GitFlow.TagPrefix" xml:space="preserve">Version Tag Prefix:</x:String>
+  <x:String x:Key="Text.GitHub.Picker" xml:space="preserve">Clone from GitHub</x:String>
+  <x:String x:Key="Text.GitHub.Picker.AllOwners" xml:space="preserve">All organizations</x:String>
+  <x:String x:Key="Text.GitHub.Picker.Archived" xml:space="preserve">archived</x:String>
+  <x:String x:Key="Text.GitHub.Picker.Clone" xml:space="preserve">Clone</x:String>
+  <x:String x:Key="Text.GitHub.Picker.Cloned" xml:space="preserve">cloned</x:String>
+  <x:String x:Key="Text.GitHub.Picker.GrantAccess" xml:space="preserve">Grant access to organizations on GitHub</x:String>
+  <x:String x:Key="Text.GitHub.Picker.MissingOrganization" xml:space="preserve">Missing repositories from an organization? The organization may have to approve SourceGit first.</x:String>
+  <x:String x:Key="Text.GitHub.Picker.Refresh" xml:space="preserve">Refresh</x:String>
+  <x:String x:Key="Text.GitHub.Picker.Search" xml:space="preserve">Search repositories</x:String>
+  <x:String x:Key="Text.GitHub.SignIn" xml:space="preserve">Sign in with GitHub</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.CodeCopied" xml:space="preserve">The code is copied to your clipboard</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.Denied" xml:space="preserve">Access was denied on GitHub.</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.Expired" xml:space="preserve">The GitHub sign-in has expired. Please sign in again.</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.Instructions" xml:space="preserve">Paste this code on the GitHub page that just opened in your browser and approve SourceGit.</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.Missing" xml:space="preserve">No GitHub token found. Please sign in again.</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.OpenGitHub" xml:space="preserve">Open GitHub</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.Retry" xml:space="preserve">Try Again</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.StoreFailed" xml:space="preserve">Could not save the GitHub token in the system credential store.</x:String>
+  <x:String x:Key="Text.GitHub.SignIn.Waiting" xml:space="preserve">Waiting for GitHub ...</x:String>
   <x:String x:Key="Text.GitLFS" xml:space="preserve">Git LFS</x:String>
   <x:String x:Key="Text.GitLFS.AddTrackPattern" xml:space="preserve">Add Track Pattern...</x:String>
   <x:String x:Key="Text.GitLFS.AddTrackPattern.IsFilename" xml:space="preserve">Pattern is file name</x:String>
@@ -600,6 +620,7 @@
   <x:String x:Key="Text.InteractiveRebase.Target" xml:space="preserve">Target Branch:</x:String>
   <x:String x:Key="Text.IssueLinkCM.CopyLink" xml:space="preserve">Copy Link</x:String>
   <x:String x:Key="Text.IssueLinkCM.OpenInBrowser" xml:space="preserve">Open in Browser</x:String>
+  <x:String x:Key="Text.Launcher.CloneFromGitHub" xml:space="preserve">Clone from GitHub</x:String>
   <x:String x:Key="Text.Launcher.Commands" xml:space="preserve">Commands</x:String>
   <x:String x:Key="Text.Launcher.Error" xml:space="preserve">ERROR</x:String>
   <x:String x:Key="Text.Launcher.Info" xml:space="preserve">NOTICE</x:String>
@@ -749,6 +770,15 @@
   <x:String x:Key="Text.Preferences.GPG.TagEnabled" xml:space="preserve">Tag GPG signing</x:String>
   <x:String x:Key="Text.Preferences.GPG.UserKey" xml:space="preserve">User Signing Key</x:String>
   <x:String x:Key="Text.Preferences.GPG.UserKey.Placeholder" xml:space="preserve">User's gpg signing key</x:String>
+  <x:String x:Key="Text.Preferences.GitHub" xml:space="preserve">GITHUB</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.Description" xml:space="preserve">Sign in to clone repositories from your organizations without copying URLs. SourceGit then also uses this account for fetching and pushing over HTTPS, so no extra credentials or SSH keys are needed.</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.NotConfigured" xml:space="preserve">The GitHub integration is not configured in this build.</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.PreferSSH" xml:space="preserve">Clone with SSH instead of HTTPS (requires an SSH key on GitHub)</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.SignOut" xml:space="preserve">Sign Out</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.SignedInAs" xml:space="preserve">Signed in as</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.SignedOut" xml:space="preserve">Not signed in</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.UseForGit" xml:space="preserve">Use this account for fetch, pull and push over HTTPS</x:String>
+  <x:String x:Key="Text.Preferences.GitHub.UseForGit.Tip" xml:space="preserve">Replaces other credential helpers (Keychain, Git Credential Manager, ...) for https://github.com while signed in</x:String>
   <x:String x:Key="Text.Preferences.Integration" xml:space="preserve">INTEGRATION</x:String>
   <x:String x:Key="Text.Preferences.Shortcuts" xml:space="preserve">SHORTCUTS</x:String>
   <x:String x:Key="Text.Preferences.Shortcuts.Conflict" xml:space="preserve">This shortcut is also used by another action</x:String>

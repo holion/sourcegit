@@ -321,6 +321,24 @@ namespace SourceGit.ViewModels
             set => SetProperty(ref _gitDefaultCloneDir, value);
         }
 
+        public string GitHubLogin
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public bool GitHubPreferSSH
+        {
+            get;
+            set;
+        } = false;
+
+        public bool GitHubUseForGit
+        {
+            get;
+            set;
+        } = true;
+
         public bool UseLibsecretInsteadOfGCM
         {
             get => Native.OS.CredentialHelper.Equals("libsecret", StringComparison.Ordinal);

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ using Avalonia.Threading;
 
 namespace SourceGit.ViewModels
 {
-    public class LauncherPagesCommandPalette : ICommandPalette
+    public class LauncherPagesCommandPalette : ICommandPalette, IDisposable
     {
         public List<LauncherPage> VisiblePages
         {
@@ -19,6 +20,12 @@ namespace SourceGit.ViewModels
         {
             get => _visibleRepos;
             private set => SetProperty(ref _visibleRepos, value);
+        }
+
+        public List<Models.GitHubRepository> VisibleGitHubRepos
+        {
+            get => _visibleGitHubRepos;
+            private set => SetProperty(ref _visibleGitHubRepos, value);
         }
 
         public string SearchFilter
@@ -37,7 +44,10 @@ namespace SourceGit.ViewModels
             set
             {
                 if (SetProperty(ref _selectedPage, value) && value != null)
+                {
                     SelectedRepo = null;
+                    SelectedGitHubRepo = null;
+                }
             }
         }
 
@@ -47,7 +57,23 @@ namespace SourceGit.ViewModels
             set
             {
                 if (SetProperty(ref _selectedRepo, value) && value != null)
+                {
                     SelectedPage = null;
+                    SelectedGitHubRepo = null;
+                }
+            }
+        }
+
+        public Models.GitHubRepository SelectedGitHubRepo
+        {
+            get => _selectedGitHubRepo;
+            set
+            {
+                if (SetProperty(ref _selectedGitHubRepo, value) && value != null)
+                {
+                    SelectedPage = null;
+                    SelectedRepo = null;
+                }
             }
         }
 
@@ -72,7 +98,31 @@ namespace SourceGit.ViewModels
                 ScanDefaultCloneDir(cloneDir);
             }
 
+            var github = GitHubAccount.Instance;
+            if (github.IsSignedIn)
+            {
+                github.PropertyChanged += OnGitHubAccountPropertyChanged;
+                _ = github.RefreshAsync(false);
+                UpdateClonedGitHubRepos();
+            }
+
             UpdateVisible();
+        }
+
+        public void Dispose()
+        {
+            GitHubAccount.Instance.PropertyChanged -= OnGitHubAccountPropertyChanged;
+        }
+
+        /// <summary>
+        ///     Same scan as the palette runs over the default clone dir: every repository found below `dir` with the
+        ///     repository owning its tab.
+        /// </summary>
+        public static List<(string Path, string Root)> ScanForRepositories(string dir)
+        {
+            var found = new List<(string Path, string Root)>();
+            ScanDirectory(new DirectoryInfo(dir), found, 0);
+            return found;
         }
 
         public void ClearFilter()
@@ -89,6 +139,8 @@ namespace SourceGit.ViewModels
 
             if (_selectedPage != null)
                 _launcher.ActivePage = _selectedPage;
+            else if (_selectedGitHubRepo != null)
+                CloneFromGitHub(_selectedGitHubRepo);
             else if (_selectedRepo != null && _discoveredRoots.TryGetValue(_selectedRepo, out var root))
                 OpenDiscovered(_selectedRepo.Id, root);
             else if (_selectedRepo != null)
@@ -107,8 +159,12 @@ namespace SourceGit.ViewModels
             CollectVisibleRepository(repos, Preferences.Instance.RepositoryNodes);
             CollectVisibleRepository(repos, _discovered);
 
+            var githubRepos = new List<Models.GitHubRepository>();
+            CollectVisibleGitHubRepository(githubRepos);
+
             var autoSelectPage = _selectedPage;
             var autoSelectRepo = _selectedRepo;
+            var autoSelectGitHubRepo = _selectedGitHubRepo != null && githubRepos.Contains(_selectedGitHubRepo) ? _selectedGitHubRepo : null;
 
             if (_selectedPage != null)
             {
@@ -166,10 +222,18 @@ namespace SourceGit.ViewModels
                 autoSelectRepo = null;
             }
 
+            // GitHub repositories come last: only pick one when nothing local matches.
+            if (autoSelectPage != null || autoSelectRepo != null)
+                autoSelectGitHubRepo = null;
+            else if (autoSelectGitHubRepo == null && githubRepos.Count > 0)
+                autoSelectGitHubRepo = githubRepos[0];
+
             VisiblePages = pages;
             VisibleRepos = repos;
+            VisibleGitHubRepos = githubRepos;
             SelectedPage = autoSelectPage;
             SelectedRepo = autoSelectRepo;
+            SelectedGitHubRepo = autoSelectGitHubRepo;
         }
 
         private void CollectVisiblePages(List<LauncherPage> pages)
@@ -206,6 +270,70 @@ namespace SourceGit.ViewModels
             }
         }
 
+        /// <summary>
+        ///     GitHub repositories that are not cloned yet. Only listed while searching, so they do not bury the tabs
+        ///     and local repositories.
+        /// </summary>
+        private void CollectVisibleGitHubRepository(List<Models.GitHubRepository> outs)
+        {
+            if (string.IsNullOrEmpty(_searchFilter) || !GitHubAccount.Instance.IsSignedIn)
+                return;
+
+            foreach (var repo in GitHubAccount.Instance.Repositories)
+            {
+                if (repo.IsArchived || s_clonedGitHubRepos.Contains(repo.FullName.ToLowerInvariant()))
+                    continue;
+
+                if (repo.FullName.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase))
+                    outs.Add(repo);
+            }
+        }
+
+        private void OnGitHubAccountPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(GitHubAccount.Repositories) && _launcher.CommandPalette == this)
+                UpdateVisible();
+        }
+
+        private void UpdateClonedGitHubRepos()
+        {
+            var paths = new List<string>(_managed);
+            foreach (var (path, _) in s_scanned)
+                paths.Add(path);
+
+            Task.Run(() =>
+            {
+                var cloned = Models.GitHub.CollectClonedFullNames(paths);
+                Dispatcher.UIThread.Post(() =>
+                {
+                    s_clonedGitHubRepos = cloned;
+                    if (_launcher.CommandPalette == this)
+                        UpdateVisible();
+                });
+            });
+        }
+
+        private void CloneFromGitHub(Models.GitHubRepository repo)
+        {
+            if (!Preferences.Instance.IsGitConfigured())
+            {
+                Models.Notification.Send(null, App.Text("NotConfigured"), true);
+                return;
+            }
+
+            // Cloning replaces the page it runs on, so never start it on top of an open repository.
+            if (_launcher.ActivePage is not { Node.IsRepository: false } page || !page.CanCreatePopup())
+            {
+                _launcher.AddNewTab();
+                page = _launcher.ActivePage;
+            }
+
+            // Only fill in the clone dialog, so the local location can still be changed before cloning.
+            var clone = new Clone(page.Node.Id);
+            clone.UseGitHubRepository(repo);
+            page.Popup = clone;
+        }
+
         private void CollectManagedRepository(List<RepositoryNode> nodes)
         {
             foreach (var node in nodes)
@@ -225,8 +353,7 @@ namespace SourceGit.ViewModels
             s_scanning = true;
             Task.Run(() =>
             {
-                var found = new List<(string Path, string Root)>();
-                ScanDirectory(new DirectoryInfo(dir), found, 0);
+                var found = ScanForRepositories(dir);
 
                 Dispatcher.UIThread.Post(() =>
                 {
@@ -238,6 +365,9 @@ namespace SourceGit.ViewModels
                     {
                         SetDiscovered(found);
                         UpdateVisible();
+
+                        if (GitHubAccount.Instance.IsSignedIn)
+                            UpdateClonedGitHubRepos();
                     }
                 });
             });
@@ -350,6 +480,7 @@ namespace SourceGit.ViewModels
         private static bool s_scanning = false;
         private static string s_scannedDir = null;
         private static List<(string Path, string Root)> s_scanned = [];
+        private static HashSet<string> s_clonedGitHubRepos = [];
 
         private Launcher _launcher = null;
         private HashSet<string> _opened = new HashSet<string>();
@@ -358,6 +489,8 @@ namespace SourceGit.ViewModels
         private Dictionary<RepositoryNode, string> _discoveredRoots = new Dictionary<RepositoryNode, string>();
         private List<LauncherPage> _visiblePages = [];
         private List<RepositoryNode> _visibleRepos = [];
+        private List<Models.GitHubRepository> _visibleGitHubRepos = [];
+        private Models.GitHubRepository _selectedGitHubRepo = null;
         private string _searchFilter = string.Empty;
         private LauncherPage _selectedPage = null;
         private RepositoryNode _selectedRepo = null;

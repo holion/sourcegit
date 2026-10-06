@@ -170,6 +170,11 @@ namespace SourceGit.Commands
                 .Append(Native.OS.CredentialHelper)
                 .Append(' ');
 
+            // While signed in to GitHub, answer github.com credential requests with that account's token. The empty
+            // value first clears the helpers configured so far (`manager` above, `osxkeychain`, ...) for github.com.
+            if (ViewModels.GitHubAccount.Instance is { IsSignedIn: true, UseForGit: true })
+                builder.Append($"""-c credential.https://github.com.helper= -c credential.https://github.com.helper="!\"{selfExecFile}\" --github-credential" """);
+
             switch (Editor)
             {
                 case EditorType.CoreEditor:

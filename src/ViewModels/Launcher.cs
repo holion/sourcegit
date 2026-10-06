@@ -42,7 +42,12 @@ namespace SourceGit.ViewModels
         public ICommandPalette CommandPalette
         {
             get => _commandPalette;
-            set => SetProperty(ref _commandPalette, value);
+            set
+            {
+                var old = _commandPalette;
+                if (SetProperty(ref _commandPalette, value) && old is IDisposable disposable)
+                    disposable.Dispose();
+            }
         }
 
         public Models.Version NewVersion
