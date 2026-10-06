@@ -6,19 +6,39 @@ This document shows the translation status of each locale file in the repository
 
 ### ![en_US](https://img.shields.io/badge/en__US-%E2%88%9A-brightgreen)
 
-### ![de__DE](https://img.shields.io/badge/de__DE-92.49%25-yellow)
+### ![de__DE](https://img.shields.io/badge/de__DE-90.02%25-yellow)
 
 <details>
 <summary>Missing keys in de_DE.axaml</summary>
 
 - Text.Blame.Tips
 - Text.BranchTree.PushURL
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
 - Text.Dashboard
 - Text.Diff.Binary.ViewContentOfNew
 - Text.File.Binary
 - Text.File.HexViewer
 - Text.File.HexViewer.GotoAddress
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
 - Text.Hotkeys.CustomizeTip
@@ -44,6 +64,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
@@ -54,6 +75,15 @@ This document shows the translation status of each locale file in the repository
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -96,19 +126,39 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![el__GR](https://img.shields.io/badge/el__GR-92.03%25-yellow)
+### ![el__GR](https://img.shields.io/badge/el__GR-89.57%25-yellow)
 
 <details>
 <summary>Missing keys in el_GR.axaml</summary>
 
 - Text.Blame.Tips
 - Text.BranchTree.PushURL
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
 - Text.Dashboard
 - Text.Diff.Binary.ViewContentOfNew
 - Text.File.Binary
 - Text.File.HexViewer
 - Text.File.HexViewer.GotoAddress
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
 - Text.Hotkeys.CustomizeTip
@@ -134,6 +184,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.NewVersion
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
@@ -145,6 +196,15 @@ This document shows the translation status of each locale file in the repository
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -191,12 +251,32 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![es__ES](https://img.shields.io/badge/es__ES-96.43%25-yellow)
+### ![es__ES](https://img.shields.io/badge/es__ES-93.85%25-yellow)
 
 <details>
 <summary>Missing keys in es_ES.axaml</summary>
 
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Hotkeys.CustomizeTip
 - Text.Hotkeys.Diff
 - Text.Hotkeys.Global.Search
@@ -217,12 +297,22 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.CreateBranchFromCommit
 - Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
 - Text.NestedRepos.PushAll
 - Text.NestedRepos.Refresh
 - Text.NestedRepos.Summary
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -238,7 +328,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![fr__FR](https://img.shields.io/badge/fr__FR-88.37%25-yellow)
+### ![fr__FR](https://img.shields.io/badge/fr__FR-86.01%25-yellow)
 
 <details>
 <summary>Missing keys in fr_FR.axaml</summary>
@@ -253,6 +343,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
+- Text.Clone.FromGitHub
 - Text.CommitCM.CopyAuthorTime
 - Text.CommitCM.CopyCommitterTime
 - Text.CommitDetail.Files.Tips
@@ -278,6 +369,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithRebase
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
 - Text.Hotkeys.CustomizeTip
@@ -303,6 +413,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.NewVersion
 - Text.Merge.Test
 - Text.Merge.Test.NoConflicts
@@ -319,6 +430,15 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
 - Text.Preferences.General.UseCompactBranchNames
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -373,7 +493,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![he__IL](https://img.shields.io/badge/he__IL-88.37%25-yellow)
+### ![he__IL](https://img.shields.io/badge/he__IL-86.01%25-yellow)
 
 <details>
 <summary>Missing keys in he_IL.axaml</summary>
@@ -388,6 +508,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
+- Text.Clone.FromGitHub
 - Text.CommitCM.CopyAuthorTime
 - Text.CommitCM.CopyCommitterTime
 - Text.CommitDetail.Files.Tips
@@ -413,6 +534,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithRebase
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
 - Text.Hotkeys.CustomizeTip
@@ -438,6 +578,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.NewVersion
 - Text.Merge.Test
 - Text.Merge.Test.NoConflicts
@@ -454,6 +595,15 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
 - Text.Preferences.General.UseCompactBranchNames
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -508,19 +658,39 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![id__ID](https://img.shields.io/badge/id__ID-92.49%25-yellow)
+### ![id__ID](https://img.shields.io/badge/id__ID-90.02%25-yellow)
 
 <details>
 <summary>Missing keys in id_ID.axaml</summary>
 
 - Text.Blame.Tips
 - Text.BranchTree.PushURL
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
 - Text.Dashboard
 - Text.Diff.Binary.ViewContentOfNew
 - Text.File.Binary
 - Text.File.HexViewer
 - Text.File.HexViewer.GotoAddress
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
 - Text.Hotkeys.CustomizeTip
@@ -546,6 +716,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
@@ -555,6 +726,15 @@ This document shows the translation status of each locale file in the repository
 - Text.OpenAppDataDir.Cache
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -598,7 +778,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![it__IT](https://img.shields.io/badge/it__IT-82.42%25-yellow)
+### ![it__IT](https://img.shields.io/badge/it__IT-80.21%25-yellow)
 
 <details>
 <summary>Missing keys in it_IT.axaml</summary>
@@ -622,6 +802,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
 - Text.Clone.Bookmark
+- Text.Clone.FromGitHub
 - Text.Clone.Group
 - Text.CommandPalette.Branches
 - Text.CommandPalette.BranchesAndTags
@@ -665,6 +846,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithRebase
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.GotoRevisionSelector
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph
@@ -707,6 +907,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Init.CommandTip
 - Text.Init.ErrorMessageTip
 - Text.InteractiveRebase.NoVerify
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.NewVersion
 - Text.Merge.Test
 - Text.Merge.Test.NoConflicts
@@ -733,6 +934,15 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.General.Use24Hours
 - Text.Preferences.General.UseCompactBranchNames
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -798,12 +1008,32 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ja__JP](https://img.shields.io/badge/ja__JP-96.43%25-yellow)
+### ![ja__JP](https://img.shields.io/badge/ja__JP-93.85%25-yellow)
 
 <details>
 <summary>Missing keys in ja_JP.axaml</summary>
 
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Hotkeys.CustomizeTip
 - Text.Hotkeys.Diff
 - Text.Hotkeys.Global.Search
@@ -824,12 +1054,22 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.CreateBranchFromCommit
 - Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
 - Text.NestedRepos.PushAll
 - Text.NestedRepos.Refresh
 - Text.NestedRepos.Summary
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -845,7 +1085,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ko__KR](https://img.shields.io/badge/ko__KR-89.74%25-yellow)
+### ![ko__KR](https://img.shields.io/badge/ko__KR-87.34%25-yellow)
 
 <details>
 <summary>Missing keys in ko_KR.axaml</summary>
@@ -857,6 +1097,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
 - Text.Configure.Git.EnableRecursiveWhenAutoUpdatingSubmodules
 - Text.Dashboard
@@ -879,6 +1120,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithRebase
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Histories.HighlightsInGraph.SelectedCommitsOnlyFirstParent
 - Text.Hotkeys.CustomizeTip
@@ -904,6 +1164,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.NewVersion
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
@@ -915,6 +1176,15 @@ This document shows the translation status of each locale file in the repository
 - Text.OpenAppDataDir.Config
 - Text.Preferences.AI.ExtraHeaders
 - Text.Preferences.AI.ReasoningEffortLevel
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -965,7 +1235,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![pt__BR](https://img.shields.io/badge/pt__BR-58.24%25-red)
+### ![pt__BR](https://img.shields.io/badge/pt__BR-56.68%25-red)
 
 <details>
 <summary>Missing keys in pt_BR.axaml</summary>
@@ -1005,6 +1275,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
 - Text.Clone.Bookmark
+- Text.Clone.FromGitHub
 - Text.Clone.Group
 - Text.Clone.RecurseSubmodules
 - Text.CommandPalette.Branches
@@ -1139,6 +1410,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithSquash
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.GitLFS.Locks.UnlockAllMyLocks
 - Text.GitLFS.Locks.UnlockAllMyLocks.Confirm
 - Text.GotoRevisionSelector
@@ -1192,6 +1482,7 @@ This document shows the translation status of each locale file in the repository
 - Text.InProgress.Revert.Head
 - Text.InteractiveRebase.NoVerify
 - Text.InteractiveRebase.ReorderTip
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.Commands
 - Text.Launcher.NewVersion
 - Text.Launcher.OpenRepository
@@ -1268,6 +1559,15 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.Git.SSLVerify
 - Text.Preferences.Git.UseLibsecret
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -1429,15 +1729,35 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ru__RU](https://img.shields.io/badge/ru__RU-94.78%25-yellow)
+### ![ru__RU](https://img.shields.io/badge/ru__RU-92.25%25-yellow)
 
 <details>
 <summary>Missing keys in ru_RU.axaml</summary>
 
 - Text.Blame.Tips
 - Text.BranchTree.PushURL
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
 - Text.Dashboard
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Histories.AdvancedOptions
 - Text.Hotkeys.CustomizeTip
 - Text.Hotkeys.Diff
@@ -1462,6 +1782,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.ToggleCommitDetailPanel
 - Text.Hotkeys.Repo.ToggleSearchCommits
 - Text.Hotkeys.Repo.ViewDashboard
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
@@ -1469,6 +1790,15 @@ This document shows the translation status of each locale file in the repository
 - Text.NestedRepos.Refresh
 - Text.NestedRepos.Summary
 - Text.Preferences.AI.ExtraHeaders
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -1494,7 +1824,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![ta__IN](https://img.shields.io/badge/ta__IN-59.80%25-red)
+### ![ta__IN](https://img.shields.io/badge/ta__IN-58.20%25-red)
 
 <details>
 <summary>Missing keys in ta_IN.axaml</summary>
@@ -1563,6 +1893,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
 - Text.Clone.Bookmark
+- Text.Clone.FromGitHub
 - Text.Clone.Group
 - Text.CommandPalette.Branches
 - Text.CommandPalette.BranchesAndTags
@@ -1683,6 +2014,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithSquash
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.GitLFS.Locks.UnlockAllMyLocks
 - Text.GitLFS.Locks.UnlockAllMyLocks.Confirm
 - Text.GotoRevisionSelector
@@ -1731,6 +2081,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Init.ErrorMessageTip
 - Text.InteractiveRebase.NoVerify
 - Text.InteractiveRebase.ReorderTip
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.Commands
 - Text.Launcher.NewVersion
 - Text.Launcher.OpenRepository
@@ -1798,6 +2149,15 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.Git.IgnoreCRAtEOLInDiff
 - Text.Preferences.Git.UseLibsecret
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -1941,7 +2301,7 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![uk__UA](https://img.shields.io/badge/uk__UA-60.53%25-red)
+### ![uk__UA](https://img.shields.io/badge/uk__UA-58.91%25-red)
 
 <details>
 <summary>Missing keys in uk_UA.axaml</summary>
@@ -2010,6 +2370,7 @@ This document shows the translation status of each locale file in the repository
 - Text.CheckoutDetached.Target
 - Text.CheckoutDetached.Warning
 - Text.Clone.Bookmark
+- Text.Clone.FromGitHub
 - Text.Clone.Group
 - Text.CommandPalette.Branches
 - Text.CommandPalette.BranchesAndTags
@@ -2126,6 +2487,25 @@ This document shows the translation status of each locale file in the repository
 - Text.GitFlow.FinishWithSquash
 - Text.GitFlow.StartAt
 - Text.GitFlow.StartName
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.GitLFS.Locks.UnlockAllMyLocks
 - Text.GitLFS.Locks.UnlockAllMyLocks.Confirm
 - Text.GotoRevisionSelector
@@ -2174,6 +2554,7 @@ This document shows the translation status of each locale file in the repository
 - Text.Init.ErrorMessageTip
 - Text.InteractiveRebase.NoVerify
 - Text.InteractiveRebase.ReorderTip
+- Text.Launcher.CloneFromGitHub
 - Text.Launcher.Commands
 - Text.Launcher.NewVersion
 - Text.Launcher.OpenRepository
@@ -2241,6 +2622,15 @@ This document shows the translation status of each locale file in the repository
 - Text.Preferences.Git.IgnoreCRAtEOLInDiff
 - Text.Preferences.Git.UseLibsecret
 - Text.Preferences.Git.UseStashAndReapplyByDefault
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -2380,11 +2770,31 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![zh__CN](https://img.shields.io/badge/zh__CN-96.70%25-yellow)
+### ![zh__CN](https://img.shields.io/badge/zh__CN-94.12%25-yellow)
 
 <details>
 <summary>Missing keys in zh_CN.axaml</summary>
 
+- Text.Clone.FromGitHub
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Hotkeys.CustomizeTip
 - Text.Hotkeys.Diff
 - Text.Hotkeys.Global.Search
@@ -2405,12 +2815,22 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.CreateBranchFromCommit
 - Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
 - Text.NestedRepos.PushAll
 - Text.NestedRepos.Refresh
 - Text.NestedRepos.Summary
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
@@ -2424,12 +2844,32 @@ This document shows the translation status of each locale file in the repository
 
 </details>
 
-### ![zh__TW](https://img.shields.io/badge/zh__TW-96.43%25-yellow)
+### ![zh__TW](https://img.shields.io/badge/zh__TW-93.85%25-yellow)
 
 <details>
 <summary>Missing keys in zh_TW.axaml</summary>
 
+- Text.Clone.FromGitHub
 - Text.CommitDetail.Files.Tips
+- Text.GitHub.Picker
+- Text.GitHub.Picker.AllOwners
+- Text.GitHub.Picker.Archived
+- Text.GitHub.Picker.Clone
+- Text.GitHub.Picker.Cloned
+- Text.GitHub.Picker.GrantAccess
+- Text.GitHub.Picker.MissingOrganization
+- Text.GitHub.Picker.Refresh
+- Text.GitHub.Picker.Search
+- Text.GitHub.SignIn
+- Text.GitHub.SignIn.CodeCopied
+- Text.GitHub.SignIn.Denied
+- Text.GitHub.SignIn.Expired
+- Text.GitHub.SignIn.Instructions
+- Text.GitHub.SignIn.Missing
+- Text.GitHub.SignIn.OpenGitHub
+- Text.GitHub.SignIn.Retry
+- Text.GitHub.SignIn.StoreFailed
+- Text.GitHub.SignIn.Waiting
 - Text.Hotkeys.CustomizeTip
 - Text.Hotkeys.Diff
 - Text.Hotkeys.Global.Search
@@ -2450,12 +2890,22 @@ This document shows the translation status of each locale file in the repository
 - Text.Hotkeys.Repo.CreateBranchFromCommit
 - Text.Hotkeys.Repo.CreateTagFromCommit
 - Text.Hotkeys.Repo.OpenFileWithDefaultEditor
+- Text.Launcher.CloneFromGitHub
 - Text.NestedRepos
 - Text.NestedRepos.FetchAll
 - Text.NestedRepos.PullAll
 - Text.NestedRepos.PushAll
 - Text.NestedRepos.Refresh
 - Text.NestedRepos.Summary
+- Text.Preferences.GitHub
+- Text.Preferences.GitHub.Description
+- Text.Preferences.GitHub.NotConfigured
+- Text.Preferences.GitHub.PreferSSH
+- Text.Preferences.GitHub.SignOut
+- Text.Preferences.GitHub.SignedInAs
+- Text.Preferences.GitHub.SignedOut
+- Text.Preferences.GitHub.UseForGit
+- Text.Preferences.GitHub.UseForGit.Tip
 - Text.Preferences.Shortcuts
 - Text.Preferences.Shortcuts.Conflict
 - Text.Preferences.Shortcuts.Recording
