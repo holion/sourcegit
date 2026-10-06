@@ -6,6 +6,10 @@ on:
         description: SourceGit package version
         required: true
         type: string
+      ref:
+        description: Commit to check out. Defaults to the commit that triggered the workflow.
+        required: false
+        type: string
       runtimes:
         description: Comma-separated runtimes to package. Falls back to the BUILD_RUNTIMES repository variable, then osx-arm64.
         required: false
@@ -41,6 +45,8 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
       - name: Download build
         uses: actions/download-artifact@v8
         with:
@@ -72,6 +78,8 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
       - name: Download build
         uses: actions/download-artifact@v8
         with:
@@ -113,6 +121,8 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
       - name: Download package dependencies
         run: |
           export DEBIAN_FRONTEND=noninteractive

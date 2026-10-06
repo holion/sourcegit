@@ -29,17 +29,17 @@ The sign-in uses the device flow of the Holion OAuth app, whose client id is `Mo
 
 ### Release
 
-From a clean `develop`, run:
+Every push to `master` makes a release. From a clean `develop`, run:
 
 ```shell
-./release.sh             # bumps VERSION, e.g. 2026.21.2 -> 2026.21.3
-./release.sh 2026.22.1   # or release a specific version
+./release.sh
 ```
 
-The script commits `VERSION`, pushes a `v*` tag and the [Release workflow](https://github.com/holion/sourcegit/actions/workflows/release.yml) does the rest: build, sign and notarize, publish the release and update the [Homebrew tap](https://github.com/holion/homebrew-tap).
+The script shows the commits that are not on `master` yet and pushes `develop` to `master`. The [Release workflow](https://github.com/holion/sourcegit/actions/workflows/release.yml) then bumps `VERSION` on `master` (e.g. 2026.21.3 -> 2026.21.4), tags it and does the rest: build, sign and notarize, publish the release and update the [Homebrew tap](https://github.com/holion/homebrew-tap). The next `./release.sh` merges that `VERSION` commit back into `develop`.
 
 * Only `osx-arm64` is built by default. Set the `BUILD_RUNTIMES` repository variable to build more, e.g. `gh variable set BUILD_RUNTIMES -b "osx-arm64,osx-x64,win-x64"`.
-* Versions use a third number on top of upstream's, e.g. `2026.21.3`. After merging a new upstream version, release e.g. `./release.sh 2026.22.1`.
+* Versions use a third number on top of upstream's, e.g. `2026.21.3`. After merging a new upstream version, set `VERSION` to e.g. `2026.22.1` on `develop`; the workflow releases a `VERSION` that has no tag yet as it is.
+* Running the Release workflow by hand releases the tip of `master` as the next version, e.g. to build other runtimes.
 * Signing needs the `MACOS_CERTIFICATE`, `MACOS_CERTIFICATE_PASSWORD`, `APPLE_API_KEY`, `APPLE_API_KEY_ID` and `APPLE_API_ISSUER_ID` secrets, and the Homebrew tap needs `HOMEBREW_TAP_TOKEN`.
 
 ## Screenshots

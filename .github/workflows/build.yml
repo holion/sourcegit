@@ -2,6 +2,10 @@ name: Build
 on:
   workflow_call:
     inputs:
+      ref:
+        description: Commit to check out. Defaults to the commit that triggered the workflow.
+        required: false
+        type: string
       runtimes:
         description: Comma-separated runtimes to build. Falls back to the BUILD_RUNTIMES repository variable, then osx-arm64.
         required: false
@@ -48,6 +52,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v6
         with:
+          ref: ${{ inputs.ref }}
           submodules: true
       - name: Setup .NET
         uses: actions/setup-dotnet@v5

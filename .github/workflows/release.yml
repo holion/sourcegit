@@ -1,37 +1,78 @@
 name: Release
 on:
   push:
-    tags:
-      - v*
+    branches: [master]
   workflow_dispatch:
     inputs:
       runtimes:
-        description: Comma-separated runtimes, e.g. osx-arm64,osx-x64,win-x64 (run it on a tag)
+        description: Comma-separated runtimes, e.g. osx-arm64,osx-x64,win-x64
         required: false
         type: string
+# Each run bumps VERSION on master, so runs must not overlap.
+concurrency:
+  group: release
+  cancel-in-progress: false
 jobs:
+  version:
+    name: Bump version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+      sha: ${{ steps.version.outputs.sha }}
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v6
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Bump, commit and tag
+        id: version
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          # A queued run can find master already released by the run before it.
+          if [ "$EVENT" = push ] && git tag --points-at HEAD | grep -q '^v'; then
+            echo "master is already released as $(git tag --points-at HEAD | grep '^v' | head -1)"
+            exit 0
+          fi
+
+          # VERSION keeps its value until it has been released, e.g. 2026.22.1 after an upstream merge.
+          version=$(cat VERSION)
+          [[ "$version" =~ ^[0-9]{4}\.[0-9]{1,2}$ ]] && version="$version.1"
+          while git rev-parse -q --verify "refs/tags/v$version" > /dev/null; do
+            version=$(echo "$version" | awk -F. -v OFS=. '{ $NF += 1; print }')
+          done
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "$version" != "$(cat VERSION)" ]; then
+            printf '%s' "$version" > VERSION
+            git commit --quiet -m "version: Release $version" VERSION
+          fi
+          git tag -a "v$version" -m "v$version"
+          git push --atomic origin HEAD:master "v$version"
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   build:
+    needs: version
+    if: needs.version.outputs.version
     name: Build
     uses: ./.github/workflows/build.yml
     with:
+      ref: ${{ needs.version.outputs.sha }}
       runtimes: ${{ inputs.runtimes }}
-  version:
-    name: Prepare version string
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-    steps:
-      - name: Output version string
-        id: version
-        env:
-          TAG: ${{ github.ref_name }}
-        run: echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
   package:
     needs: [build, version]
     name: Package
     uses: ./.github/workflows/package.yml
     secrets: inherit
     with:
+      ref: ${{ needs.version.outputs.sha }}
       version: ${{ needs.version.outputs.version }}
       runtimes: ${{ inputs.runtimes }}
   release:
@@ -43,12 +84,16 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.version.outputs.sha }}
       - name: Create release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ needs.version.outputs.tag }}
           VERSION: ${{ needs.version.outputs.version }}
-        run: gh release create "$TAG" -t "$VERSION" --notes-from-tag
+        run: |
+          git fetch --quiet origin "refs/tags/$TAG:refs/tags/$TAG"
+          gh release create "$TAG" -t "$VERSION" --notes-from-tag
       - name: Download artifacts
         uses: actions/download-artifact@v8
         with:
@@ -58,7 +103,7 @@ jobs:
       - name: Upload assets
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ needs.version.outputs.tag }}
         run: gh release upload "$TAG" packages/*
       - name: Update Homebrew cask
         env:
