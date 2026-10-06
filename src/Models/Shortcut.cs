@@ -70,6 +70,18 @@ namespace SourceGit.Models
                 NormalizeKey(e.Key) == NormalizeKey(_gesture.Key);
         }
 
+        /// <summary>
+        ///     Matches the gesture with `extra` modifiers held down as well. Never matches when the gesture already
+        ///     uses them.
+        /// </summary>
+        public bool Matches(KeyEventArgs e, KeyModifiers extra)
+        {
+            return _gesture != null &&
+                (_gesture.KeyModifiers & extra) == 0 &&
+                e.KeyModifiers == (_gesture.KeyModifiers | extra) &&
+                NormalizeKey(e.Key) == NormalizeKey(_gesture.Key);
+        }
+
         public void Reset()
         {
             Gesture = Default;
@@ -258,6 +270,7 @@ namespace SourceGit.Models
         public static readonly Shortcut Pull = Add("Pull", ShortcutCategory.Repository, "Hotkeys.Repo.Pull", Key.Down, s_cmd | KeyModifiers.Shift);
         public static readonly Shortcut Push = Add("Push", ShortcutCategory.Repository, "Hotkeys.Repo.Push", Key.Up, s_cmd | KeyModifiers.Shift);
         public static readonly Shortcut OpenInFileManager = Add("OpenInFileManager", ShortcutCategory.Repository, "Repository.Explore", Key.E, s_cmd);
+        public static readonly Shortcut OpenInVSCode = Add("OpenInVSCode", ShortcutCategory.Repository, "Hotkeys.Repo.OpenInVSCode", Key.E, s_cmd | KeyModifiers.Shift);
         public static readonly Shortcut ToggleCommitDetailPanel = Add("ToggleCommitDetailPanel", ShortcutCategory.Repository, "Hotkeys.Repo.ToggleCommitDetailPanel", Key.J, s_cmd);
         public static readonly Shortcut OpenCommitDetailStandalone = Add("OpenCommitDetailStandalone", ShortcutCategory.Repository, "HistoriesDetailsStandalone", Key.N, s_cmd);
         public static readonly Shortcut GoToParent = Add("GoToParent", ShortcutCategory.Repository, "Hotkeys.Repo.GoToParent", Key.Down, KeyModifiers.Alt);

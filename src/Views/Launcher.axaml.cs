@@ -302,6 +302,21 @@ namespace SourceGit.Views
                     e.Handled = true;
                     return;
                 }
+
+                // Opens the root repository of a page with nested repositories, or the selected one with Control held.
+                var openSelectedInVSCode = Models.Shortcuts.OpenInVSCode.Matches(e, KeyModifiers.Control);
+                if (openSelectedInVSCode || Models.Shortcuts.OpenInVSCode.Matches(e))
+                {
+                    var target = openSelectedInVSCode ? activeRepo : vm.ActivePage.RootRepository ?? activeRepo;
+                    var vscode = Native.OS.ExternalTools.Find(x => x.Name.Equals("Visual Studio Code", StringComparison.Ordinal));
+                    if (vscode != null)
+                        vscode.Launch(target.FullPath.Quoted());
+                    else
+                        activeRepo.SendNotification("Visual Studio Code was not found.", true);
+
+                    e.Handled = true;
+                    return;
+                }
             }
 
             if (e is { Key: Key.Escape, KeyModifiers: KeyModifiers.None })
