@@ -60,7 +60,6 @@ The script shows the commits that are not on `master` yet and pushes `develop` t
 
 * Supports Windows/macOS/Linux
 * Opensource/Free
-* Fast
 * Deutsch/English/Español/Bahasa Indonesia/Français/Italiano/Português/Русский/Українська/简体中文/繁體中文/日本語/தமிழ் (Tamil)/한국어
 * Built-in light/dark themes
 * Customize theme
@@ -316,27 +315,6 @@ dotnet run --project src/SourceGit.csproj
 Thanks to all the people who contribute.
 
 [![Contributors](https://contrib.rocks/image?repo=sourcegit-scm/sourcegit&columns=20)](https://github.com/sourcegit-scm/sourcegit/graphs/contributors)
-
-## Translation Status
-
-You can find the current translation status in [TRANSLATION.md](https://github.com/sourcegit-scm/sourcegit/blob/develop/TRANSLATION.md)
-
-### Translate Utility Script
-
-A script that assists with translations by reading the target language, comparing it with the base language, and going through missing keys one by one, so the translator can provide the translations interactively without needing to check each key manually.
-
-#### Usage
-
-Check for a given language (e.g., `pt_BR`) and optionally check for missing translations:
-
-```bash
-python translate_helper.py pt_BR [--check]
-```
-
-- `pt_BR` is the target language code (change as needed), it should correspond to a file named `pt_BR.axaml` in the `src/Resources/Locales/` directory, so you can replace it with any other language code you want to translate, e.g., `de_DE`, `es_ES`, etc.
-- `--check` is an optional flag used to only check for missing keys without prompting for translations, useful for getting a list of missing translations.
-
-The script will read the base language file (`en_US.axaml`) and the target language file (e.g., `pt_BR.axaml`), identify missing keys, and prompt you to provide translations for those keys. If the `--check` flag is used, it will only list the missing keys without prompting for translations.
 
 ## Third-Party Components
 

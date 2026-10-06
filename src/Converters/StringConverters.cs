@@ -9,21 +9,6 @@ namespace SourceGit.Converters
 {
     public static class StringConverters
     {
-        public class ToLocaleConverter : IValueConverter
-        {
-            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                return Models.Locale.Supported.Find(x => x.Key == value as string);
-            }
-
-            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                return (value as Models.Locale)?.Key;
-            }
-        }
-
-        public static readonly ToLocaleConverter ToLocale = new ToLocaleConverter();
-
         public class ToThemeConverter : IValueConverter
         {
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

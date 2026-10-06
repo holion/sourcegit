@@ -32,16 +32,6 @@ namespace SourceGit.ViewModels
             }
         }
 
-        public string Locale
-        {
-            get => _locale;
-            set
-            {
-                if (SetProperty(ref _locale, value) && !_isLoading)
-                    App.SetLocale(value);
-            }
-        }
-
         public string Theme
         {
             get => _theme;
@@ -852,7 +842,6 @@ namespace SourceGit.ViewModels
 
         private bool _isLoading = true;
         private bool _isReadonly = true;
-        private string _locale = "en_US";
         private string _theme = "Default";
         private string _themeOverrides = string.Empty;
         private string _defaultFontFamily = string.Empty;

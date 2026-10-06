@@ -10,3 +10,4 @@ Fork-specific setup (install, release process, secrets) is documented in the "Ho
 - macOS auto-update lives in `src/Models/AutoUpdate.cs`: it stages the release zip in the cache dir and swaps the app bundle when the app exits.
 - Built runtimes come from the `runtimes` workflow input, then the `BUILD_RUNTIMES` repository variable, then `osx-arm64`.
 - `build/resources/` is gitignored; new files there need `git add -f`.
+- The fork is English only: `src/Resources/Locales/en_US.axaml` is merged directly in `src/App.axaml`, and there is no language setting. When merging upstream, `git rm` the other locale files (modify/delete conflicts), drop their entries in `src/App.axaml`, `src/Models/Locales.cs`, `TRANSLATION.md` and `.github/workflows/localization-check.yml`, and keep only the `en_US` text of new keys.

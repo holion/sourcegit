@@ -103,23 +103,6 @@ namespace SourceGit
             return Models.ConfirmEmptyCommitResult.Cancel;
         }
 
-        public static void SetLocale(string localeKey)
-        {
-            var locale = Models.Locale.Supported.Find(x => x.Key.Equals(localeKey, StringComparison.OrdinalIgnoreCase));
-            var finalLocaleKey = locale?.Key ?? "en_US";
-
-            if (Current is not App app ||
-                app.Resources[finalLocaleKey] is not ResourceDictionary targetLocale ||
-                targetLocale == app._activeLocale)
-                return;
-
-            if (app._activeLocale != null)
-                app.Resources.MergedDictionaries.Remove(app._activeLocale);
-
-            app.Resources.MergedDictionaries.Add(targetLocale);
-            app._activeLocale = targetLocale;
-        }
-
         public static void SetTheme(string theme, string themeOverridesFile)
         {
             if (Current is not App app)
@@ -253,7 +236,6 @@ namespace SourceGit
             AvaloniaXamlLoader.Load(this);
 
             var pref = ViewModels.Preferences.Instance;
-            SetLocale(pref.Locale);
             SetTheme(pref.Theme, pref.ThemeOverrides);
             SetFonts(pref.DefaultFontFamily, pref.MonospaceFontFamily);
         }
@@ -665,7 +647,6 @@ namespace SourceGit
         private Models.IpcChannel _ipcChannel = null;
         private bool _relaunchAfterUpdate = false;
         private ViewModels.Launcher _launcher = null;
-        private ResourceDictionary _activeLocale = null;
         private ResourceDictionary _themeOverrides = null;
         private ResourceDictionary _fontsOverrides = null;
     }
