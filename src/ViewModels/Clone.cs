@@ -162,13 +162,6 @@ namespace SourceGit.ViewModels
                 return false;
             }
 
-            var succ = await new Commands.Clone(_pageId, _parentFolder, _remote, _local, _useSSH ? _sshKey : "", _extraArgs)
-                .WithCancellation(token)
-                .Use(log)
-                .ExecAsync();
-            if (!succ || token.IsCancellationRequested)
-                return false;
-
             var path = _parentFolder;
             if (!string.IsNullOrEmpty(_local))
             {
@@ -185,6 +178,19 @@ namespace SourceGit.ViewModels
                 path = Path.GetFullPath(Path.Combine(path, name));
             }
 
+            var existedBefore = Directory.Exists(path);
+            var succ = await new Commands.Clone(_pageId, _parentFolder, _remote, _local, _useSSH ? _sshKey : "", _extraArgs)
+                .WithCancellation(token)
+                .Use(log)
+                .ExecAsync();
+            if (token.IsCancellationRequested)
+                return false;
+
+            // When only the checkout fails (e.g. a file name the file system rejects), git keeps the cloned repository.
+            // The error is already reported, so open it anyway and let the user deal with the working tree there.
+            if (!succ && (existedBefore || !Directory.Exists(Path.Combine(path, ".git"))))
+                return false;
+
             if (!Directory.Exists(path))
             {
                 Models.Notification.Send(_pageId, $"Folder '{path}' can NOT be found", true);
@@ -198,7 +204,7 @@ namespace SourceGit.ViewModels
                     .SetAsync("remote.origin.sshkey", _sshKey);
             }
 
-            if (InitAndUpdateSubmodules && !token.IsCancellationRequested)
+            if (succ && InitAndUpdateSubmodules && !token.IsCancellationRequested)
             {
                 var submodules = await new Commands.QueryUpdatableSubmodules(path, true).GetResultAsync();
                 if (submodules.Count > 0)
