@@ -563,7 +563,7 @@ namespace SourceGit
                 _launcher.NewVersion = Models.AutoUpdate.Staged;
             }
 
-            if (pref.ShouldCheck4UpdateOnStartup())
+            if (pref.Check4UpdatesOnStartup)
                 Check4Update();
 
             // Keep looking for updates while the app stays open for days.

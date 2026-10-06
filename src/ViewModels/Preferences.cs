@@ -477,12 +477,6 @@ namespace SourceGit.ViewModels
             set;
         } = [];
 
-        public double LastCheckUpdateTime
-        {
-            get => _lastCheckUpdateTime;
-            set => SetProperty(ref _lastCheckUpdateTime, value);
-        }
-
         public void SetCanModify()
         {
             _isReadonly = false;
@@ -492,21 +486,6 @@ namespace SourceGit.ViewModels
         {
             var path = GitInstallPath;
             return !string.IsNullOrEmpty(path) && File.Exists(path);
-        }
-
-        public bool ShouldCheck4UpdateOnStartup()
-        {
-            if (!_check4UpdatesOnStartup)
-                return false;
-
-            var lastCheck = DateTime.UnixEpoch.AddSeconds(LastCheckUpdateTime).ToLocalTime();
-            var now = DateTime.Now;
-
-            if (lastCheck.Year == now.Year && lastCheck.Month == now.Month && lastCheck.Day == now.Day)
-                return false;
-
-            LastCheckUpdateTime = now.Subtract(DateTime.UnixEpoch.ToLocalTime()).TotalSeconds;
-            return true;
         }
 
         public Workspace GetActiveWorkspace()
@@ -860,7 +839,6 @@ namespace SourceGit.ViewModels
         private bool _useCompactBranchNamesInGraph = true;
 
         private bool _check4UpdatesOnStartup = true;
-        private double _lastCheckUpdateTime = 0;
         private string _ignoreUpdateTag = string.Empty;
 
         private bool _showTagsInGraph = true;
