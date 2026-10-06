@@ -272,6 +272,24 @@ namespace SourceGit.Views
             e.Handled = true;
         }
 
+        private async void OnAzureDevOpsSignIn(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            await AzureDevOpsSignIn.ShowAsync(this);
+        }
+
+        private void OnAzureDevOpsSignOut(object sender, RoutedEventArgs e)
+        {
+            ViewModels.AzureDevOpsAccount.Instance.SignOut();
+            e.Handled = true;
+        }
+
+        private void OnAzureDevOpsOpenOrganizations(object sender, Avalonia.Input.PointerPressedEventArgs e)
+        {
+            Native.OS.OpenBrowser(Models.AzureDevOps.OrganizationsUrl);
+            e.Handled = true;
+        }
+
         private void OnClearShortcutFilter(object sender, RoutedEventArgs e)
         {
             ShortcutFilter = string.Empty;

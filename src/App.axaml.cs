@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Avalonia;
@@ -38,7 +39,7 @@ namespace SourceGit
 
             try
             {
-                if (TryLaunchAsGitHubCredentialHelper(args))
+                if (TryLaunchAsCredentialHelper(args))
                     Environment.Exit(0);
                 else if (TryLaunchAsRebaseTodoEditor(args, out int exitTodo))
                     Environment.Exit(exitTodo);
@@ -278,12 +279,18 @@ namespace SourceGit
 
         #region Launch Ways
         /// <summary>
-        ///     Git credential helper protocol (`git help credential`) for github.com: `get` answers with the token of
-        ///     the signed-in GitHub account. `store` and `erase` are ignored, since the token is managed by this app.
+        ///     Git credential helper protocol (`git help credential`) for github.com (`--github-credential`) and Azure
+        ///     DevOps (`--azure-devops-credential`): `get` answers with the token of the signed-in account. `store` and
+        ///     `erase` are ignored, since the token is managed by this app.
         /// </summary>
-        private static bool TryLaunchAsGitHubCredentialHelper(string[] args)
+        private static bool TryLaunchAsCredentialHelper(string[] args)
         {
-            if (args.Length != 2 || !args[0].Equals("--github-credential", StringComparison.Ordinal))
+            if (args.Length != 2)
+                return false;
+
+            var isGitHub = args[0].Equals("--github-credential", StringComparison.Ordinal);
+            var isAzureDevOps = args[0].Equals("--azure-devops-credential", StringComparison.Ordinal);
+            if (!isGitHub && !isAzureDevOps)
                 return false;
 
             var attributes = new Dictionary<string, string>();
@@ -297,13 +304,26 @@ namespace SourceGit
 
             if (!args[1].Equals("get", StringComparison.Ordinal) ||
                 !attributes.TryGetValue("protocol", out var protocol) || protocol != "https" ||
-                !attributes.TryGetValue("host", out var host) || !host.Equals(Models.GitHub.Host, StringComparison.OrdinalIgnoreCase))
+                !attributes.TryGetValue("host", out var host))
                 return true;
 
-            var token = Native.SecretStore.Get(ViewModels.GitHubAccount.SecretKey);
+            string userName = null, token = null;
+            if (isGitHub && host.Equals(Models.GitHub.Host, StringComparison.OrdinalIgnoreCase))
+            {
+                userName = Models.GitHub.TokenUserName;
+                token = Native.SecretStore.Get(ViewModels.GitHubAccount.SecretKey);
+            }
+            else if (isAzureDevOps && Models.AzureDevOps.IsHost(host))
+            {
+                // Azure DevOps ignores the user name, so keep the one from the remote URL (`https://<org>@dev.azure.com/...`).
+                userName = attributes.GetValueOrDefault("username", Models.AzureDevOps.TokenUserName);
+                using var cancellation = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+                token = ViewModels.AzureDevOpsAccount.GetAccessTokenForGitAsync(cancellation.Token).GetAwaiter().GetResult();
+            }
+
             if (!string.IsNullOrEmpty(token))
             {
-                Console.Out.Write($"username={Models.GitHub.TokenUserName}\npassword={token}\n");
+                Console.Out.Write($"username={userName}\npassword={token}\n");
                 Console.Out.Flush();
             }
 

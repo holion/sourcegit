@@ -61,6 +61,11 @@ namespace SourceGit
             typeof(GridLengthConverter),
         ]
     )]
+    [JsonSerializable(typeof(Models.AzureDevOpsDeviceCode))]
+    [JsonSerializable(typeof(Models.AzureDevOpsOrganizationList))]
+    [JsonSerializable(typeof(Models.AzureDevOpsProfile))]
+    [JsonSerializable(typeof(Models.AzureDevOpsRepositoryList))]
+    [JsonSerializable(typeof(Models.AzureDevOpsTokens))]
     [JsonSerializable(typeof(Models.ExternalToolCustomization))]
     [JsonSerializable(typeof(Models.GitHubAccessToken))]
     [JsonSerializable(typeof(Models.GitHubDeviceCode))]

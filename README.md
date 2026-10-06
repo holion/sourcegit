@@ -27,6 +27,22 @@ Sign in under `Preferences > GitHub` (or from the GitHub button in the clone dia
 
 The sign-in uses the device flow of the Holion OAuth app, whose client id is `Models.GitHub.ClientId` in `src/Models/GitHub.cs` (the integration is hidden while it is empty). The app is registered under [holion's OAuth apps](https://github.com/organizations/holion/settings/applications) with "Enable Device Flow" checked. Organizations that restrict third-party access have to approve it once; until then their private repositories are missing from the list.
 
+### Azure DevOps
+
+Sign in under `Preferences > Azure DevOps` (or from the Azure DevOps button in the clone dialog) with your Microsoft work account. After that:
+
+* The clone dialog's Azure DevOps button lists the repositories of every organization you are a member of, filtered by project. Picked repositories go into `<default clone dir>/<project>`.
+* The tab switcher (`Ctrl/⌘+P`) lists Azure DevOps repositories that are not cloned yet, next to the GitHub ones.
+* Fetch, pull and push to `https://dev.azure.com/...` and `https://<organization>.visualstudio.com/...` use the account automatically (this can be turned off in the same tab). Remotes over SSH keep using SSH keys; switch a remote to its HTTPS URL to use the account instead. The refresh token lives in the system keychain; git gets a fresh access token from it through `--azure-devops-credential`.
+
+The sign-in uses the Microsoft Entra ID device code flow of a Holion app registration, whose application (client) id is `Models.AzureDevOps.ClientId` in `src/Models/AzureDevOps.cs` (the integration is hidden while it is empty). To set up the app registration in the [Entra admin center](https://entra.microsoft.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade):
+
+1. New registration, "Accounts in any organizational directory (Multitenant)", no redirect URI.
+2. Under Authentication, set "Allow public client flows" to Yes.
+3. Under API permissions, add Azure DevOps > Delegated > `user_impersonation`.
+
+Only organizations connected to the tenant you sign in with are listed. Tenants that do not let users consent to apps need an admin to consent once.
+
 ### Release
 
 Every push to `master` makes a release. From a clean `develop`, run:

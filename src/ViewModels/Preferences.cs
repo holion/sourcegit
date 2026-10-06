@@ -329,6 +329,24 @@ namespace SourceGit.ViewModels
             set;
         } = true;
 
+        public string AzureDevOpsLogin
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public bool AzureDevOpsPreferSSH
+        {
+            get;
+            set;
+        } = false;
+
+        public bool AzureDevOpsUseForGit
+        {
+            get;
+            set;
+        } = true;
+
         public bool UseLibsecretInsteadOfGCM
         {
             get => Native.OS.CredentialHelper.Equals("libsecret", StringComparison.Ordinal);

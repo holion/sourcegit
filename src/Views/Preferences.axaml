@@ -510,6 +510,92 @@
 
         <TabItem>
           <TabItem.Header>
+            <TextBlock Classes="tab_header" Text="{DynamicResource Text.Preferences.AzureDevOps}"/>
+          </TabItem.Header>
+
+          <StackPanel Margin="16" Orientation="Vertical" MaxWidth="560" HorizontalAlignment="Left"
+                      DataContext="{x:Static vm:AzureDevOpsAccount.Instance}"
+                      x:DataType="vm:AzureDevOpsAccount">
+            <TextBlock TextWrapping="Wrap"
+                       Text="{DynamicResource Text.Preferences.AzureDevOps.NotConfigured}"
+                       IsVisible="{Binding !IsAvailable}"/>
+
+            <StackPanel Orientation="Vertical" IsVisible="{Binding IsAvailable}">
+              <TextBlock TextWrapping="Wrap"
+                         Foreground="{DynamicResource Brush.FG2}"
+                         Text="{DynamicResource Text.Preferences.AzureDevOps.Description}"/>
+
+              <Border Margin="0,16,0,0"
+                      Padding="12"
+                      CornerRadius="6"
+                      BorderThickness="1"
+                      BorderBrush="{DynamicResource Brush.Border2}"
+                      Background="{DynamicResource Brush.Contents}">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                  <Path Grid.Column="0"
+                        Width="24" Height="24"
+                        Fill="{DynamicResource Brush.FG1}"
+                        Data="{StaticResource Icons.AzureDevOps}"/>
+
+                  <TextBlock Grid.Column="1"
+                             Margin="12,0"
+                             VerticalAlignment="Center"
+                             IsVisible="{Binding IsSignedIn}">
+                    <Run Text="{DynamicResource Text.Preferences.GitHub.SignedInAs}"/>
+                    <Run Text="{Binding Login, Mode=OneWay}" FontWeight="Bold"/>
+                  </TextBlock>
+                  <TextBlock Grid.Column="1"
+                             Margin="12,0"
+                             VerticalAlignment="Center"
+                             Foreground="{DynamicResource Brush.FG2}"
+                             Text="{DynamicResource Text.Preferences.GitHub.SignedOut}"
+                             IsVisible="{Binding !IsSignedIn}"/>
+
+                  <Button Grid.Column="2"
+                          Classes="flat primary"
+                          Height="28"
+                          Padding="12,0"
+                          Click="OnAzureDevOpsSignIn"
+                          Content="{DynamicResource Text.AzureDevOps.SignIn}"
+                          IsVisible="{Binding !IsSignedIn}"/>
+                  <Button Grid.Column="2"
+                          Classes="flat"
+                          Height="28"
+                          Padding="12,0"
+                          Click="OnAzureDevOpsSignOut"
+                          Content="{DynamicResource Text.Preferences.GitHub.SignOut}"
+                          IsVisible="{Binding IsSignedIn}"/>
+                </Grid>
+              </Border>
+
+              <CheckBox Margin="0,12,0,0"
+                        Height="32"
+                        Content="{DynamicResource Text.Preferences.AzureDevOps.UseForGit}"
+                        IsChecked="{Binding UseForGit, Mode=TwoWay}"
+                        ToolTip.Tip="{DynamicResource Text.Preferences.AzureDevOps.UseForGit.Tip}"/>
+
+              <CheckBox Height="32"
+                        Content="{DynamicResource Text.Preferences.AzureDevOps.PreferSSH}"
+                        IsChecked="{Binding PreferSSH, Mode=TwoWay}"/>
+
+              <TextBlock Margin="0,8,0,0"
+                         TextWrapping="Wrap"
+                         FontSize="12"
+                         Foreground="{DynamicResource Brush.FG2}"
+                         Text="{DynamicResource Text.AzureDevOps.Picker.MissingOrganization}"/>
+              <TextBlock FontSize="12"
+                         Cursor="Hand"
+                         HorizontalAlignment="Left"
+                         Foreground="{DynamicResource Brush.Link}"
+                         TextDecorations="Underline"
+                         Text="{DynamicResource Text.AzureDevOps.Picker.OpenOrganizations}"
+                         PointerPressed="OnAzureDevOpsOpenOrganizations"/>
+            </StackPanel>
+          </StackPanel>
+        </TabItem>
+
+        <TabItem>
+          <TabItem.Header>
             <TextBlock Classes="tab_header" Text="{DynamicResource Text.Preferences.GPG}"/>
           </TabItem.Header>
 

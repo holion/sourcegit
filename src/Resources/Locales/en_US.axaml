@@ -48,6 +48,25 @@
   <x:String x:Key="Text.AssumeUnchanged.Empty" xml:space="preserve">NO FILES ASSUMED AS UNCHANGED</x:String>
   <x:String x:Key="Text.Avatar.Load" xml:space="preserve">Load Image...</x:String>
   <x:String x:Key="Text.Avatar.Refetch" xml:space="preserve">Refresh</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker" xml:space="preserve">Clone from Azure DevOps</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.AllProjects" xml:space="preserve">All projects</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.Clone" xml:space="preserve">Clone</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.Cloned" xml:space="preserve">cloned</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.MissingOrganization" xml:space="preserve">Missing an organization? Only organizations connected to the Microsoft Entra tenant you signed in with are listed.</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.NoOrganizations" xml:space="preserve">This account is not a member of any Azure DevOps organization.</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.OpenOrganizations" xml:space="preserve">Show your organizations on Azure DevOps</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.Refresh" xml:space="preserve">Refresh</x:String>
+  <x:String x:Key="Text.AzureDevOps.Picker.Search" xml:space="preserve">Search repositories</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn" xml:space="preserve">Sign in with Azure DevOps</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.CodeCopied" xml:space="preserve">The code is copied to your clipboard</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.Denied" xml:space="preserve">The sign-in was declined.</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.Expired" xml:space="preserve">The Azure DevOps sign-in has expired. Please sign in again.</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.Instructions" xml:space="preserve">Paste this code on the Microsoft page that just opened in your browser and sign in with your work account.</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.Missing" xml:space="preserve">No Azure DevOps token found. Please sign in again.</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.OpenBrowser" xml:space="preserve">Open Microsoft Sign-in</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.Retry" xml:space="preserve">Try Again</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.StoreFailed" xml:space="preserve">Could not save the Azure DevOps token in the system credential store.</x:String>
+  <x:String x:Key="Text.AzureDevOps.SignIn.Waiting" xml:space="preserve">Waiting for Microsoft ...</x:String>
   <x:String x:Key="Text.Bisect">Bisect</x:String>
   <x:String x:Key="Text.Bisect.Abort">Abort</x:String>
   <x:String x:Key="Text.Bisect.Bad">Bad</x:String>
@@ -137,6 +156,7 @@
   <x:String x:Key="Text.Clone.AdditionalParam" xml:space="preserve">Extra Parameters:</x:String>
   <x:String x:Key="Text.Clone.AdditionalParam.Placeholder" xml:space="preserve">Additional arguments to clone repository. Optional.</x:String>
   <x:String x:Key="Text.Clone.Bookmark" xml:space="preserve">Bookmark:</x:String>
+  <x:String x:Key="Text.Clone.FromAzureDevOps" xml:space="preserve">Pick a repository from Azure DevOps</x:String>
   <x:String x:Key="Text.Clone.FromGitHub" xml:space="preserve">Pick a repository from GitHub</x:String>
   <x:String x:Key="Text.Clone.Group" xml:space="preserve">Group:</x:String>
   <x:String x:Key="Text.Clone.LocalName" xml:space="preserve">Local Name:</x:String>
@@ -621,7 +641,7 @@
   <x:String x:Key="Text.InteractiveRebase.Target" xml:space="preserve">Target Branch:</x:String>
   <x:String x:Key="Text.IssueLinkCM.CopyLink" xml:space="preserve">Copy Link</x:String>
   <x:String x:Key="Text.IssueLinkCM.OpenInBrowser" xml:space="preserve">Open in Browser</x:String>
-  <x:String x:Key="Text.Launcher.CloneFromGitHub" xml:space="preserve">Clone from GitHub</x:String>
+  <x:String x:Key="Text.Launcher.CloneHosted" xml:space="preserve">Clone</x:String>
   <x:String x:Key="Text.Launcher.Commands" xml:space="preserve">Commands</x:String>
   <x:String x:Key="Text.Launcher.Error" xml:space="preserve">ERROR</x:String>
   <x:String x:Key="Text.Launcher.Info" xml:space="preserve">NOTICE</x:String>
@@ -727,6 +747,12 @@
   <x:String x:Key="Text.Preferences.Appearance.UseAutoHideScrollBars" xml:space="preserve">Use auto-hide scrollbars</x:String>
   <x:String x:Key="Text.Preferences.Appearance.UseFixedTabWidth" xml:space="preserve">Use fixed tab width in titlebar</x:String>
   <x:String x:Key="Text.Preferences.Appearance.UseNativeWindowFrame" xml:space="preserve">Use native window frame</x:String>
+  <x:String x:Key="Text.Preferences.AzureDevOps" xml:space="preserve">AZURE DEVOPS</x:String>
+  <x:String x:Key="Text.Preferences.AzureDevOps.Description" xml:space="preserve">Sign in to clone repositories from your Azure DevOps organizations without copying URLs. SourceGit then also uses this account for fetching and pushing over HTTPS, so no extra credentials or SSH keys are needed.</x:String>
+  <x:String x:Key="Text.Preferences.AzureDevOps.NotConfigured" xml:space="preserve">The Azure DevOps integration is not configured in this build.</x:String>
+  <x:String x:Key="Text.Preferences.AzureDevOps.PreferSSH" xml:space="preserve">Clone with SSH instead of HTTPS (requires an SSH key on Azure DevOps)</x:String>
+  <x:String x:Key="Text.Preferences.AzureDevOps.UseForGit" xml:space="preserve">Use this account for fetch, pull and push over HTTPS</x:String>
+  <x:String x:Key="Text.Preferences.AzureDevOps.UseForGit.Tip" xml:space="preserve">Replaces other credential helpers (Keychain, Git Credential Manager, ...) for https://dev.azure.com and *.visualstudio.com while signed in</x:String>
   <x:String x:Key="Text.Preferences.DiffMerge" xml:space="preserve">DIFF/MERGE TOOL</x:String>
   <x:String x:Key="Text.Preferences.DiffMerge.DiffArgs" xml:space="preserve">Diff Arguments</x:String>
   <x:String x:Key="Text.Preferences.DiffMerge.DiffArgs.Tip" xml:space="preserve">Available variables: $LOCAL, $REMOTE</x:String>

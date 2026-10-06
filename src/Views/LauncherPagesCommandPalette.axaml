@@ -206,13 +206,13 @@
 
     <TextBlock Grid.Row="5"
                Margin="6,8,0,4"
-               Text="{DynamicResource Text.Launcher.CloneFromGitHub}"
+               Text="{DynamicResource Text.Launcher.CloneHosted}"
                FontWeight="Bold"
                Foreground="{DynamicResource Brush.FG2}"
-               IsVisible="{Binding VisibleGitHubRepos, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}"/>
+               IsVisible="{Binding VisibleHostedRepos, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}"/>
 
     <v:ListBoxEx Grid.Row="6"
-                 x:Name="GitHubRepoListBox"
+                 x:Name="HostedRepoListBox"
                  MaxHeight="200"
                  Margin="4,0"
                  BorderThickness="0"
@@ -221,9 +221,9 @@
                  Focusable="True"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 ItemsSource="{Binding VisibleGitHubRepos, Mode=OneWay}"
-                 SelectedItem="{Binding SelectedGitHubRepo, Mode=TwoWay}"
-                 IsVisible="{Binding VisibleGitHubRepos, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}">
+                 ItemsSource="{Binding VisibleHostedRepos, Mode=OneWay}"
+                 SelectedItem="{Binding SelectedHostedRepo, Mode=TwoWay}"
+                 IsVisible="{Binding VisibleHostedRepos, Converter={x:Static c:ListConverters.IsNotNullOrEmpty}}">
       <ListBox.Styles>
         <Style Selector="ListBoxItem">
           <Setter Property="Padding" Value="8,0"/>
@@ -246,7 +246,7 @@
         </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
 
-      <ListBox.ItemTemplate>
+      <ListBox.DataTemplates>
         <DataTemplate DataType="m:GitHubRepository">
           <Grid ColumnDefinitions="Auto,*" Background="Transparent" Tapped="OnItemTapped" ToolTip.Tip="{Binding Description, Mode=OneWay}">
             <Path Grid.Column="0"
@@ -262,7 +262,23 @@
             </TextBlock>
           </Grid>
         </DataTemplate>
-      </ListBox.ItemTemplate>
+
+        <DataTemplate DataType="m:AzureDevOpsRepository">
+          <Grid ColumnDefinitions="Auto,*" Background="Transparent" Tapped="OnItemTapped" ToolTip.Tip="{Binding FullName, Mode=OneWay}">
+            <Path Grid.Column="0"
+                  Width="12" Height="12"
+                  Fill="{DynamicResource Brush.FG1}"
+                  Data="{StaticResource Icons.AzureDevOps}"/>
+            <TextBlock Grid.Column="1"
+                       Margin="6,0,0,0"
+                       VerticalAlignment="Center"
+                       IsHitTestVisible="False">
+              <Run Text="{Binding Name, Mode=OneWay}"/>
+              <Run Text="{Binding Project.Name, Mode=OneWay, StringFormat=({0})}" Foreground="{DynamicResource Brush.FG2}"/>
+            </TextBlock>
+          </Grid>
+        </DataTemplate>
+      </ListBox.DataTemplates>
     </v:ListBoxEx>
   </Grid>
 </UserControl>

@@ -46,6 +46,13 @@
                     IsVisible="{Binding Source={x:Static vm:GitHubAccount.Instance}, Path=IsAvailable}">
               <Path Width="14" Height="14" Data="{StaticResource Icons.GitHub}" Fill="{DynamicResource Brush.FG1}"/>
             </Button>
+            <Button Classes="icon_button"
+                    Width="28" Height="28"
+                    Click="SelectAzureDevOpsRepository"
+                    ToolTip.Tip="{DynamicResource Text.Clone.FromAzureDevOps}"
+                    IsVisible="{Binding Source={x:Static vm:AzureDevOpsAccount.Instance}, Path=IsAvailable}">
+              <Path Width="14" Height="14" Data="{StaticResource Icons.AzureDevOps}" Fill="{DynamicResource Brush.FG1}"/>
+            </Button>
           </StackPanel>
         </TextBox.InnerRightContent>
       </TextBox>

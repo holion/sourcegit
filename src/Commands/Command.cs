@@ -175,6 +175,13 @@ namespace SourceGit.Commands
             if (ViewModels.GitHubAccount.Instance is { IsSignedIn: true, UseForGit: true })
                 builder.Append($"""-c credential.https://github.com.helper= -c credential.https://github.com.helper="!\"{selfExecFile}\" --github-credential" """);
 
+            // Same for Azure DevOps, at dev.azure.com and the older <organization>.visualstudio.com.
+            if (ViewModels.AzureDevOpsAccount.Instance is { IsSignedIn: true, UseForGit: true })
+            {
+                foreach (var host in new[] { "dev.azure.com", "*.visualstudio.com" })
+                    builder.Append($"""-c credential.https://{host}.helper= -c credential.https://{host}.helper="!\"{selfExecFile}\" --azure-devops-credential" """);
+            }
+
             switch (Editor)
             {
                 case EditorType.CoreEditor:

@@ -126,6 +126,20 @@ namespace SourceGit.ViewModels
                 ParentFolder = folder;
         }
 
+        /// <summary>
+        ///     Fills in a repository picked from Azure DevOps. It goes into `<default clone dir>/<project>`, so the "Auto"
+        ///     group files it under its project.
+        /// </summary>
+        public void UseAzureDevOpsRepository(Models.AzureDevOpsRepository repo)
+        {
+            Remote = AzureDevOpsAccount.Instance.GetCloneUrl(repo);
+            Local = string.Empty;
+
+            var folder = AzureDevOpsAccount.PrepareParentFolder(repo);
+            if (!string.IsNullOrEmpty(folder))
+                ParentFolder = folder;
+        }
+
         public static ValidationResult ValidateRemote(string remote, ValidationContext _)
         {
             if (!Models.Remote.IsValidURL(remote))

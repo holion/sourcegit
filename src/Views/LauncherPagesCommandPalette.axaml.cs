@@ -61,7 +61,7 @@ namespace SourceGit.Views
                 return 0;
             if (RepoListBox.IsKeyboardFocusWithin)
                 return 1;
-            if (GitHubRepoListBox.IsKeyboardFocusWithin)
+            if (HostedRepoListBox.IsKeyboardFocusWithin)
                 return 2;
             return -1;
         }
@@ -80,9 +80,9 @@ namespace SourceGit.Views
                         RepoListBox.Focus(NavigationMethod.Directional);
                         vm.SelectedRepo = first ? vm.VisibleRepos[0] : vm.VisibleRepos[^1];
                         return true;
-                    case 2 when vm.VisibleGitHubRepos.Count > 0:
-                        GitHubRepoListBox.Focus(NavigationMethod.Directional);
-                        vm.SelectedGitHubRepo = first ? vm.VisibleGitHubRepos[0] : vm.VisibleGitHubRepos[^1];
+                    case 2 when vm.VisibleHostedRepos.Count > 0:
+                        HostedRepoListBox.Focus(NavigationMethod.Directional);
+                        vm.SelectedHostedRepo = first ? vm.VisibleHostedRepos[0] : vm.VisibleHostedRepos[^1];
                         return true;
                 }
             }

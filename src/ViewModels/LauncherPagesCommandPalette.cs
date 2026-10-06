@@ -22,10 +22,14 @@ namespace SourceGit.ViewModels
             private set => SetProperty(ref _visibleRepos, value);
         }
 
-        public List<Models.GitHubRepository> VisibleGitHubRepos
+        /// <summary>
+        ///     Repositories on GitHub (`Models.GitHubRepository`) and Azure DevOps (`Models.AzureDevOpsRepository`) that
+        ///     are not cloned yet.
+        /// </summary>
+        public List<object> VisibleHostedRepos
         {
-            get => _visibleGitHubRepos;
-            private set => SetProperty(ref _visibleGitHubRepos, value);
+            get => _visibleHostedRepos;
+            private set => SetProperty(ref _visibleHostedRepos, value);
         }
 
         public string SearchFilter
@@ -46,7 +50,7 @@ namespace SourceGit.ViewModels
                 if (SetProperty(ref _selectedPage, value) && value != null)
                 {
                     SelectedRepo = null;
-                    SelectedGitHubRepo = null;
+                    SelectedHostedRepo = null;
                 }
             }
         }
@@ -59,17 +63,17 @@ namespace SourceGit.ViewModels
                 if (SetProperty(ref _selectedRepo, value) && value != null)
                 {
                     SelectedPage = null;
-                    SelectedGitHubRepo = null;
+                    SelectedHostedRepo = null;
                 }
             }
         }
 
-        public Models.GitHubRepository SelectedGitHubRepo
+        public object SelectedHostedRepo
         {
-            get => _selectedGitHubRepo;
+            get => _selectedHostedRepo;
             set
             {
-                if (SetProperty(ref _selectedGitHubRepo, value) && value != null)
+                if (SetProperty(ref _selectedHostedRepo, value) && value != null)
                 {
                     SelectedPage = null;
                     SelectedRepo = null;
@@ -101,17 +105,27 @@ namespace SourceGit.ViewModels
             var github = GitHubAccount.Instance;
             if (github.IsSignedIn)
             {
-                github.PropertyChanged += OnGitHubAccountPropertyChanged;
+                github.PropertyChanged += OnHostedAccountPropertyChanged;
                 _ = github.RefreshAsync(false);
-                UpdateClonedGitHubRepos();
             }
+
+            var azureDevOps = AzureDevOpsAccount.Instance;
+            if (azureDevOps.IsSignedIn)
+            {
+                azureDevOps.PropertyChanged += OnHostedAccountPropertyChanged;
+                _ = azureDevOps.RefreshAsync(false);
+            }
+
+            if (github.IsSignedIn || azureDevOps.IsSignedIn)
+                UpdateClonedHostedRepos();
 
             UpdateVisible();
         }
 
         public void Dispose()
         {
-            GitHubAccount.Instance.PropertyChanged -= OnGitHubAccountPropertyChanged;
+            GitHubAccount.Instance.PropertyChanged -= OnHostedAccountPropertyChanged;
+            AzureDevOpsAccount.Instance.PropertyChanged -= OnHostedAccountPropertyChanged;
         }
 
         /// <summary>
@@ -139,8 +153,8 @@ namespace SourceGit.ViewModels
 
             if (_selectedPage != null)
                 _launcher.ActivePage = _selectedPage;
-            else if (_selectedGitHubRepo != null)
-                CloneFromGitHub(_selectedGitHubRepo);
+            else if (_selectedHostedRepo != null)
+                CloneHosted(_selectedHostedRepo);
             else if (_selectedRepo != null && _discoveredRoots.TryGetValue(_selectedRepo, out var root))
                 OpenDiscovered(_selectedRepo.Id, root);
             else if (_selectedRepo != null)
@@ -159,12 +173,12 @@ namespace SourceGit.ViewModels
             CollectVisibleRepository(repos, Preferences.Instance.RepositoryNodes);
             CollectVisibleRepository(repos, _discovered);
 
-            var githubRepos = new List<Models.GitHubRepository>();
-            CollectVisibleGitHubRepository(githubRepos);
+            var hostedRepos = new List<object>();
+            CollectVisibleHostedRepository(hostedRepos);
 
             var autoSelectPage = _selectedPage;
             var autoSelectRepo = _selectedRepo;
-            var autoSelectGitHubRepo = _selectedGitHubRepo != null && githubRepos.Contains(_selectedGitHubRepo) ? _selectedGitHubRepo : null;
+            var autoSelectHostedRepo = _selectedHostedRepo != null && hostedRepos.Contains(_selectedHostedRepo) ? _selectedHostedRepo : null;
 
             if (_selectedPage != null)
             {
@@ -222,18 +236,18 @@ namespace SourceGit.ViewModels
                 autoSelectRepo = null;
             }
 
-            // GitHub repositories come last: only pick one when nothing local matches.
+            // Hosted repositories come last: only pick one when nothing local matches.
             if (autoSelectPage != null || autoSelectRepo != null)
-                autoSelectGitHubRepo = null;
-            else if (autoSelectGitHubRepo == null && githubRepos.Count > 0)
-                autoSelectGitHubRepo = githubRepos[0];
+                autoSelectHostedRepo = null;
+            else if (autoSelectHostedRepo == null && hostedRepos.Count > 0)
+                autoSelectHostedRepo = hostedRepos[0];
 
             VisiblePages = pages;
             VisibleRepos = repos;
-            VisibleGitHubRepos = githubRepos;
+            VisibleHostedRepos = hostedRepos;
             SelectedPage = autoSelectPage;
             SelectedRepo = autoSelectRepo;
-            SelectedGitHubRepo = autoSelectGitHubRepo;
+            SelectedHostedRepo = autoSelectHostedRepo;
         }
 
         private void CollectVisiblePages(List<LauncherPage> pages)
@@ -271,31 +285,47 @@ namespace SourceGit.ViewModels
         }
 
         /// <summary>
-        ///     GitHub repositories that are not cloned yet. Only listed while searching, so they do not bury the tabs
-        ///     and local repositories.
+        ///     GitHub and Azure DevOps repositories that are not cloned yet. Only listed while searching, so they do not
+        ///     bury the tabs and local repositories.
         /// </summary>
-        private void CollectVisibleGitHubRepository(List<Models.GitHubRepository> outs)
+        private void CollectVisibleHostedRepository(List<object> outs)
         {
-            if (string.IsNullOrEmpty(_searchFilter) || !GitHubAccount.Instance.IsSignedIn)
+            if (string.IsNullOrEmpty(_searchFilter))
                 return;
 
-            foreach (var repo in GitHubAccount.Instance.Repositories)
+            if (GitHubAccount.Instance.IsSignedIn)
             {
-                if (repo.IsArchived || s_clonedGitHubRepos.Contains(repo.FullName.ToLowerInvariant()))
-                    continue;
+                foreach (var repo in GitHubAccount.Instance.Repositories)
+                {
+                    if (repo.IsArchived || s_clonedGitHubRepos.Contains(repo.FullName.ToLowerInvariant()))
+                        continue;
 
-                if (repo.FullName.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase))
-                    outs.Add(repo);
+                    if (repo.FullName.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase))
+                        outs.Add(repo);
+                }
+            }
+
+            if (AzureDevOpsAccount.Instance.IsSignedIn)
+            {
+                foreach (var repo in AzureDevOpsAccount.Instance.Repositories)
+                {
+                    if (s_clonedAzureDevOpsRepos.Contains(repo.FullName.ToLowerInvariant()))
+                        continue;
+
+                    if (repo.FullName.Contains(_searchFilter, StringComparison.OrdinalIgnoreCase))
+                        outs.Add(repo);
+                }
             }
         }
 
-        private void OnGitHubAccountPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnHostedAccountPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            // Both accounts name their repository list `Repositories`.
             if (e.PropertyName == nameof(GitHubAccount.Repositories) && _launcher.CommandPalette == this)
                 UpdateVisible();
         }
 
-        private void UpdateClonedGitHubRepos()
+        private void UpdateClonedHostedRepos()
         {
             var paths = new List<string>(_managed);
             foreach (var (path, _) in s_scanned)
@@ -303,17 +333,19 @@ namespace SourceGit.ViewModels
 
             Task.Run(() =>
             {
-                var cloned = Models.GitHub.CollectClonedFullNames(paths);
+                var github = Models.GitHub.CollectClonedFullNames(paths);
+                var azureDevOps = Models.AzureDevOps.CollectClonedFullNames(paths);
                 Dispatcher.UIThread.Post(() =>
                 {
-                    s_clonedGitHubRepos = cloned;
+                    s_clonedGitHubRepos = github;
+                    s_clonedAzureDevOpsRepos = azureDevOps;
                     if (_launcher.CommandPalette == this)
                         UpdateVisible();
                 });
             });
         }
 
-        private void CloneFromGitHub(Models.GitHubRepository repo)
+        private void CloneHosted(object repo)
         {
             if (!Preferences.Instance.IsGitConfigured())
             {
@@ -330,7 +362,10 @@ namespace SourceGit.ViewModels
 
             // Only fill in the clone dialog, so the local location can still be changed before cloning.
             var clone = new Clone(page.Node.Id);
-            clone.UseGitHubRepository(repo);
+            if (repo is Models.GitHubRepository github)
+                clone.UseGitHubRepository(github);
+            else if (repo is Models.AzureDevOpsRepository azureDevOps)
+                clone.UseAzureDevOpsRepository(azureDevOps);
             page.Popup = clone;
         }
 
@@ -366,8 +401,8 @@ namespace SourceGit.ViewModels
                         SetDiscovered(found);
                         UpdateVisible();
 
-                        if (GitHubAccount.Instance.IsSignedIn)
-                            UpdateClonedGitHubRepos();
+                        if (GitHubAccount.Instance.IsSignedIn || AzureDevOpsAccount.Instance.IsSignedIn)
+                            UpdateClonedHostedRepos();
                     }
                 });
             });
@@ -481,6 +516,7 @@ namespace SourceGit.ViewModels
         private static string s_scannedDir = null;
         private static List<(string Path, string Root)> s_scanned = [];
         private static HashSet<string> s_clonedGitHubRepos = [];
+        private static HashSet<string> s_clonedAzureDevOpsRepos = [];
 
         private Launcher _launcher = null;
         private HashSet<string> _opened = new HashSet<string>();
@@ -489,8 +525,8 @@ namespace SourceGit.ViewModels
         private Dictionary<RepositoryNode, string> _discoveredRoots = new Dictionary<RepositoryNode, string>();
         private List<LauncherPage> _visiblePages = [];
         private List<RepositoryNode> _visibleRepos = [];
-        private List<Models.GitHubRepository> _visibleGitHubRepos = [];
-        private Models.GitHubRepository _selectedGitHubRepo = null;
+        private List<object> _visibleHostedRepos = [];
+        private object _selectedHostedRepo = null;
         private string _searchFilter = string.Empty;
         private LauncherPage _selectedPage = null;
         private RepositoryNode _selectedRepo = null;
