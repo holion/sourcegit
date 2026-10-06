@@ -1083,6 +1083,13 @@
   <x:String x:Key="Text.TagCM.Merge" xml:space="preserve">Merge ${0}$ into ${1}$...</x:String>
   <x:String x:Key="Text.TagCM.Push" xml:space="preserve">Push ${0}$...</x:String>
   <x:String x:Key="Text.Terminate" xml:space="preserve">TERMINATE</x:String>
+  <x:String x:Key="Text.Toolbar.Actions" xml:space="preserve">Actions</x:String>
+  <x:String x:Key="Text.Toolbar.Branch" xml:space="preserve">Branch</x:String>
+  <x:String x:Key="Text.Toolbar.Cleanup" xml:space="preserve">Cleanup</x:String>
+  <x:String x:Key="Text.Toolbar.LFS" xml:space="preserve">LFS</x:String>
+  <x:String x:Key="Text.Toolbar.Open" xml:space="preserve">Open</x:String>
+  <x:String x:Key="Text.Toolbar.Patch" xml:space="preserve">Patch</x:String>
+  <x:String x:Key="Text.Toolbar.Stats" xml:space="preserve">Stats</x:String>
   <x:String x:Key="Text.UpdateSubmodules" xml:space="preserve">Update Submodules</x:String>
   <x:String x:Key="Text.UpdateSubmodules.All" xml:space="preserve">All submodules</x:String>
   <x:String x:Key="Text.UpdateSubmodules.Init" xml:space="preserve">Initialize as needed</x:String>
