@@ -20,7 +20,7 @@
                  Text="{DynamicResource Text.Clone}"/>
     </StackPanel>
 
-    <Grid Margin="8,16,0,0" RowDefinitions="32,Auto,32,32,32,32,32,32" ColumnDefinitions="Auto,*">
+    <Grid Margin="8,16,0,0" RowDefinitions="32,Auto,32,Auto,32,32,32,32,32" ColumnDefinitions="Auto,*">
       <TextBlock Grid.Row="0" Grid.Column="0"
                  HorizontalAlignment="Right"
                  Margin="0,0,8,0"
@@ -92,31 +92,42 @@
         </TextBox.InnerRightContent>
       </TextBox>
 
-      <TextBlock Grid.Row="3" Grid.Column="0"
+      <Grid Grid.Row="3" Grid.Column="1" ColumnDefinitions="Auto,*" Margin="0,2,0,6" IsVisible="{Binding IsParentFolderMissing}">
+        <Path Grid.Column="0"
+              Width="12" Height="12"
+              Data="{StaticResource Icons.Error}"
+              Fill="DarkOrange"/>
+        <TextBlock Grid.Column="1" Margin="6,0,0,0"
+                   Text="{DynamicResource Text.Clone.ParentFolder.WillCreate}"
+                   TextWrapping="Wrap"
+                   Foreground="DarkOrange"/>
+      </Grid>
+
+      <TextBlock Grid.Row="4" Grid.Column="0"
                  HorizontalAlignment="Right"
                  Margin="0,0,8,0"
                  Text="{DynamicResource Text.Clone.LocalName}"/>
-      <TextBox Grid.Row="3" Grid.Column="1"
+      <TextBox Grid.Row="4" Grid.Column="1"
                Height="28"
                CornerRadius="3"
                Watermark="{DynamicResource Text.Clone.LocalName.Placeholder}"
                Text="{Binding Local, Mode=TwoWay}"/>
 
-      <TextBlock Grid.Row="4" Grid.Column="0"
+      <TextBlock Grid.Row="5" Grid.Column="0"
                  HorizontalAlignment="Right"
                  Margin="0,0,8,0"
                  Text="{DynamicResource Text.Clone.AdditionalParam}"/>
-      <TextBox Grid.Row="4" Grid.Column="1"
+      <TextBox Grid.Row="5" Grid.Column="1"
                Height="28"
                CornerRadius="3"
                Watermark="{DynamicResource Text.Clone.AdditionalParam.Placeholder}"
                Text="{Binding ExtraArgs, Mode=TwoWay}"/>
 
-      <TextBlock Grid.Row="5" Grid.Column="0"
+      <TextBlock Grid.Row="6" Grid.Column="0"
                  HorizontalAlignment="Right"
                  Margin="0,0,8,0"
                  Text="{DynamicResource Text.Clone.Group}"/>
-      <ComboBox Grid.Row="5" Grid.Column="1"
+      <ComboBox Grid.Row="6" Grid.Column="1"
                 Height="28" Padding="8,0"
                 VerticalAlignment="Center" HorizontalAlignment="Stretch"
                 ItemsSource="{Binding Groups}"
@@ -135,15 +146,15 @@
         </ComboBox.ItemTemplate>
       </ComboBox>
 
-      <TextBlock Grid.Row="6" Grid.Column="0"
+      <TextBlock Grid.Row="7" Grid.Column="0"
                  HorizontalAlignment="Right"
                  Margin="0,0,8,0"
                  Text="{DynamicResource Text.Clone.Bookmark}"/>
-      <v:BookmarkSelector Grid.Row="6" Grid.Column="1"
+      <v:BookmarkSelector Grid.Row="7" Grid.Column="1"
                           HorizontalAlignment="Left" VerticalAlignment="Center"
                           Bookmark="{Binding Bookmark, Mode=TwoWay}"/>
 
-      <CheckBox Grid.Row="7" Grid.Column="1"
+      <CheckBox Grid.Row="8" Grid.Column="1"
                 Content="{DynamicResource Text.Clone.RecurseSubmodules}"
                 IsChecked="{Binding InitAndUpdateSubmodules, Mode=TwoWay}"
                 ToolTip.Tip="--recurse-submodules"/>

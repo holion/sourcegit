@@ -40,7 +40,17 @@ namespace SourceGit.ViewModels
         public string ParentFolder
         {
             get => _parentFolder;
-            set => SetProperty(ref _parentFolder, value, true);
+            set
+            {
+                if (SetProperty(ref _parentFolder, value, true))
+                    IsParentFolderMissing = !string.IsNullOrWhiteSpace(value) && !Directory.Exists(value) && !File.Exists(value);
+            }
+        }
+
+        public bool IsParentFolderMissing
+        {
+            get => _isParentFolderMissing;
+            private set => SetProperty(ref _isParentFolderMissing, value);
         }
 
         public string Local
@@ -125,8 +135,10 @@ namespace SourceGit.ViewModels
 
         public static ValidationResult ValidateParentFolder(string folder, ValidationContext _)
         {
-            if (!Directory.Exists(folder))
-                return new ValidationResult("Given path can NOT be found");
+            if (!Path.IsPathFullyQualified(folder))
+                return new ValidationResult("Given path must be absolute");
+            if (File.Exists(folder))
+                return new ValidationResult("Given path is a file");
             return ValidationResult.Success;
         }
 
@@ -139,6 +151,16 @@ namespace SourceGit.ViewModels
 
             _cancellation = new CancellationTokenSource();
             var token = _cancellation.Token;
+
+            try
+            {
+                Directory.CreateDirectory(_parentFolder);
+            }
+            catch (Exception e)
+            {
+                Models.Notification.Send(_pageId, $"Failed to create folder '{_parentFolder}': {e.Message}", true);
+                return false;
+            }
 
             var succ = await new Commands.Clone(_pageId, _parentFolder, _remote, _local, _useSSH ? _sshKey : "", _extraArgs)
                 .WithCancellation(token)
@@ -254,6 +276,7 @@ namespace SourceGit.ViewModels
         private bool _useSSH = false;
         private string _sshKey = string.Empty;
         private string _parentFolder = string.Empty;
+        private bool _isParentFolderMissing = false;
         private string _defaultCloneDir = string.Empty;
         private string _local = string.Empty;
         private string _extraArgs = string.Empty;

@@ -138,8 +138,9 @@ namespace SourceGit.ViewModels
         }
 
         /// <summary>
-        ///     Folder to clone the given repository into: `<default clone dir>/<owner>`, created when missing so the
-        ///     clone lands in a group named after the organization. Returns null without a default clone dir.
+        ///     Folder to clone the given repository into: `<default clone dir>/<owner>`, so the clone lands in a group
+        ///     named after the organization. The clone dialog creates it when missing. Returns null without a default
+        ///     clone dir.
         /// </summary>
         public static string PrepareParentFolder(Models.GitHubRepository repo)
         {
@@ -147,17 +148,7 @@ namespace SourceGit.ViewModels
             if (string.IsNullOrEmpty(cloneDir) || !Directory.Exists(cloneDir))
                 return null;
 
-            var folder = Path.Combine(cloneDir, repo.Owner.Login);
-            try
-            {
-                Directory.CreateDirectory(folder);
-                return folder;
-            }
-            catch (Exception e)
-            {
-                Native.OS.LogException(e);
-                return cloneDir;
-            }
+            return Path.Combine(cloneDir, repo.Owner.Login);
         }
 
         /// <summary>
