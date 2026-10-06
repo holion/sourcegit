@@ -55,6 +55,10 @@ jobs:
           git tag -a "v$version" -m "v$version"
           git push --atomic origin HEAD:master "v$version"
 
+          # Hand the VERSION commit to develop too, so the next release fast-forwards master.
+          # A plain push only succeeds when develop has not moved on since this release.
+          git push origin HEAD:develop || echo "::notice::develop has moved on; release.sh merges the VERSION commit into it."
+
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "tag=v$version" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"

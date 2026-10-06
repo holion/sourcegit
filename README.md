@@ -35,7 +35,7 @@ Every push to `master` makes a release. From a clean `develop`, run:
 ./release.sh
 ```
 
-The script shows the commits that are not on `master` yet and pushes `develop` to `master`. The [Release workflow](https://github.com/holion/sourcegit/actions/workflows/release.yml) then bumps `VERSION` on `master` (e.g. 2026.21.3 -> 2026.21.4), tags it and does the rest: build, sign and notarize, publish the release and update the [Homebrew tap](https://github.com/holion/homebrew-tap). The next `./release.sh` merges that `VERSION` commit back into `develop`.
+The script shows the commits that are not on `master` yet and pushes `develop` to `master`. The [Release workflow](https://github.com/holion/sourcegit/actions/workflows/release.yml) then bumps `VERSION` on `master` (e.g. 2026.21.3 -> 2026.21.4), tags it and does the rest: build, sign and notarize, publish the release and update the [Homebrew tap](https://github.com/holion/homebrew-tap). The workflow also pushes that `VERSION` commit to `develop` when `develop` has not moved on since the release; otherwise the next `./release.sh` merges it in.
 
 * Only `osx-arm64` is built by default. Set the `BUILD_RUNTIMES` repository variable to build more, e.g. `gh variable set BUILD_RUNTIMES -b "osx-arm64,osx-x64,win-x64"`.
 * Versions use a third number on top of upstream's, e.g. `2026.21.3`. After merging a new upstream version, set `VERSION` to e.g. `2026.22.1` on `develop`; the workflow releases a `VERSION` that has no tag yet as it is.
