@@ -267,6 +267,8 @@ namespace SourceGit.ViewModels
             var skipped = 0;
             foreach (var item in Items)
             {
+                item.Repo.CancelAutoFetch();
+
                 var job = factory(item.Repo);
                 if (job == null)
                     skipped++;

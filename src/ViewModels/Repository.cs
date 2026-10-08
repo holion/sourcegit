@@ -499,6 +499,7 @@ namespace SourceGit.ViewModels
 
             _watcher?.Dispose();
             _autoFetchTimer.Dispose();
+            CancelAutoFetch();
         }
 
         public void SendNotification(string message, bool isError = false)
@@ -509,10 +510,17 @@ namespace SourceGit.ViewModels
         public bool CanCreatePopup()
         {
             var page = GetOwnerPage();
-            if (page == null)
+            if (page == null || !page.CanCreatePopup())
                 return false;
 
-            return !_isAutoFetching && page.CanCreatePopup();
+            // What the user asks for comes before a background fetch, which may also hang on a stalled connection.
+            CancelAutoFetch();
+            return true;
+        }
+
+        public void CancelAutoFetch()
+        {
+            _autoFetchCancellation?.Cancel();
         }
 
         public void ShowPopup(Popup popup)
@@ -1947,9 +1955,15 @@ namespace SourceGit.ViewModels
 
                 IsAutoFetching = true;
                 log = CreateLog("Auto-Fetch");
+                _autoFetchCancellation = new CancellationTokenSource(AutoFetchTimeout);
 
                 foreach (var remote in remotes)
-                    await new Commands.Fetch(FullPath, remote).Use(log).ExecAsync();
+                {
+                    if (_autoFetchCancellation.IsCancellationRequested)
+                        break;
+
+                    await new Commands.Fetch(FullPath, remote) { CancellationToken = _autoFetchCancellation.Token }.Use(log).ExecAsync();
+                }
 
                 _lastFetchTime = DateTime.Now;
             }
@@ -1958,6 +1972,8 @@ namespace SourceGit.ViewModels
                 // Ignore all exceptions.
             }
 
+            _autoFetchCancellation?.Dispose();
+            _autoFetchCancellation = null;
             IsAutoFetching = false;
             log?.Complete();
         }
@@ -1995,7 +2011,10 @@ namespace SourceGit.ViewModels
         private object _visibleSubmodules = null;
         private string _navigateToCommitDelayed = string.Empty;
 
+        private static readonly TimeSpan AutoFetchTimeout = TimeSpan.FromMinutes(3);
+
         private bool _isAutoFetching = false;
+        private CancellationTokenSource _autoFetchCancellation = null;
         private Timer _autoFetchTimer = null;
         private DateTime _lastFetchTime = DateTime.MinValue;
 
