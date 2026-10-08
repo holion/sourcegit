@@ -316,6 +316,7 @@ namespace SourceGit.Views
                     var copyPath = new MenuItem();
                     copyPath.Header = App.Text("PageTabBar.Tab.CopyPath");
                     copyPath.Icon = this.CreateMenuIcon("Icons.Copy");
+                    copyPath.Tag = Models.Shortcuts.CopyRepositoryPath.DisplayText;
                     copyPath.Click += async (_, ev) =>
                     {
                         var dir = new DirectoryInfo(repo.FullPath);

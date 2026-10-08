@@ -271,6 +271,7 @@ namespace SourceGit.Models
         public static readonly Shortcut Push = Add("Push", ShortcutCategory.Repository, "Hotkeys.Repo.Push", Key.Up, s_cmd | KeyModifiers.Shift);
         public static readonly Shortcut OpenInFileManager = Add("OpenInFileManager", ShortcutCategory.Repository, "Repository.Explore", Key.E, s_cmd);
         public static readonly Shortcut OpenInVSCode = Add("OpenInVSCode", ShortcutCategory.Repository, "Hotkeys.Repo.OpenInVSCode", Key.E, s_cmd | KeyModifiers.Shift);
+        public static readonly Shortcut CopyRepositoryPath = Add("CopyRepositoryPath", ShortcutCategory.Repository, "Hotkeys.Repo.CopyPath", Key.C, s_cmd | KeyModifiers.Alt);
         public static readonly Shortcut ToggleCommitDetailPanel = Add("ToggleCommitDetailPanel", ShortcutCategory.Repository, "Hotkeys.Repo.ToggleCommitDetailPanel", Key.J, s_cmd);
         public static readonly Shortcut OpenCommitDetailStandalone = Add("OpenCommitDetailStandalone", ShortcutCategory.Repository, "HistoriesDetailsStandalone", Key.N, s_cmd);
         public static readonly Shortcut GoToParent = Add("GoToParent", ShortcutCategory.Repository, "Hotkeys.Repo.GoToParent", Key.Down, KeyModifiers.Alt);

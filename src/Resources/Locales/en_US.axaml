@@ -602,6 +602,7 @@
   <x:String x:Key="Text.Hotkeys.Repo.Commit" xml:space="preserve">Commit staged changes</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitAndPush" xml:space="preserve">Commit and push staged changes</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CommitWithAutoStage" xml:space="preserve">Stage all changes and commit</x:String>
+  <x:String x:Key="Text.Hotkeys.Repo.CopyPath" xml:space="preserve">Copy repository path</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CreateBranch" xml:space="preserve">Create new branch</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CreateBranchFromCommit" xml:space="preserve">Create new branch from selected commit</x:String>
   <x:String x:Key="Text.Hotkeys.Repo.CreateTagFromCommit" xml:space="preserve">Create new tag on selected commit</x:String>

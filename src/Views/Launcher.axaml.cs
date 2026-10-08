@@ -303,6 +303,14 @@ namespace SourceGit.Views
                     return;
                 }
 
+                if (Models.Shortcuts.CopyRepositoryPath.Matches(e))
+                {
+                    e.Handled = true;
+                    await this.CopyTextAsync(activeRepo.FullPath);
+                    activeRepo.SendNotification($"Copied {activeRepo.FullPath}");
+                    return;
+                }
+
                 // Opens the root repository of a page with nested repositories, or the selected one with Control held.
                 var openSelectedInVSCode = Models.Shortcuts.OpenInVSCode.Matches(e, KeyModifiers.Control);
                 if (openSelectedInVSCode || Models.Shortcuts.OpenInVSCode.Matches(e))
