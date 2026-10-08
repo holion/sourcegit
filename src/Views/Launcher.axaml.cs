@@ -43,6 +43,7 @@ namespace SourceGit.Views
 
             InitializeComponent();
             PositionChanged += OnPositionChanged;
+            AddHandler(KeyDownEvent, OnPreviewKeyDown, RoutingStrategies.Tunnel);
 
             var layout = ViewModels.Preferences.Instance.Layout;
             Width = layout.LauncherWidth;
@@ -123,6 +124,18 @@ namespace SourceGit.Views
                 var layout = ViewModels.Preferences.Instance.Layout;
                 layout.LauncherWidth = Width;
                 layout.LauncherHeight = Height;
+            }
+        }
+
+        // Handled while tunneling, because the lists in a repository use every Cmd+...+C combination for their own copy.
+        private async void OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (DataContext is ViewModels.Launcher { CommandPalette: null, ActivePage.Data: ViewModels.Repository repo } &&
+                Models.Shortcuts.CopyRepositoryPath.Matches(e))
+            {
+                e.Handled = true;
+                await this.CopyTextAsync(repo.FullPath);
+                repo.SendNotification($"Copied {repo.FullPath}");
             }
         }
 
@@ -300,14 +313,6 @@ namespace SourceGit.Views
                 {
                     Native.OS.OpenInFileManager(activeRepo.FullPath);
                     e.Handled = true;
-                    return;
-                }
-
-                if (Models.Shortcuts.CopyRepositoryPath.Matches(e))
-                {
-                    e.Handled = true;
-                    await this.CopyTextAsync(activeRepo.FullPath);
-                    activeRepo.SendNotification($"Copied {activeRepo.FullPath}");
                     return;
                 }
 
