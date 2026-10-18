@@ -469,9 +469,9 @@ namespace SourceGit.ViewModels
 
                 if (page.Nested is { } nested)
                 {
-                    foreach (var item in nested.Items)
+                    foreach (var repo in nested.AllRepositories)
                     {
-                        if (item.Repo.FullPath.Equals(notification.Group, StringComparison.OrdinalIgnoreCase))
+                        if (repo.FullPath.Equals(notification.Group, StringComparison.OrdinalIgnoreCase))
                         {
                             page.Notifications.Add(notification);
                             return;

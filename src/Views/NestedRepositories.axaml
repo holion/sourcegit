@@ -18,7 +18,7 @@
             Background="{DynamicResource Brush.Window}"
             CornerRadius="8">
       <Border CornerRadius="8" ClipToBounds="True">
-        <Grid RowDefinitions="32,*,Auto">
+        <Grid RowDefinitions="32,*,Auto,Auto">
           <!-- Header -->
           <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto,0,0" Margin="8,0,4,0">
             <TextBlock Grid.Column="0"
@@ -189,8 +189,90 @@
             </ListBox.ItemTemplate>
           </ListBox>
 
+          <!-- Worktrees found in the repositories -->
+          <Grid Grid.Row="2" RowDefinitions="28,Auto" IsVisible="{Binding HasWorktrees}">
+            <Border Grid.Row="0" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource Brush.Border0}">
+              <TextBlock Margin="8,0"
+                         Classes="group_header_label"
+                         Text="{DynamicResource Text.Repository.Worktrees}"
+                         VerticalAlignment="Center"
+                         TextTrimming="CharacterEllipsis"/>
+            </Border>
+
+            <ListBox Grid.Row="1"
+                     MaxHeight="240"
+                     Margin="0,0,0,4"
+                     Background="Transparent"
+                     ItemsSource="{Binding Worktrees}"
+                     SelectedItem="{Binding SelectedWorktree, Mode=TwoWay}"
+                     SelectionMode="Single"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+              <ListBox.Styles>
+                <Style Selector="ListBoxItem">
+                  <Setter Property="MinHeight" Value="26"/>
+                  <Setter Property="Margin" Value="4,0,4,2"/>
+                  <Setter Property="Padding" Value="6,3"/>
+                  <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+                <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Background" Value="#18888888"/>
+                </Style>
+                <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Background" Value="{DynamicResource Brush.AccentHovered}"/>
+                </Style>
+              </ListBox.Styles>
+
+              <ListBox.ItemTemplate>
+                <DataTemplate DataType="vm:NestedWorktree">
+                  <Grid RowDefinitions="20,Auto" ColumnDefinitions="18,*,Auto" VerticalAlignment="Center" Background="Transparent" ToolTip.Tip="{Binding Key}">
+                    <Path Grid.Row="0" Grid.Column="0"
+                          Width="12" Height="12"
+                          HorizontalAlignment="Left"
+                          Data="{StaticResource Icons.Repositories}"
+                          Fill="{DynamicResource Brush.FG2}"
+                          IsVisible="{Binding IsAll}"/>
+                    <Path Grid.Row="0" Grid.Column="0"
+                          Width="12" Height="12"
+                          HorizontalAlignment="Left"
+                          Data="{StaticResource Icons.Worktree}"
+                          Fill="{DynamicResource Brush.FG2}"
+                          IsVisible="{Binding !IsAll}"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                               Text="{Binding Name}"
+                               VerticalAlignment="Center"
+                               TextTrimming="CharacterEllipsis"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="2"
+                               Text="{Binding Count}"
+                               FontFamily="{DynamicResource Fonts.Monospace}"
+                               FontSize="10"
+                               Foreground="{DynamicResource Brush.FG2}"
+                               VerticalAlignment="Center"/>
+
+                    <Path Grid.Row="1" Grid.Column="0"
+                          Width="10" Height="10"
+                          HorizontalAlignment="Left"
+                          Data="{StaticResource Icons.Branch}"
+                          Fill="{DynamicResource Brush.FG2}"
+                          IsVisible="{Binding Branch, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                               Height="16"
+                               Text="{Binding Branch}"
+                               FontSize="11"
+                               Foreground="{DynamicResource Brush.FG2}"
+                               VerticalAlignment="Center"
+                               TextTrimming="CharacterEllipsis"
+                               IsVisible="{Binding Branch, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                  </Grid>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </Grid>
+
           <!-- Progress of actions running on all repositories -->
-          <Grid Grid.Row="2" Height="28" ColumnDefinitions="Auto,*" Margin="8,0" IsVisible="{Binding IsBusy}">
+          <Grid Grid.Row="3" Height="28" ColumnDefinitions="Auto,*" Margin="8,0" IsVisible="{Binding IsBusy}">
             <v:LoadingIcon Grid.Column="0" Width="14" Height="14" IsVisible="{Binding IsBusy}"/>
             <TextBlock Grid.Column="1"
                        Margin="6,0,0,0"

@@ -90,8 +90,8 @@ namespace SourceGit.ViewModels
             var state = Models.DirtyState.None;
             if (_nested != null)
             {
-                foreach (var item in _nested.Items)
-                    state |= item.Repo.DirtyState;
+                foreach (var repo in _nested.AllRepositories)
+                    state |= repo.DirtyState;
             }
             else if (_data is Repository repo)
             {
