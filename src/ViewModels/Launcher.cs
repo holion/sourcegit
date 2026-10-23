@@ -418,7 +418,7 @@ namespace SourceGit.ViewModels
             }
 
             // Get the owner repository's name and extract the pure owner name (without any prefix)
-            var ownerName = ownerPage.Node.Name;
+            var ownerName = ownerPage.Node.DisplayName;
             var colonIdx = ownerName.LastIndexOf(':');
             var pureOwnerName = (colonIdx >= 0 && colonIdx < ownerName.Length - 1) ? ownerName.Substring(colonIdx + 1).Trim() : ownerName;
 
@@ -567,7 +567,7 @@ namespace SourceGit.ViewModels
                 _activeWorkspace.ActiveIdx = _activeWorkspace.Repositories.IndexOf(repo.FullPath);
 
             var builder = new StringBuilder(512);
-            builder.Append(string.IsNullOrEmpty(_activePage.Node.Name) ? "Repositories" : _activePage.Node.Name);
+            builder.Append(string.IsNullOrEmpty(_activePage.Node.Name) ? "Repositories" : _activePage.Node.DisplayName);
 
             var workspaces = Preferences.Instance.Workspaces;
             if (workspaces.Count == 0 || workspaces.Count > 1 || workspaces[0] != _activeWorkspace)

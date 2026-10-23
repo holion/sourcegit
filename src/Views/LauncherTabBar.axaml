@@ -96,7 +96,7 @@
 
                   <Grid Grid.Column="1"
                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                        ColumnDefinitions="Auto,*"
+                        ColumnDefinitions="Auto,Auto,*"
                         IsHitTestVisible="False"
                         IsVisible="{Binding Node.IsRepository}">
                     <Ellipse Grid.Column="0"
@@ -106,11 +106,19 @@
                              IsVisible="{Binding DirtyState, Converter={x:Static ObjectConverters.NotEqual}, ConverterParameter={x:Static m:DirtyState.None}}"
                              Fill="{Binding DirtyState, Converter={x:Static c:DirtyStateConverters.ToBrush}}"/>
 
-                    <TextBlock Grid.Column="1"
+                    <Path Grid.Column="1"
+                          Width="10" Height="10"
+                          Margin="0,0,6,0"
+                          VerticalAlignment="Center"
+                          Data="{StaticResource Icons.Repositories}"
+                          Fill="{DynamicResource Brush.Accent}"
+                          IsVisible="{Binding Node.IsContext}"/>
+
+                    <TextBlock Grid.Column="2"
                                VerticalAlignment="Center"
                                FontSize="{Binding Source={x:Static vm:Preferences.Instance}, Path=DefaultFontSize, Converter={x:Static c:DoubleConverters.Decrease}}"
                                TextAlignment="Center"
-                               Text="{Binding Node.Name}"
+                               Text="{Binding Node.DisplayName}"
                                IsHitTestVisible="False"/>
                   </Grid>
 

@@ -29,7 +29,10 @@ namespace SourceGit.ViewModels
             set
             {
                 if (SetProperty(ref _nested, value))
+                {
+                    _node.IsContext = value != null;
                     UpdateDirtyState();
+                }
             }
         }
 

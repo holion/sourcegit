@@ -148,7 +148,13 @@
                             IsVisible="{Binding !IsRepository}"/>
 
               <StackPanel Grid.Column="2" Orientation="Horizontal" ClipToBounds="True">
-                <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                <TextBlock VerticalAlignment="Center" Text="{Binding DisplayName}"/>
+                <Path Margin="6,0,0,0"
+                      Width="10" Height="10"
+                      VerticalAlignment="Center"
+                      Data="{StaticResource Icons.Repositories}"
+                      Fill="{DynamicResource Brush.Accent}"
+                      IsVisible="{Binding IsContext}"/>
                 <TextBlock Margin="4,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource Brush.FG2}" Text="{Binding Id, StringFormat=({0}), Converter={x:Static c:PathConverters.RelativeToHome}}">
                   <TextBlock.IsVisible>
                     <MultiBinding Converter="{x:Static BoolConverters.And}">

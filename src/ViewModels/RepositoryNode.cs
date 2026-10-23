@@ -30,7 +30,44 @@ namespace SourceGit.ViewModels
         public string Name
         {
             get => _name;
-            set => SetProperty(ref _name, value);
+            set
+            {
+                if (SetProperty(ref _name, value))
+                    OnPropertyChanged(nameof(DisplayName));
+            }
+        }
+
+        /// <summary>
+        ///     Whether the repository holds nested repositories. Its name is shown without a `-context-repo` or
+        ///     `-context` suffix then.
+        /// </summary>
+        [JsonIgnore]
+        public bool IsContext
+        {
+            get => _isContext;
+            set
+            {
+                if (SetProperty(ref _isContext, value))
+                    OnPropertyChanged(nameof(DisplayName));
+            }
+        }
+
+        [JsonIgnore]
+        public string DisplayName
+        {
+            get
+            {
+                if (!_isContext)
+                    return _name;
+
+                foreach (var suffix in ContextSuffixes)
+                {
+                    if (_name.Length > suffix.Length && _name.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+                        return _name[..^suffix.Length];
+                }
+
+                return _name;
+            }
         }
 
         public int Bookmark
@@ -183,6 +220,7 @@ namespace SourceGit.ViewModels
             }
 
             _lastUpdateStatus = DateTime.Now;
+            IsContext = NestedRepositories.Scan(_id).Count > 0;
             Status = await new Commands.QueryRepositoryStatus(_id).GetResultAsync();
         }
 
@@ -227,9 +265,12 @@ namespace SourceGit.ViewModels
             }
         }
 
+        private static readonly string[] ContextSuffixes = ["-context-repo", "-context"];
+
         private string _id = string.Empty;
         private string _name = string.Empty;
         private bool _isRepository = false;
+        private bool _isContext = false;
         private int _bookmark = 0;
         private bool _isExpanded = false;
         private bool _isVisible = true;
