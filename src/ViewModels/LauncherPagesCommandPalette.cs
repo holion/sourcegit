@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Avalonia.Threading;
@@ -175,6 +176,10 @@ namespace SourceGit.ViewModels
 
             var hostedRepos = new List<object>();
             CollectVisibleHostedRepository(hostedRepos);
+
+            // Context repositories go before the repositories nested in them.
+            pages = [.. pages.OrderBy(x => x.Node.IsContext ? 0 : 1)];
+            repos = [.. repos.OrderBy(x => x.IsContext ? 0 : 1)];
 
             var autoSelectPage = _selectedPage;
             var autoSelectRepo = _selectedRepo;
@@ -468,6 +473,15 @@ namespace SourceGit.ViewModels
             _discovered = [];
             _discoveredRoots.Clear();
 
+            var contexts = new HashSet<string>();
+            foreach (var (path, root) in found)
+            {
+                if (path != root)
+                    contexts.Add(root);
+            }
+
+            MarkContexts(Preferences.Instance.RepositoryNodes, contexts);
+
             foreach (var (path, root) in found)
             {
                 if (_managed.Contains(path))
@@ -490,8 +504,20 @@ namespace SourceGit.ViewModels
                     };
                 }
 
+                node.IsContext = contexts.Contains(path);
                 _discovered.Add(node);
                 _discoveredRoots[node] = root;
+            }
+        }
+
+        private static void MarkContexts(List<RepositoryNode> nodes, HashSet<string> contexts)
+        {
+            foreach (var node in nodes)
+            {
+                if (!node.IsRepository)
+                    MarkContexts(node.SubNodes, contexts);
+                else if (contexts.Contains(node.Id))
+                    node.IsContext = true;
             }
         }
 

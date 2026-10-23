@@ -96,11 +96,18 @@
                   Data="{StaticResource Icons.Repositories}"
                   IsVisible="{Binding !Node.IsRepository}"
                   IsHitTestVisible="False"/>
-            <TextBlock Grid.Column="2"
-                       VerticalAlignment="Center"
-                       Text="{Binding Node.Name}"
-                       IsVisible="{Binding Node.IsRepository}"
-                       IsHitTestVisible="False"/>
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        IsVisible="{Binding Node.IsRepository}"
+                        IsHitTestVisible="False">
+              <TextBlock VerticalAlignment="Center" Text="{Binding Node.DisplayName}"/>
+              <Path Width="10" Height="10"
+                    Margin="6,0,0,0"
+                    VerticalAlignment="Center"
+                    Data="{StaticResource Icons.Repositories}"
+                    Fill="{DynamicResource Brush.Accent}"
+                    IsVisible="{Binding Node.IsContext}"/>
+            </StackPanel>
             <TextBlock Grid.Column="2"
                        VerticalAlignment="Center"
                        Text="{DynamicResource Text.PageTabBar.Welcome.Title}"
@@ -188,7 +195,7 @@
 
       <ListBox.ItemTemplate>
         <DataTemplate DataType="vm:RepositoryNode">
-          <Grid ColumnDefinitions="Auto,*" Background="Transparent" Tapped="OnItemTapped" ToolTip.Tip="{Binding Id, Mode=OneWay}">
+          <Grid ColumnDefinitions="Auto,*,Auto" Background="Transparent" Tapped="OnItemTapped" ToolTip.Tip="{Binding Id, Mode=OneWay}">
             <v:Bookmark Grid.Column="0"
                         Width="12" Height="12"
                         Value="{Binding Bookmark, Mode=OneWay}"/>
@@ -196,9 +203,17 @@
                        Margin="6,0,0,0"
                        VerticalAlignment="Center"
                        IsHitTestVisible="False">
-              <Run Text="{Binding Name, Mode=OneWay}"/>
+              <Run Text="{Binding DisplayName, Mode=OneWay}"/>
               <Run Text="{Binding Id, Mode=OneWay, StringFormat=({0}), Converter={x:Static c:PathConverters.RelativeToHome}}" Foreground="{DynamicResource Brush.FG2}"/>
             </TextBlock>
+            <Path Grid.Column="2"
+                  Width="10" Height="10"
+                  Margin="6,0"
+                  VerticalAlignment="Center"
+                  Data="{StaticResource Icons.Repositories}"
+                  Fill="{DynamicResource Brush.Accent}"
+                  IsVisible="{Binding IsContext}"
+                  IsHitTestVisible="False"/>
           </Grid>
         </DataTemplate>
       </ListBox.ItemTemplate>
